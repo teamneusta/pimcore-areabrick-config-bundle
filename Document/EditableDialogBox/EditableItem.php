@@ -7,8 +7,6 @@ class EditableItem extends DialogBoxItem
 {
     private string $name;
     private string $label = '';
-    /** @var array<string, bool|float|int|string> */
-    private array $config = [];
 
     public function __construct(string $type, string $name)
     {

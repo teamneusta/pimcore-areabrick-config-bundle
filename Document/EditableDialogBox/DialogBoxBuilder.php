@@ -4,6 +4,7 @@ namespace Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox;
 
 use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem\CheckboxItem;
 use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem\InputItem;
+use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem\RelationItem;
 use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem\SelectItem;
 use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\LayoutItem\PanelItem;
@@ -69,6 +70,11 @@ class DialogBoxBuilder
     public function createSelect(string $name, array $store): SelectItem
     {
         return new SelectItem($name, $store);
+    }
+
+    public function createNumeric(string $name, int $min, int $max): NumericItem
+    {
+        return new NumericItem($name, $min, $max);
     }
 
     public function build(): EditableDialogBoxConfiguration
