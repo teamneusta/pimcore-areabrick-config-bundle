@@ -7,8 +7,8 @@ use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem;
 
 class NumericItem extends EditableItem
 {
-    private int $min;
-    private int $max;
+    private int $min = 0;
+    private int $max = 0;
 
     public function __construct(string $name, int $min, int $max)
     {
