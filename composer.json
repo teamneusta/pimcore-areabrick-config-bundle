@@ -1,5 +1,5 @@
 {
-  "name": "neusta/editorconfig-bundle",
+  "name": "teamneusta/pimcore-editorconfig-bundle",
   "type": "pimcore-bundle",
   "description": "Adds common techniques to add editor config to areabricks",
   "license": "GPL-3.0-or-later",
@@ -33,7 +33,7 @@
   "extra": {
     "pimcore": {
       "bundles": [
-        "Neusta\\Pimcore\\EditorConfigBundle\\EditorConfigBundle"
+        "Neusta\\Pimcore\\EditorConfigBundle\\NeustaPimcoreEditorConfigBundle"
       ]
     }
   },
