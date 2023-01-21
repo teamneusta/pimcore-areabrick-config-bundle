@@ -10,13 +10,11 @@ class Installer extends AbstractInstaller
 {
     public function install(): void
     {
-        $this->installDocumentTypes();
-        $this->installThumbnailConfiguration();
     }
 
     public function isInstalled(): bool
     {
-        return false;
+        return true;
     }
 
     public function canBeInstalled(): bool
@@ -27,44 +25,5 @@ class Installer extends AbstractInstaller
     public function needsReloadAfterInstall(): bool
     {
         return true;
-    }
-
-    private function installDocumentTypes(): void
-    {
-        $typeDefinitionsFile =
-            __DIR__ . \DIRECTORY_SEPARATOR .
-            'Resources' . \DIRECTORY_SEPARATOR .
-            'config' . \DIRECTORY_SEPARATOR .
-            'document-types.php';
-        $typeDefinitions = include $typeDefinitionsFile;
-        foreach ($typeDefinitions as $typeDefinition) {
-            $this->installDocumentType($typeDefinition);
-        }
-    }
-
-    private function installDocumentType(array $typeDefinition): void
-    {
-        $model = new DocType();
-        $model->setId($typeDefinition['id']);
-        $model->setName($typeDefinition['name']);
-        $model->setGroup($typeDefinition['group']);
-        $model->setController($typeDefinition['controller']);
-        $model->setTemplate($typeDefinition['template']);
-        $model->setType($typeDefinition['type']);
-        $model->setPriority($typeDefinition['priority']);
-        $model->setCreationDate($typeDefinition['creationDate']);
-        $model->setModificationDate($typeDefinition['modificationDate']);
-        $model->save();
-    }
-
-    private function installThumbnailConfiguration(): void
-    {
-        if (Thumbnail\Config::exists('pimcore-presentation-bundle-background-image')) {
-            return;
-        }
-
-        $thumbnailConfig = new Thumbnail\Config();
-        $thumbnailConfig->setName('pimcore-presentation-bundle-background-image');
-        $thumbnailConfig->save();
     }
 }
