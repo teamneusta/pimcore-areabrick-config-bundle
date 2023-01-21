@@ -48,16 +48,6 @@ class DialogBoxBuilder
         return $this;
     }
 
-    public function addSettingsTab(EditableItem ...$items): static
-    {
-        return $this->addTab('Settings', ...$items);
-    }
-
-    public function addExtrasTab(EditableItem ...$items): static
-    {
-        return $this->addTab('Extras', ...$items);
-    }
-
     public function createCheckbox(string $name): CheckboxItem
     {
         return new CheckboxItem($name);
