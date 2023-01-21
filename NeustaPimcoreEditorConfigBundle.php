@@ -33,6 +33,6 @@ class NeustaPimcoreEditorConfigBundle extends AbstractPimcoreBundle
 
     protected function getComposerPackageName(): string
     {
-        return 'neusta/pimcore-editorconfig-bundle';
+        return 'teamneusta/pimcore-editorconfig-bundle';
     }
 }
