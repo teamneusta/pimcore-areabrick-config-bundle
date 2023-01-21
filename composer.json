@@ -1,0 +1,61 @@
+{
+  "name": "neusta/editorconfig-bundle",
+  "type": "pimcore-bundle",
+  "description": "Adds common techniques to add editor config to areabricks",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "team neusta GmbH",
+      "email": "info@team-neusta.de",
+      "homepage": "https://www.team-neusta.de/",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "pimcore/pimcore": "^10.0",
+    "symfony/config": "^5.3",
+    "symfony/console": "^5.3",
+    "symfony/dependency-injection": "^5.3",
+    "symfony/event-dispatcher": "^5.2",
+    "symfony/finder": "^5.2",
+    "symfony/http-kernel": "^5.3"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.12",
+    "phpspec/prophecy-phpunit": "^2.0",
+    "phpunit/phpunit": "^9.3"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "Neusta\\Pimcore\\EditorConfigBundle\\EditorConfigBundle"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Neusta\\Pimcore\\EditorConfigBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Neusta\\Pimcore\\EditorConfigBundle\\Tests\\": "Tests/"
+    }
+  },
+  "scripts": {
+    "cs": "php-cs-fixer fix -v --diff --dry-run",
+    "cs-fix": "php-cs-fixer fix -v --diff"
+  },
+  "scripts-descriptions": {
+    "cs": "Checks code style (but doesn't fix anything)",
+    "cs-fix": "Fixes code style"
+  }
+}

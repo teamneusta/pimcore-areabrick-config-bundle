@@ -1,0 +1,14 @@
+{% extends '@NeustaPimcorePresentation/Areas/fragmentWrap.html.twig' %}
+
+{% set brickName='code' %}
+
+{% block brick %}
+    {% if editmode %}
+        {{ pimcore_textarea('code', {
+            'placeholder': 'Enter your code',
+            'height': 150
+        }) }}
+    {% else %}
+        <pre><code data-trim>{{ pimcore_textarea('code').getData() }}</code></pre>
+    {% endif %}
+{% endblock %}

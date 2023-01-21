@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eu
+
+# This script authorizes composer to talk to neusta GitLab
+
+GITLAB_DOMAIN='gitlab.neusta.de'
+
+if ! composer config gitlab-token."${GITLAB_DOMAIN}" > /dev/null 2>&1; then
+  if [ -z "${PIMCORE_GROUP_TOKEN:-}" ]; then
+    echo -n "Please enter the access token for the »NSD/p_pimcore« group here: " && read -s token
+    echo
+    PIMCORE_GROUP_TOKEN="${token}"
+  fi
+  echo "Creating/updating »auth.json«"
+  bin/composer config gitlab-token."${GITLAB_DOMAIN}" "${PIMCORE_GROUP_TOKEN}"
+fi

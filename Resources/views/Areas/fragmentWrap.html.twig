@@ -1,0 +1,51 @@
+{% set fragmentStyle = pimcore_select('fragment-style').getData() != 'none'
+    ? pimcore_select('fragment-style').getData()
+    : '' %}
+{% set fragmentOrder = pimcore_numeric('fragment-order').getData() > 0
+    ? 'data-fragment-index='~pimcore_numeric('fragment-order').getData()
+    : null %}
+{% set isFragment = fragmentStyle
+    ? 'fragment'
+    : '' %}
+
+<div class="brick-{{ brickName }} {{ isFragment }} {{ fragmentStyle }}" {{ fragmentOrder }}>
+    {% block brick %}{% endblock %}
+</div>
+
+{% if editmode %}
+    <div class="brick-settings">
+        <h1>Brick settings</h1>
+
+        <div class="flex-container">
+            <div class="flex-child">
+                <h2>Fragments style</h2>
+                {{ pimcore_select('fragment-style',{
+                    'store': [
+                        ['none', 'none'],
+                        ['fade-in', 'fade in'],
+                        ['fade-out', 'fade out'],
+                        ['fade-up', 'fade up'],
+                        ['fade-in-then-out', 'fade in then out'],
+                        ['fade-in-then-semi-out', 'fade in then semi out'],
+                        ['grow', 'grow'],
+                        ['shrink', 'shrink'],
+                        ['strike', 'strike'],
+                        ['highlight-current-blue', 'highlight current blue'],
+                        ['highlight-red', 'highlight red'],
+                        ['highlight-blue', 'highlight blue'],
+                        ['highlight-green', 'highlight green'],
+                    ],
+                    'defaultValue': 'none'
+                }) }}
+            </div>
+
+            <div class="flex-child">
+                <h2>Fragments order</h2>
+                {{ pimcore_numeric('fragment-order', {
+                    'minValue': 0,
+                    'maxValue': 20
+                }) }}
+            </div>
+        </div>
+    </div>
+{% endif %}

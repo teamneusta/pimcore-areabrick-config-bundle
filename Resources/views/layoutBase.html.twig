@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% if document.getTitle() %}
+        <title>{{ document.getTitle() }}</title>
+    {% endif %}
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="{{ revealJsPublicPath }}/plugin/highlight/monokai.css">
+
+    <link rel="stylesheet" href="/bundles/neustapimcorepresentation/css/styles.css">
+
+    {% if editmode %}
+        <link rel="stylesheet" href="/bundles/neustapimcorepresentation/css/editmode.css">
+    {% else %}
+        <link rel="stylesheet" href="{{ revealJsPublicPath }}/dist/reset.css">
+        <link rel="stylesheet" href="{{ revealJsPublicPath }}/dist/reveal.css">
+        <link rel="stylesheet" href="{{ presentation_theme() }}" id="theme">
+    {% endif %}
+
+    {% block styles %}{% endblock %}
+</head>
+
+<body {% if editmode %}class="editmode"{% endif %}>
+
+<div class="reveal">
+    {% block main %}{% endblock %}
+</div>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

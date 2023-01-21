@@ -1,0 +1,33 @@
+<footer>
+    <div class="flex">
+        <div class="footerBlock left">
+            {{ pimcore_image("logoLeft", {
+                "width": 200,
+                "thumbnail": {
+                    "width": 200
+                }
+            }) }}
+        </div>
+
+        <div class="footerBlock middle">
+            {% if editmode %}
+                {{ pimcore_textarea('middleText', {
+                    'placeholder': 'Enter your Text',
+                    'height': 150
+                }) }}
+            {% else %}
+                {{ pimcore_textarea("middleText") |nl2br }}
+            {% endif %}
+        </div>
+
+        <div class="footerBlock right">
+            {{ pimcore_image("logoRight", {
+                "width": 200,
+                "thumbnail": {
+                    "width": 200
+                }
+            }) }}
+        </div>
+
+    </div>
+</footer>

@@ -1,0 +1,70 @@
+include:
+    - project: NSD/p_pimcore/pimcore-ci-templates
+      ref: 0.9.1
+      file:
+          - gitlab-ci/composer.yaml
+          - gitlab-ci/cs-fixer.yaml
+          - gitlab-ci/lint-twig.yaml
+          - gitlab-ci/phpunit.yaml
+
+.images:
+    pimcore-10: &pimcore10 'docker-repository.intern.neusta.de/pimcore/pimcore:PHP8.1-cli'
+
+variables:
+    PIMCORE_10_IMAGE: *pimcore10
+    PIMCORE_IMAGE: *pimcore10
+    COMPOSER_IMAGE: *pimcore10
+    PHPQA_IMAGE: 'docker-repository.intern.neusta.de/jakzal/phpqa:php8.1-alpine'
+    LINT_TWIG_DIR: 'Resources/views'
+    LINT_YAML_DIR: 'Resources/config'
+
+stages:
+    - build
+    - test
+    - package
+
+build:vendor:
+    stage: build
+    extends: .composer-install
+
+test:security:
+    stage: test
+    extends: .composer-security
+    needs:
+        - build:vendor
+
+test:code-style:
+    stage: test
+    extends: .php-cs-fixer
+    needs:
+        - build:vendor
+
+test:lint-twig:
+    stage: test
+    extends: .lint-twig
+    needs:
+        - build:vendor
+
+test:phpunit:
+    stage: test
+    extends: .phpunit-with-coverage
+    needs:
+        - build:vendor
+
+package:composer:
+    stage: package
+    extends: .composer-package-on-tag
+    needs:
+        - test:phpunit
+
+package:composer-package-on-branch:
+  image: curlimages/curl:latest
+  rules:
+    - if: $CI_COMMIT_BRANCH
+  script:
+    - >-
+      curl
+      --header "Job-Token: ${CI_JOB_TOKEN}"
+      --data branch=${CI_COMMIT_REF_NAME}
+      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/composer"
+

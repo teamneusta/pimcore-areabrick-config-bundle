@@ -1,0 +1,11 @@
+{% extends '@NeustaPimcorePresentation/Areas/fragmentWrap.html.twig' %}
+
+{% set brickName='textarea' %}
+
+{% block brick %}
+    {{ pimcore_textarea('text', {
+        nl2br: true,
+        'placeholder': 'Enter your text, NL will transformed to <br>',
+        'height': 150
+    }) }}
+{% endblock %}

@@ -1,0 +1,19 @@
+{{ 'slides.start.configuration'|trans|raw }}
+<br>
+<span>Theme:</span> {{ pimcore_select('theme', {
+    store: [
+        [revealJsPublicPath ~ '/dist/theme/beige.css','Beige'],
+        [revealJsPublicPath ~ '/dist/theme/black.css','Black'],
+        [revealJsPublicPath ~ '/dist/theme/blood.css','Blood'],
+        [revealJsPublicPath ~ '/dist/theme/league.css','League'],
+        [revealJsPublicPath ~ '/dist/theme/moon.css','Moon'],
+        [revealJsPublicPath ~ '/dist/theme/night.css','Night'],
+        [revealJsPublicPath ~ '/dist/theme/serif.css','Serif'],
+        [revealJsPublicPath ~ '/dist/theme/simple.css','Simple'],
+        [revealJsPublicPath ~ '/dist/theme/sky.css','Sky'],
+        [revealJsPublicPath ~ '/dist/theme/solarized.css','Solarized'],
+        [revealJsPublicPath ~ '/dist/theme/white.css','White'],
+    ],
+    defaultValue: revealJsPublicPath ~ '/dist/theme/black.css',
+    reload: true
+}) }}

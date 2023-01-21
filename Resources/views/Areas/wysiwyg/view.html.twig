@@ -1,0 +1,17 @@
+{% extends '@NeustaPimcorePresentation/Areas/fragmentWrap.html.twig' %}
+
+{% set brickName='wysiwyg' %}
+
+{% block brick %}
+    {% if editmode %}
+        {{ pimcore_wysiwyg('wysiwyg', {
+            'height': 150,
+            'toolbarGroups': [{
+                'name': 'basicstyles',
+                'groups': [ 'basicstyles', 'list', 'links' ]
+            }]
+        }) }}
+    {% else %}
+        {{ pimcore_wysiwyg('wysiwyg').getData() | raw }}
+    {% endif %}
+{% endblock %}
