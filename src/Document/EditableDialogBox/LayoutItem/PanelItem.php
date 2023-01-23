@@ -11,7 +11,7 @@ class PanelItem extends LayoutItem
     private string $title;
 
     /**
-     * @param DialogBoxItem $items
+     * @param list<DialogBoxItem> $items
      */
     public function __construct(string $title, array $items)
     {
