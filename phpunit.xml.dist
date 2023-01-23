@@ -2,17 +2,10 @@
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-        backupGlobals="false"
         colors="true"
         bootstrap="vendor/autoload.php"
         failOnRisky="true"
         failOnWarning="true">
-    <coverage>
-        <include>
-            <directory>./src</directory>
-        </include>
-    </coverage>
-
     <php>
         <ini name="error_reporting" value="-1"/>
         <ini name="memory_limit" value="-1" />
@@ -23,4 +16,10 @@
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
+
+    <coverage>
+        <include>
+            <directory>./src</directory>
+        </include>
+    </coverage>
 </phpunit>
