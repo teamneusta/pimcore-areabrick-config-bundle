@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox;
+namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox;
 
 use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem\CheckboxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem\InputItem;

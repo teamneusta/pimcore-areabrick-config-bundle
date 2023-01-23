@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\src;
+namespace Neusta\Pimcore\AreabrickConfigBundle;
 
 use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
 
