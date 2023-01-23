@@ -16,10 +16,5 @@ class NeustaPimcoreAreabrickConfigExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.yaml');
-
-        /* TODO: ATM bricks.yaml will not be used. May be it could be deleted. */
-        if ($config['bricks']) {
-            $loader->load('bricks.yaml');
-        }
     }
 }
