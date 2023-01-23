@@ -1,5 +1,5 @@
 {
-  "name": "teamneusta/pimcore-editorconfig-bundle",
+  "name": "teamneusta/pimcore-areabrick-config-bundle",
   "type": "pimcore-bundle",
   "description": "Adds common techniques to add editor config to areabricks",
   "license": "GPL-3.0-or-later",
@@ -22,7 +22,7 @@
     "symfony/http-kernel": "^5.3"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.12",
+    "friendsofphp/php-cs-fixer": "^3.11",
     "phpspec/prophecy-phpunit": "^2.0",
     "phpunit/phpunit": "^9.3"
   },
@@ -33,13 +33,13 @@
   "extra": {
     "pimcore": {
       "bundles": [
-        "Neusta\\Pimcore\\EditorConfigBundle\\NeustaPimcoreEditorConfigBundle"
+        "Neusta\\Pimcore\\AreabrickConfigBundle\\NeustaPimcoreAreabrickConfigBundle"
       ]
     }
   },
   "autoload": {
     "psr-4": {
-      "Neusta\\Pimcore\\EditorConfigBundle\\": ""
+      "Neusta\\Pimcore\\AreabrickConfigBundle\\": ""
     },
     "exclude-from-classmap": [
       "/Tests/"
@@ -47,15 +47,20 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Neusta\\Pimcore\\EditorConfigBundle\\Tests\\": "Tests/"
+      "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "Tests/"
     }
   },
   "scripts": {
-    "cs": "php-cs-fixer fix -v --diff --dry-run",
-    "cs-fix": "php-cs-fixer fix -v --diff"
+    "cs:check": "php-cs-fixer fix -v --diff --dry-run",
+    "cs:fix": "php-cs-fixer fix -v --diff",
+    "phpstan": "phpstan analyse --level=${PHPSTAN_LEVEL:-8} -c phpstan.neon",
+    "phpstan:baseline": "phpstan analyse --level=${PHPSTAN_LEVEL:-8} -c phpstan.neon --generate-baseline",
+    "tests": "phpunit"
   },
   "scripts-descriptions": {
-    "cs": "Checks code style (but doesn't fix anything)",
-    "cs-fix": "Fixes code style"
+    "cs:check": "Checks code style (but doesn't fix anything)",
+    "cs:fix": "Checks and fixes code style",
+    "phpstan": "Checks code against phpstan rules",
+    "tests": "runs all the phpunit tests"
   }
 }

@@ -8,8 +8,8 @@ Adds common techniques to add editor config to areabricks
    to [Require Neusta Pimcore Bundle](https://portal.neusta.de/confluence/display/NSDPIMCORE/Require+Neusta+Pimcore+Bundle).
 2. Run `composer require teamneusta/pimcore-editorconfig-bundle` to install the bundle
 3. Enable and _install_ the pimcore bundle to get certain brick functionality \
-   `bin/console pimcore:bundle:enable NeustaPimcoreEditorConfigBundle` \
-   `bin/console pimcore:bundle:install NeustaPimcoreEditorConfigBundle`
+   `bin/console pimcore:bundle:enable NeustaPimcoreAreabrickConfigBundle` \
+   `bin/console pimcore:bundle:install NeustaPimcoreAreabrickConfigBundle`
 
 ## Usage
 
@@ -25,8 +25,8 @@ the following:
 ```php
 <?php
 
-use Neusta\Pimcore\EditorConfigBundle\Document\Base\HasDialogBox;
-use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\DialogBoxBuilder;
+use Neusta\Pimcore\AreabrickConfigBundle\src\Document\Base\HasDialogBox;
+use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\DialogBoxBuilder;
 use Pimcore\Extension\Document\Areabrick\AbstractTemplateAreabrick;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxInterface;
 use Pimcore\Model\Document\Editable;
@@ -124,8 +124,26 @@ And after editing the values they are readable and evaluatable in the TWIG templ
       gewählt.
   </p>
 ```
+## Contribution
 
-## Attribution
+Feel free to open issues for any bug, feature request, or other ideas.
 
-Icon by <a href="https://www.flaticon.com/free-icons/project" title="project icons">Project icons created by Freepik -
-Flaticon</a>
+Please remember to create an issue before creating large pull requests.
+
+### Running tests for development
+
+```shell
+docker run -it --rm -v $(pwd):/app -w /app pimcore/pimcore:PHP8.1-cli composer install --ignore-platform-reqs
+docker run -it --rm -v $(pwd):/app -w /app pimcore/pimcore:PHP8.1-cli composer test
+```
+
+### Further development
+
+Pipelines will tell you, when code does not meet our standards. To use the same tools in local development, take the Docker command from above with other scripts from the `composer.json`. For example:
+
+* cs:check
+* phpstan
+
+```shell
+docker run -it --rm -v $(pwd):/app -w /app pimcore/pimcore:PHP8.1-cli composer <composer-script>
+```

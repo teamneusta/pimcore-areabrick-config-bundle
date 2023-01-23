@@ -1,0 +1,25 @@
+<?php declare(strict_types=1);
+
+namespace Neusta\Pimcore\AreabrickConfigBundle\src\DependencyInjection;
+
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+
+class NeustaPimcoreAreabrickConfigExtension extends Extension
+{
+    public function load(array $configs, ContainerBuilder $container)
+    {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
+        $loader->load('services.yaml');
+
+        /* TODO: ATM bricks.yaml will not be used. May be it could be deleted. */
+        if ($config['bricks']) {
+            $loader->load('bricks.yaml');
+        }
+    }
+}
