@@ -6,7 +6,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox;
 abstract class LayoutItem extends DialogBoxItem
 {
     /**
-     * @param DialogBoxItem $items
+     * @param list<DialogBoxItem> $items
      */
     public function __construct(
         string $type,
