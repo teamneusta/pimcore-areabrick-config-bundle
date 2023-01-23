@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox;
 
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\DialogBoxItem;
-
 class EditableItem extends DialogBoxItem
 {
     private string $name;
