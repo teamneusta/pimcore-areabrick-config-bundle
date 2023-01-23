@@ -2,7 +2,7 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle;
 
-use Neusta\Pimcore\AreabrickConfigBundle\src\Installer;
+use Neusta\Pimcore\AreabrickConfigBundle\Installer;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 

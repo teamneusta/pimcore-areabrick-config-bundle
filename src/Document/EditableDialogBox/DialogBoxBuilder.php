@@ -2,12 +2,12 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox;
 
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem\CheckboxItem;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem\InputItem;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem\RelationItem;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem\SelectItem;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\LayoutItem\PanelItem;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\LayoutItem\TabPanelItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\CheckboxItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\InputItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\RelationItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\SelectItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem\PanelItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem\TabPanelItem;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 
 class DialogBoxBuilder

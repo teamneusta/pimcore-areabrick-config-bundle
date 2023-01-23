@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\LayoutItem;
+namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem;
 
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\DialogBoxItem;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\LayoutItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\DialogBoxItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem;
 
 class PanelItem extends LayoutItem
 {

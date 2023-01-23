@@ -25,8 +25,8 @@ the following:
 ```php
 <?php
 
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\Base\HasDialogBox;
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\DialogBoxBuilder;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\Base\HasDialogBox;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\DialogBoxBuilder;
 use Pimcore\Extension\Document\Areabrick\AbstractTemplateAreabrick;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxInterface;
 use Pimcore\Model\Document\Editable;

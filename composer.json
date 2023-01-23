@@ -39,15 +39,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Neusta\\Pimcore\\AreabrickConfigBundle\\": ""
-    },
-    "exclude-from-classmap": [
-      "/Tests/"
-    ]
+      "Neusta\\Pimcore\\AreabrickConfigBundle\\": "src/"
+    }
   },
   "autoload-dev": {
     "psr-4": {
-      "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "Tests/"
+      "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "tests/"
     }
   },
   "scripts": {

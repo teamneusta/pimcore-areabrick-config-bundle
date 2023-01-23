@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem;
 
-use Neusta\Pimcore\AreabrickConfigBundle\src\Document\EditableDialogBox\EditableItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem;
 
 class RelationItem extends EditableItem
 {
