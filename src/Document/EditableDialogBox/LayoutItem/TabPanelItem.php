@@ -8,7 +8,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem;
 class TabPanelItem extends LayoutItem
 {
     /**
-     * @param PanelItem $items
+     * @param list<PanelItem> $items
      */
     public function __construct(array $items = [])
     {

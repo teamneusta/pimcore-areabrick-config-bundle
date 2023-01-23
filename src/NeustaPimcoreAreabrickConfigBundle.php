@@ -26,13 +26,8 @@ class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle
         ];
     }
 
-    public function getInstaller()
-    {
-        return new Installer();
-    }
-
     protected function getComposerPackageName(): string
     {
-        return 'teamneusta/pimcore-editorconfig-bundle';
+        return 'teamneusta/pimcore-areabrick-config-bundle';
     }
 }
