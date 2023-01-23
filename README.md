@@ -1,6 +1,6 @@
 # Editor Config Bundle
 
-Adds common techniques to add editor config to areabricks
+Object-oriented editable dialog box configuration building for areabricks.
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
   "name": "teamneusta/pimcore-areabrick-config-bundle",
   "type": "pimcore-bundle",
-  "description": "Adds common techniques to add editor config to areabricks",
+  "description": "Object-oriented editable dialog box configuration building for areabricks",
   "license": "GPL-3.0-or-later",
   "authors": [
     {

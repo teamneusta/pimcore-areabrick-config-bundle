@@ -16,7 +16,7 @@ class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle
 
     public function getDescription()
     {
-        return 'Adds simple bricks for creating dialog boxes to editor configuration of areabricks.';
+        return 'Object-oriented editable dialog box configuration building for areabricks';
     }
 
     public function getJsPaths()
