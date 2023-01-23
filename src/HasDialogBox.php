@@ -23,7 +23,7 @@ trait HasDialogBox
     /**
      * @return T
      */
-    protected function createDialogBoxBuilder(Editable $area, ?Info $info): DialogBoxBuilder
+    private function createDialogBoxBuilder(Editable $area, ?Info $info): DialogBoxBuilder
     {
         return new DialogBoxBuilder();
     }
@@ -31,5 +31,5 @@ trait HasDialogBox
     /**
      * @param T $dialogBox
      */
-    abstract protected function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void;
+    abstract private function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void;
 }
