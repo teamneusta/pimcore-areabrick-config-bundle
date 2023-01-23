@@ -10,10 +10,9 @@ Require via Composer
 composer require teamneusta/pimcore-areabrick-config-bundle
 ```
 
-As this is a Pimcore bundle, enable and install it
+As this is a Pimcore bundle, enable it.
 ```shell
 console pimcore:bundle:enable NeustaPimcoreAreabrickConfigBundle
-console pimcore:bundle:install NeustaPimcoreAreabrickConfigBundle
 ```
 
 ## Usage
