@@ -1,8 +1,7 @@
 <?php declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\Document\Base;
+namespace Neusta\Pimcore\AreabrickConfigBundle;
 
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\DialogBoxBuilder;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 use Pimcore\Model\Document\Editable;
 use Pimcore\Model\Document\Editable\Area\Info;

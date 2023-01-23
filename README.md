@@ -24,15 +24,15 @@ A simple example should show how to do it.
 ### Areabrick Class
 
 Your areabrick class must implement Pimcore's `Pimcore\Extension\Document\Areabrick\EditableDialogBoxInterface` interface
-and additionally use the `Neusta\Pimcore\AreabrickConfigBundle\Document\Base\HasDialogBox` trait. 
+and additionally use the `Neusta\Pimcore\AreabrickConfigBundle\HasDialogBox` trait. 
 
 Then it's up to you to implement the `buildDialogBox()` method as you wish.
 
 ```php
 <?php
 
-use Neusta\Pimcore\AreabrickConfigBundle\Document\Base\HasDialogBox;
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\DialogBoxBuilder;
+use Neusta\Pimcore\AreabrickConfigBundle\DialogBoxBuilder;
+use Neusta\Pimcore\AreabrickConfigBundle\HasDialogBox;
 use Pimcore\Extension\Document\Areabrick\AbstractTemplateAreabrick;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxInterface;
 use Pimcore\Model\Document\Editable;
