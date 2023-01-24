@@ -1,8 +1,8 @@
 parameters:
-    paths:
-        - src
+	paths:
+		- src
 
-    bootstrapFiles:
-        - vendor/pimcore/pimcore/stubs/dynamic-constants.php
+	bootstrapFiles:
+		- vendor/pimcore/pimcore/stubs/dynamic-constants.php
 
-    checkGenericClassInNonGenericObjectType: false
+	checkGenericClassInNonGenericObjectType: false

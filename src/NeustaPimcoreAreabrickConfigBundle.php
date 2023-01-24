@@ -5,29 +5,17 @@ namespace Neusta\Pimcore\AreabrickConfigBundle;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
-class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle
+final class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle
 {
     use PackageVersionTrait;
 
-    public function getNiceName()
+    public function getNiceName(): string
     {
-        return 'Neusta Editor Configuration Bundle';
+        return 'Areabrick Configuration Bundle';
     }
 
-    public function getDescription()
+    public function getPath(): string
     {
-        return 'Adds simple bricks for creating dialog boxes to editor configuration of areabricks.';
-    }
-
-    public function getJsPaths()
-    {
-        return [
-            '/bundles/presentation/js/pimcore/startup.js',
-        ];
-    }
-
-    protected function getComposerPackageName(): string
-    {
-        return 'teamneusta/pimcore-areabrick-config-bundle';
+        return __DIR__;
     }
 }
