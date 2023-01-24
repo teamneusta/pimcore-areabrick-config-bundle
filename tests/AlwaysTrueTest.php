@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 class AlwaysTrueTest extends TestCase
 {
     /** @test */
-    public function assert_always_true(): void
+    public function assertAlwaysTrue(): void
     {
         self::assertTrue(true);
     }
