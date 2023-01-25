@@ -5,7 +5,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\CheckboxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\InputItem;
-use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem\NumericItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
