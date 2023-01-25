@@ -5,6 +5,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\CheckboxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\InputItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
@@ -71,6 +72,11 @@ class DialogBoxBuilder
     public function createSelect(string $name, array $store): SelectItem
     {
         return new SelectItem($name, $store);
+    }
+
+    public function createNumeric(string $name, int $min, int $max): NumericItem
+    {
+        return new NumericItem($name, $min, $max);
     }
 
     public function build(): EditableDialogBoxConfiguration
