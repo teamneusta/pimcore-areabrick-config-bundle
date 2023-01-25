@@ -7,6 +7,8 @@ class EditableItem extends DialogBoxItem
 {
     private string $name;
     private string $label = '';
+    /** @var array<string, bool|float|int|string> */
+    private array $config = [];
 
     public function __construct(string $type, string $name)
     {
@@ -36,9 +38,9 @@ class EditableItem extends DialogBoxItem
     protected function getAttributes(): array
     {
         return array_filter([
-            'name' => $this->name,
-            'label' => $this->label,
-            'config' => array_merge($this->config, $this->getConfig()),
+            static::ITEM_NAME => $this->name,
+            static::ITEM_LABEL => $this->label,
+            static::ITEM_CONFIG => array_merge($this->config, $this->getConfig()),
         ]);
     }
 

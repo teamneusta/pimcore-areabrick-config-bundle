@@ -14,7 +14,7 @@ class InputItem extends EditableItem
 
     public function setDefaultValue(string $value): static
     {
-        return $this->addConfig('defaultValue', $value);
+        return $this->addConfig(static::ITEM_DEFAULT_VALUE, $value);
     }
 
     public function setPlaceholder(string $value): static
