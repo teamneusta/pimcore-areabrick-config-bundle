@@ -22,7 +22,7 @@ class SelectItem extends EditableItem
 
     public function setDefaultValue(int|string $value): static
     {
-        return $this->addConfig('defaultValue', $value);
+        return $this->addConfig(static::ITEM_DEFAULT_VALUE, $value);
     }
 
     /**
