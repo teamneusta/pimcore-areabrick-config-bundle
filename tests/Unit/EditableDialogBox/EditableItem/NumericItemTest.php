@@ -10,7 +10,7 @@ class NumericItemTest extends TestCase
     /**
      * @test
      */
-    public function default_value_defaults_to_min_value(): void
+    public function defaultValueDefaultsToMinValue(): void
     {
         $item = new NumericItem('test', 1, 10);
 
@@ -31,7 +31,7 @@ class NumericItemTest extends TestCase
     /**
      * @test
      */
-    public function default_value_can_be_set(): void
+    public function defaultValueCanBeSet(): void
     {
         $item = new NumericItem('test', 12, 24);
         $item->setDefaultValue(20);
@@ -53,7 +53,7 @@ class NumericItemTest extends TestCase
     /**
      * @test
      */
-    public function default_value_must_not_be_below_min_value(): void
+    public function defaultValueMustNotBeBelowMinValue(): void
     {
         $item = new NumericItem('test', 10, 20);
 
@@ -66,7 +66,7 @@ class NumericItemTest extends TestCase
     /**
      * @test
      */
-    public function default_value_must_not_be_above_max_value(): void
+    public function defaultValueMustNotBeAboveMaxValue(): void
     {
         $item = new NumericItem('test', 10, 20);
 

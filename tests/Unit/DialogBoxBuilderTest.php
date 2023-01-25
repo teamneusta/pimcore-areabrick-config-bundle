@@ -16,7 +16,7 @@ class DialogBoxBuilderTest extends TestCase
     /**
      * @test
      */
-    public function adding_two_tabs_with_some_items(): void
+    public function addingTwoTabsWithSomeItems(): void
     {
         $dialogBuilder = new DialogBoxBuilder();
         $editableItem1 = new EditableItem('type1', 'name1');
