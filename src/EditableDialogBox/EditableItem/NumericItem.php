@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Exception\OutOfBoundsException;
 
 class NumericItem extends EditableItem
 {
@@ -25,7 +24,7 @@ class NumericItem extends EditableItem
             return $this->addConfig('defaultValue', $value);
         }
 
-        throw new OutOfBoundsException($value, $this->min, $this->max);
+        throw new \InvalidArgumentException(sprintf('Default value %d is out of bounds (%d;%d)', $value, $this->min, $this->max));
     }
 
     protected function getConfig(): array

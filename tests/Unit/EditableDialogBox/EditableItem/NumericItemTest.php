@@ -3,7 +3,6 @@
 namespace Neusta\Pimcore\AreabrickConfigBundle\Tests\Unit\EditableDialogBox\EditableItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Exception\OutOfBoundsException;
 
 use function PHPUnit\Framework\assertEquals;
 
@@ -64,7 +63,7 @@ class NumericItemTest extends TestCase
      */
     public function setDefaultValueOutOfBoundsCase(): void
     {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Default value 30 is out of bounds (12;24)');
         $item = new NumericItem(self::ITEM_TEST_LABEL, self::MIN_VALUE, self::MAX_VALUE);
         $item->setDefaultValue(self::OUTOFBOUNDS_DEFAULT_VALUE);
