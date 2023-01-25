@@ -5,15 +5,18 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 
 abstract class DialogBoxItem
 {
+    public const TYPE = '';
     public const ITEM_CONFIG = 'config';
     public const ITEM_LABEL = 'label';
     public const ITEM_NAME = 'name';
     public const ITEM_TYPE = 'type';
     public const ITEM_DEFAULT_VALUE = 'defaultValue';
 
+    private string $type;
+
     public function __construct(
-        private string $type,
     ) {
+        $this->type = static::TYPE;
     }
 
     /**

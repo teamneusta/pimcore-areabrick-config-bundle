@@ -7,6 +7,8 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class RelationItem extends EditableItem
 {
+    public const TYPE = 'relation';
+
     /** @var array{asset?: list<string>, document?: list<string>, object?: list<string>} */
     private array $types = [];
     /** @var list<string> */
@@ -14,7 +16,7 @@ class RelationItem extends EditableItem
 
     public function __construct(string $name)
     {
-        parent::__construct('relation', $name);
+        parent::__construct($name);
     }
 
     public function allowAssetsOfType(string ...$types): static

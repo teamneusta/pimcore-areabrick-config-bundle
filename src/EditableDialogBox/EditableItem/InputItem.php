@@ -7,9 +7,11 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class InputItem extends EditableItem
 {
+    public const TYPE = 'input';
+
     public function __construct(string $name)
     {
-        parent::__construct('input', $name);
+        parent::__construct($name);
     }
 
     public function setDefaultValue(string $value): static

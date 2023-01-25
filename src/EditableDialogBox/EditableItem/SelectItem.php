@@ -7,6 +7,8 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class SelectItem extends EditableItem
 {
+    public const TYPE = 'select';
+
     /** @var list<array{array-key, string}> */
     private array $store = [];
 
@@ -15,7 +17,7 @@ class SelectItem extends EditableItem
      */
     public function __construct(string $name, array $store)
     {
-        parent::__construct('select', $name);
+        parent::__construct($name);
         $this->store = self::pack($store);
         $this->setDefaultValue(array_key_first($store));
     }

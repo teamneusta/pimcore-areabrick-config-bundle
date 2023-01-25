@@ -7,6 +7,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class NumericItem extends EditableItem
 {
+    public const TYPE = 'numeric';
     public const ITEM_MIN_VALUE = 'minValue';
     public const ITEM_MAX_VALUE = 'maxValue';
     private int $min = 0;
@@ -14,7 +15,7 @@ class NumericItem extends EditableItem
 
     public function __construct(string $name, int $min, int $max)
     {
-        parent::__construct('numeric', $name);
+        parent::__construct($name);
         $this->min = $min;
         $this->max = $max;
         $this->setDefaultValue($this->min);

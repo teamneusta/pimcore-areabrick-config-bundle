@@ -7,9 +7,11 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class CheckboxItem extends EditableItem
 {
+    public const TYPE = 'checkbox';
+
     public function __construct(string $name)
     {
-        parent::__construct('checkbox', $name);
+        parent::__construct($name);
     }
 
     public function setDefaultChecked(): static

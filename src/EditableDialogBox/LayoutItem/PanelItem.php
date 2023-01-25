@@ -8,6 +8,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
 class PanelItem extends LayoutItem
 {
+    public const TYPE = 'panel';
     private string $title;
 
     /**
@@ -15,7 +16,7 @@ class PanelItem extends LayoutItem
      */
     public function __construct(string $title, array $items)
     {
-        parent::__construct('panel', $items);
+        parent::__construct($items);
         $this->title = $title;
     }
 
