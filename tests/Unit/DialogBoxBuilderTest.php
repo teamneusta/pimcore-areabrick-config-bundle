@@ -13,11 +13,10 @@ class DialogBoxBuilderTest extends TestCase
 {
     use ProphecyTrait;
 
-
     /**
      * @test
      */
-    public function buildDialogBoxAddSettingsCase(): void
+    public function adding_two_tabs_with_some_items(): void
     {
         $dialogBuilder = new DialogBoxBuilder();
         $editableItem1 = new EditableItem('type1', 'name1');
