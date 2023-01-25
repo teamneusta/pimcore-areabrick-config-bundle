@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem;
+namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
-use Neusta\Pimcore\EditorConfigBundle\Document\EditableDialogBox\EditableItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class NumericItem extends EditableItem
 {
@@ -13,9 +13,9 @@ class NumericItem extends EditableItem
     public function __construct(string $name, int $min, int $max)
     {
         parent::__construct('numeric', $name);
-        $this->setDefaultValue($this->min);
         $this->min = $min;
         $this->max = $max;
+        $this->setDefaultValue($this->min);
     }
 
     public function setDefaultValue(int $value): static
