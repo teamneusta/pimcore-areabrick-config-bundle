@@ -8,7 +8,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 class SelectItem extends EditableItem
 {
     /** @var list<array{array-key, string}> */
-    private array $store = [];
+    private array $store;
 
     /**
      * @param non-empty-array<array-key, string> $store
