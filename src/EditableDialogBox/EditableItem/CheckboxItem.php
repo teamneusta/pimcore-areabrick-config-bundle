@@ -14,11 +14,11 @@ class CheckboxItem extends EditableItem
 
     public function setDefaultChecked(): static
     {
-        return $this->addConfig(static::ITEM_DEFAULT_VALUE, true);
+        return $this->addConfig('defaultValue', true);
     }
 
     public function setDefaultUnchecked(): static
     {
-        return $this->addConfig(static::ITEM_DEFAULT_VALUE, false);
+        return $this->addConfig('defaultValue', false);
     }
 }

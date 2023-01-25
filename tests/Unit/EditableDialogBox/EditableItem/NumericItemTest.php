@@ -2,7 +2,6 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Tests\Unit\EditableDialogBox\EditableItem;
 
-use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\Exception\OutOfBoundsException;
 
@@ -48,9 +47,9 @@ class NumericItemTest extends TestCase
         $item->setDefaultValue(self::REGULAR_DEFAULT_VALUE);
         assertEquals(
             [
-                DialogBoxItem::ITEM_TYPE => 'numeric',
-                DialogBoxItem::ITEM_NAME => self::ITEM_TEST_LABEL,
-                DialogBoxItem::ITEM_CONFIG => [
+                'type' => 'numeric',
+                'name' => self::ITEM_TEST_LABEL,
+                'config' => [
                     'defaultValue' => self::REGULAR_DEFAULT_VALUE,
                     'minValue' => self::MIN_VALUE,
                     'maxValue' => self::MAX_VALUE,
