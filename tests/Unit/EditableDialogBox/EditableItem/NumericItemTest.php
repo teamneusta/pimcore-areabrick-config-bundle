@@ -3,37 +3,28 @@
 namespace Neusta\Pimcore\AreabrickConfigBundle\Tests\Unit\EditableDialogBox\EditableItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
-
-use function PHPUnit\Framework\assertEquals;
-
 use PHPUnit\Framework\TestCase;
 
 class NumericItemTest extends TestCase
 {
-    public const ITEM_TEST_LABEL = 'test';
-    public const MIN_VALUE = 12;
-    public const MAX_VALUE = 24;
-    public const REGULAR_DEFAULT_VALUE = 20;
-    public const OUTOFBOUNDS_DEFAULT_VALUE = 30;
-
     /**
      * @test
      */
     public function createNewItem(): void
     {
-        $item = new NumericItem(self::ITEM_TEST_LABEL, self::MIN_VALUE, self::MAX_VALUE);
+        $item = new NumericItem('test', 12, 24);
 
-        assertEquals(
+        self::assertEquals(
             [
                 'type' => 'numeric',
-                'name' => self::ITEM_TEST_LABEL,
+                'name' => 'test',
                 'config' => [
-                    'defaultValue' => self::MIN_VALUE,
-                    'minValue' => self::MIN_VALUE,
-                    'maxValue' => self::MAX_VALUE,
+                    'defaultValue' => 12,
+                    'minValue' => 12,
+                    'maxValue' => 24,
                 ],
             ],
-            $item->toArray()
+            $item->toArray(),
         );
     }
 
@@ -42,19 +33,20 @@ class NumericItemTest extends TestCase
      */
     public function setDefaultValueRegularCase(): void
     {
-        $item = new NumericItem(self::ITEM_TEST_LABEL, self::MIN_VALUE, self::MAX_VALUE);
-        $item->setDefaultValue(self::REGULAR_DEFAULT_VALUE);
-        assertEquals(
+        $item = new NumericItem('test', 12, 24);
+        $item->setDefaultValue(20);
+
+        self::assertEquals(
             [
                 'type' => 'numeric',
-                'name' => self::ITEM_TEST_LABEL,
+                'name' => 'test',
                 'config' => [
-                    'defaultValue' => self::REGULAR_DEFAULT_VALUE,
-                    'minValue' => self::MIN_VALUE,
-                    'maxValue' => self::MAX_VALUE,
+                    'defaultValue' => 20,
+                    'minValue' => 12,
+                    'maxValue' => 24,
                 ],
             ],
-            $item->toArray()
+            $item->toArray(),
         );
     }
 
@@ -63,9 +55,11 @@ class NumericItemTest extends TestCase
      */
     public function setDefaultValueOutOfBoundsCase(): void
     {
+        $item = new NumericItem('test', 12, 24);
+
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Default value 30 is out of bounds (12;24)');
-        $item = new NumericItem(self::ITEM_TEST_LABEL, self::MIN_VALUE, self::MAX_VALUE);
-        $item->setDefaultValue(self::OUTOFBOUNDS_DEFAULT_VALUE);
+        $this->expectExceptionMessage('Default value "30" is out of bounds: [12,24]');
+
+        $item->setDefaultValue(30);
     }
 }
