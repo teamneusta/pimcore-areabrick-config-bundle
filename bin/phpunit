@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-docker-compose run -u "$(id -u)" --rm php vendor/bin/phpunit "$@"

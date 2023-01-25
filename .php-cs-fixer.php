@@ -1,17 +1,27 @@
 <?php
 
+/*
+ * This document has been initially generated with
+ * https://mlocati.github.io/php-cs-fixer-configurator/#version:3.5.0|configurator
+ * and then adapted be our needs
+ */
+
 return (new PhpCsFixer\Config)
     ->setFinder((new PhpCsFixer\Finder)
-        ->in(__DIR__)
+        ->in([
+            __DIR__ . '/src',
+            __DIR__ . '/tests',
+        ])
         ->notPath('DependencyInjection/Configuration.php')
     )
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
 
-        // we want declare-strict on the first line of the file
-        'blank_line_after_opening_tag' => false,
-        'linebreak_after_opening_tag' => false,
+        // declare strict types must be on first line after opening tag
+        'blank_line_after_opening_tag' => false, // overwrite @Symfony
+        'linebreak_after_opening_tag' => false, // overwrite @Symfony
+        'declare_strict_types' => true, // custom
 
         // we want spaces
         'concat_space' => ['spacing' => 'one'],

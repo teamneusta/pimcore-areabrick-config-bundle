@@ -1,7 +1,7 @@
 {
-  "name": "teamneusta/pimcore-editorconfig-bundle",
+  "name": "teamneusta/pimcore-areabrick-config-bundle",
   "type": "pimcore-bundle",
-  "description": "Adds common techniques to add editor config to areabricks",
+  "description": "Object-oriented editable dialog box configuration building for areabricks",
   "license": "GPL-3.0-or-later",
   "authors": [
     {
@@ -13,17 +13,15 @@
   ],
   "require": {
     "php": "^8.1",
-    "pimcore/pimcore": "^10.0",
-    "symfony/config": "^5.3",
-    "symfony/console": "^5.3",
-    "symfony/dependency-injection": "^5.3",
-    "symfony/event-dispatcher": "^5.2",
-    "symfony/finder": "^5.2",
-    "symfony/http-kernel": "^5.3"
+    "pimcore/pimcore": "^10.5"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.12",
+    "friendsofphp/php-cs-fixer": "^3.11",
+    "jangregor/phpstan-prophecy": "^1.0",
     "phpspec/prophecy-phpunit": "^2.0",
+    "phpstan/phpstan": "^1.8",
+    "phpstan/phpstan-phpunit": "^1.1",
+    "phpstan/phpstan-symfony": "^1.2",
     "phpunit/phpunit": "^9.3"
   },
   "config": {
@@ -33,29 +31,31 @@
   "extra": {
     "pimcore": {
       "bundles": [
-        "Neusta\\Pimcore\\EditorConfigBundle\\NeustaPimcoreEditorConfigBundle"
+        "Neusta\\Pimcore\\AreabrickConfigBundle\\NeustaPimcoreAreabrickConfigBundle"
       ]
     }
   },
   "autoload": {
     "psr-4": {
-      "Neusta\\Pimcore\\EditorConfigBundle\\": ""
-    },
-    "exclude-from-classmap": [
-      "/Tests/"
-    ]
+      "Neusta\\Pimcore\\AreabrickConfigBundle\\": "src/"
+    }
   },
   "autoload-dev": {
     "psr-4": {
-      "Neusta\\Pimcore\\EditorConfigBundle\\Tests\\": "Tests/"
+      "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "tests/"
     }
   },
   "scripts": {
-    "cs": "php-cs-fixer fix -v --diff --dry-run",
-    "cs-fix": "php-cs-fixer fix -v --diff"
+    "cs:check": "php-cs-fixer fix -v --diff --dry-run",
+    "cs:fix": "php-cs-fixer fix -v --diff",
+    "phpstan": "phpstan analyse --level=${PHPSTAN_LEVEL:-8} -c phpstan.neon",
+    "phpstan:baseline": "phpstan analyse --level=${PHPSTAN_LEVEL:-8} -c phpstan.neon --generate-baseline",
+    "tests": "phpunit"
   },
   "scripts-descriptions": {
-    "cs": "Checks code style (but doesn't fix anything)",
-    "cs-fix": "Fixes code style"
+    "cs:check": "Checks code style (but doesn't fix anything)",
+    "cs:fix": "Checks and fixes code style",
+    "phpstan": "Checks code against phpstan rules",
+    "tests": "runs all the phpunit tests"
   }
 }
