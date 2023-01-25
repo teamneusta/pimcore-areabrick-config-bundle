@@ -13,19 +13,20 @@ use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 
 class DialogBoxBuilder
 {
-    private const DEFAULT_RELOAD_ON_CLOSE = true;
-    private const DEFAULT_WIDTH = 600;
-
     private EditableDialogBoxConfiguration $config;
     private TabPanelItem $tabs;
 
     public function __construct()
     {
         $this->config = new EditableDialogBoxConfiguration();
-        $this->config->setReloadOnClose(self::DEFAULT_RELOAD_ON_CLOSE);
-        $this->config->setWidth(self::DEFAULT_WIDTH);
-
         $this->tabs = new TabPanelItem();
+    }
+
+    public function reloadOnClose(bool $reload = true): static
+    {
+        $this->config->setReloadOnClose($reload);
+
+        return $this;
     }
 
     public function width(int $width): static
