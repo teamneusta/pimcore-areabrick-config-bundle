@@ -35,13 +35,19 @@ class EditableItem extends DialogBoxItem
         return $this;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function getAttributes(): array
     {
-        return array_filter([
-            static::ITEM_NAME => $this->name,
-            static::ITEM_LABEL => $this->label,
-            static::ITEM_CONFIG => array_merge($this->config, $this->getConfig()),
-        ]);
+        /** @phpstan-ignore-next-line */
+        return array_filter(
+            [
+                static::ITEM_NAME => $this->name,
+                static::ITEM_LABEL => $this->label,
+                static::ITEM_CONFIG => array_merge($this->config, $this->getConfig()),
+            ]
+        );
     }
 
     /**

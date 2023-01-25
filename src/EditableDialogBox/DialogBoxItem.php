@@ -21,6 +21,7 @@ abstract class DialogBoxItem
      */
     public function toArray(): array
     {
+        /** @phpstan-ignore-next-line */
         return [static::ITEM_TYPE => $this->type] + $this->getAttributes();
     }
 
