@@ -25,4 +25,7 @@ return (new PhpCsFixer\Config)
 
         // we want spaces
         'concat_space' => ['spacing' => 'one'],
+
+        // we want snake_case for test method names to increase readability
+        'php_unit_method_casing' => ['case' => 'snake_case'], // overwrite @Symfony
     ]);
