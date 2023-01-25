@@ -28,7 +28,7 @@ abstract class LayoutItem extends DialogBoxItem
     }
 
     /**
-     * @return array<int|string, mixed>
+     * @return array<string, mixed>
      */
     protected function getAttributes(): array
     {
