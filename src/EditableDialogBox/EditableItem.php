@@ -37,13 +37,11 @@ class EditableItem extends DialogBoxItem
 
     protected function getAttributes(): array
     {
-        return array_filter(
-            [
-                'name' => $this->name,
-                'label' => $this->label,
-                'config' => array_merge($this->config, $this->getConfig()),
-            ]
-        );
+        return array_filter([
+            'name' => $this->name,
+            'label' => $this->label,
+            'config' => array_merge($this->config, $this->getConfig()),
+        ]);
     }
 
     /**
