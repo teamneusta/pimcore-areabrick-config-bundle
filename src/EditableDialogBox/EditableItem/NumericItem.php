@@ -4,13 +4,12 @@ declare(strict_types=1);
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Exception\OutOfBoundsException;
 
 class NumericItem extends EditableItem
 {
-    public const ITEM_MIN_VALUE = 'minValue';
-    public const ITEM_MAX_VALUE = 'maxValue';
-    private int $min = 0;
-    private int $max = 0;
+    private int $min;
+    private int $max;
 
     public function __construct(string $name, int $min, int $max)
     {
@@ -26,29 +25,14 @@ class NumericItem extends EditableItem
             return $this->addConfig(static::ITEM_DEFAULT_VALUE, $value);
         }
 
-        return $this;
-    }
-
-    /**
-     * @param array<array-key, string> $data
-     *
-     * @return list<array{array-key, string}>
-     */
-    protected static function pack(array $data): array
-    {
-        $result = [];
-        foreach ($data as $key => $value) {
-            $result[] = [$key, $value];
-        }
-
-        return $result;
+        throw new OutOfBoundsException($value, $this->min, $this->max);
     }
 
     protected function getConfig(): array
     {
         return [
-            self::ITEM_MIN_VALUE => $this->min,
-            self::ITEM_MAX_VALUE => $this->max,
+            'minValue' => $this->min,
+            'maxValue' => $this->max,
         ];
     }
 }

@@ -17,7 +17,7 @@ abstract class DialogBoxItem
     }
 
     /**
-     * @return array<int|string, mixed>
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
@@ -25,7 +25,7 @@ abstract class DialogBoxItem
     }
 
     /**
-     * @return array<int|string, mixed>
+     * @return array<string, mixed>
      */
     abstract protected function getAttributes(): array;
 }
