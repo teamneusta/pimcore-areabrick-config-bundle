@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
-use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class NumericItem extends EditableItem
 {
-    const ITEM_MIN_VALUE = 'minValue';
-    const ITEM_MAX_VALUE = 'maxValue';
+    public const ITEM_MIN_VALUE = 'minValue';
+    public const ITEM_MAX_VALUE = 'maxValue';
     private int $min = 0;
     private int $max = 0;
 
@@ -26,6 +25,7 @@ class NumericItem extends EditableItem
         if ($value >= $this->min && $value <= $this->max) {
             return $this->addConfig(static::ITEM_DEFAULT_VALUE, $value);
         }
+
         return $this;
     }
 

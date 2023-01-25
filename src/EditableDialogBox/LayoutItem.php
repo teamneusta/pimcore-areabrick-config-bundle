@@ -27,6 +27,9 @@ abstract class LayoutItem extends DialogBoxItem
         return $this;
     }
 
+    /**
+     * @return array<int|string, mixed>
+     */
     protected function getAttributes(): array
     {
         return [

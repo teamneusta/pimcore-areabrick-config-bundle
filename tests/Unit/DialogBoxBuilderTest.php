@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Tests\Unit;
 
@@ -11,14 +11,14 @@ class DialogBoxBuilderTest extends TestCase
 {
     use ProphecyTrait;
 
-    const TEST_TYPE = 'my-type';
-    const TEST_NAME = 'my-name';
-    const TEST_TAB_NAME = 'Settings';
+    public const TEST_TYPE = 'my-type';
+    public const TEST_NAME = 'my-name';
+    public const TEST_TAB_NAME = 'Settings';
 
     /**
      * @test
      */
-    public function buildDialogBox_default_case(): void
+    public function buildDialogBoxDefaultCase(): void
     {
         $actualBox = (new DialogBoxBuilder())->build();
 
@@ -29,7 +29,7 @@ class DialogBoxBuilderTest extends TestCase
     /**
      * @test
      */
-    public function buildDialogBox_add_settings_case(): void
+    public function buildDialogBoxAddSettingsCase(): void
     {
         $dialogBuilder = new DialogBoxBuilder();
         $editableItem1 = new EditableItem(self::TEST_TYPE, self::TEST_NAME . '-1');
