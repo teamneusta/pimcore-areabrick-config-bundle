@@ -1,8 +1,7 @@
 <?php declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\Document\Base;
+namespace Neusta\Pimcore\AreabrickConfigBundle;
 
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\DialogBoxBuilder;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 use Pimcore\Model\Document\Editable;
 use Pimcore\Model\Document\Editable\Area\Info;
@@ -24,7 +23,7 @@ trait HasDialogBox
     /**
      * @return T
      */
-    protected function createDialogBoxBuilder(Editable $area, ?Info $info): DialogBoxBuilder
+    private function createDialogBoxBuilder(Editable $area, ?Info $info): DialogBoxBuilder
     {
         return new DialogBoxBuilder();
     }
@@ -32,5 +31,5 @@ trait HasDialogBox
     /**
      * @param T $dialogBox
      */
-    abstract protected function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void;
+    abstract private function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void;
 }

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem;
+namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class CheckboxItem extends EditableItem
 {

@@ -1,13 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox;
+namespace Neusta\Pimcore\AreabrickConfigBundle;
 
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\CheckboxItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\InputItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\RelationItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\EditableItem\SelectItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem\PanelItem;
-use Neusta\Pimcore\AreabrickConfigBundle\Document\EditableDialogBox\LayoutItem\TabPanelItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\CheckboxItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\InputItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 
 class DialogBoxBuilder
