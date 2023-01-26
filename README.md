@@ -1,4 +1,4 @@
-# Editor Config Bundle
+# Areabrick Config Bundle
 
 Object-oriented editable dialog box configuration building for areabricks.
 
