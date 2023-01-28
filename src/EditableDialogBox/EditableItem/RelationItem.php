@@ -17,16 +17,25 @@ class RelationItem extends EditableItem
         parent::__construct('relation', $name);
     }
 
+    /**
+     * @return $this
+     */
     public function allowAssetsOfType(string ...$types): static
     {
         return $this->addType('asset', array_values($types));
     }
 
+    /**
+     * @return $this
+     */
     public function allowDocumentsOfType(string ...$types): static
     {
         return $this->addType('document', array_values($types));
     }
 
+    /**
+     * @return $this
+     */
     public function allowObjectsOfClass(string ...$classes): static
     {
         $this->addType('object', ['object']);
@@ -46,6 +55,8 @@ class RelationItem extends EditableItem
 
     /**
      * @param list<string> $subTypes
+     *
+     * @return $this
      */
     private function addType(string $type, array $subTypes): static
     {

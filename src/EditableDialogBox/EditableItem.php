@@ -21,6 +21,9 @@ class EditableItem extends DialogBoxItem
         return $this->name;
     }
 
+    /**
+     * @return $this
+     */
     public function setLabel(string $label): static
     {
         $this->label = $label;
@@ -28,6 +31,9 @@ class EditableItem extends DialogBoxItem
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function addConfig(string $key, bool|float|int|string $value): static
     {
         $this->config[$key] = $value;

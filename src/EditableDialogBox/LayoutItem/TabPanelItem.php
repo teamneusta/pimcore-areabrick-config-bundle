@@ -15,6 +15,9 @@ class TabPanelItem extends LayoutItem
         parent::__construct('tabpanel', $items);
     }
 
+    /**
+     * @return $this
+     */
     public function addTab(PanelItem $tab): static
     {
         return $this->addItem($tab);

@@ -18,6 +18,9 @@ class NumericItem extends EditableItem
         $this->setDefaultValue($this->min);
     }
 
+    /**
+     * @return $this
+     */
     public function setDefaultValue(int $value): static
     {
         if ($this->min > $value || $value > $this->max) {

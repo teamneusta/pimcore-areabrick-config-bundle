@@ -12,11 +12,17 @@ class CheckboxItem extends EditableItem
         parent::__construct('checkbox', $name);
     }
 
+    /**
+     * @return $this
+     */
     public function setDefaultChecked(): static
     {
         return $this->addConfig('defaultValue', true);
     }
 
+    /**
+     * @return $this
+     */
     public function setDefaultUnchecked(): static
     {
         return $this->addConfig('defaultValue', false);

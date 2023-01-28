@@ -20,6 +20,9 @@ class SelectItem extends EditableItem
         $this->setDefaultValue(array_key_first($store));
     }
 
+    /**
+     * @return $this
+     */
     public function setDefaultValue(int|string $value): static
     {
         return $this->addConfig('defaultValue', $value);

@@ -23,6 +23,9 @@ class DialogBoxBuilder
         $this->tabs = new TabPanelItem();
     }
 
+    /**
+     * @return $this
+     */
     public function reloadOnClose(bool $reload = true): static
     {
         $this->config->setReloadOnClose($reload);
@@ -30,6 +33,9 @@ class DialogBoxBuilder
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function width(int $width): static
     {
         $this->config->setWidth($width);
@@ -37,6 +43,9 @@ class DialogBoxBuilder
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function height(int $height): static
     {
         $this->config->setHeight($height);
@@ -44,6 +53,9 @@ class DialogBoxBuilder
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function addTab(string $title, EditableItem ...$items): static
     {
         $this->tabs->addTab(new PanelItem($title, array_values($items)));

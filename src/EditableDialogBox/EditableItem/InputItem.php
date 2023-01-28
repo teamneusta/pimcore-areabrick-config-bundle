@@ -12,11 +12,17 @@ class InputItem extends EditableItem
         parent::__construct('input', $name);
     }
 
+    /**
+     * @return $this
+     */
     public function setDefaultValue(string $value): static
     {
         return $this->addConfig('defaultValue', $value);
     }
 
+    /**
+     * @return $this
+     */
     public function setPlaceholder(string $value): static
     {
         return $this->addConfig('placeholder', $value);

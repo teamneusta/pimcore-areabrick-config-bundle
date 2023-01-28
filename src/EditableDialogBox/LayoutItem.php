@@ -20,6 +20,9 @@ abstract class LayoutItem extends DialogBoxItem
         return 0 === \count(array_filter($this->items, [$this, 'isNotEmpty']));
     }
 
+    /**
+     * @return $this
+     */
     protected function addItem(DialogBoxItem $item): static
     {
         $this->items[] = $item;
