@@ -46,7 +46,7 @@ class MyAreabrick extends AbstractTemplateAreabrick implements EditableDialogBox
     /******************************************************************
      * This is the code you have to implement
      *****************************************************************/
-    private function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void
+    protected function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void
     {
         $dialogBox
             ->addTab('Einstellungen meines Bricks',
