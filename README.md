@@ -4,16 +4,19 @@ Object-oriented editable dialog box configuration building for areabricks.
 
 ## Installation
 
-Require via Composer
+1. **Require the bundle**
 
-```shell
-composer require teamneusta/pimcore-areabrick-config-bundle
-```
+   ```shell script
+   composer require teamneusta/pimcore-areabrick-config-bundle
+   ```
 
-As this is a Pimcore bundle, enable it.
-```shell
-console pimcore:bundle:enable NeustaPimcoreAreabrickConfigBundle
-```
+2. **Enable the bundle**
+
+   Add the Bundle to your `config/bundles.php`:
+
+   ```php
+   Neusta\Pimcore\AreabrickConfigBundle\NeustaPimcoreAreabrickConfigBundle::class => ['all' => true],
+   ```
 
 ## Usage
 
@@ -124,27 +127,29 @@ And after editing the values, they are accessible in the Twig template:
       gewählt.
   </p>
 ```
+
+## Configuration
+
+Currently, there is no configuration available.
+
 ## Contribution
 
 Feel free to open issues for any bug, feature request, or other ideas.
 
 Please remember to create an issue before creating large pull requests.
 
-### Running tests for development
+### Local Development
+
+To develop on local machine, the vendor dependencies are required.
 
 ```shell
-docker run -it --rm -v $(pwd):/app -w /app pimcore/pimcore:PHP8.1-cli composer install --ignore-platform-reqs
-docker run -it --rm -v $(pwd):/app -w /app pimcore/pimcore:PHP8.1-cli composer test
+bin/composer install
 ```
 
-### Further development
-
-Pipelines will tell you when code does not meet our standards. To use the same tools in local development, 
-take the Docker command from above with other scripts from the `composer.json`. For example:
-
-* cs:check
-* phpstan
+We use composer scripts for our main quality tools. They can be executed via the `bin/composer` file as well.
 
 ```shell
-docker run -it --rm -v $(pwd):/app -w /app pimcore/pimcore:PHP8.1-cli composer <composer-script>
+bin/composer cs:fix
+bin/composer phpstan
+bin/composer tests
 ```

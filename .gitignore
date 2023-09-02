@@ -1,12 +1,11 @@
-# IDE
-/.idea/
-
 # Composer
 /composer.lock
 /vendor/
 
 # PHP-CS-Fixer
-/.php-cs-fixer.cache
+.php-cs-fixer.cache
 
 # PHPUnit
-/.phpunit.result.cache
+.phpunit.result.cache
+/reports/
+/.phpunit.cache/
