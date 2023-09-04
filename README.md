@@ -6,7 +6,7 @@ Object-oriented editable dialog box configuration building for areabricks.
 
 1. **Require the bundle**
 
-   ```shell script
+   ```shell
    composer require teamneusta/pimcore-areabrick-config-bundle
    ```
 
