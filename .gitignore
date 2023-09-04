@@ -3,9 +3,9 @@
 /vendor/
 
 # PHP-CS-Fixer
-.php-cs-fixer.cache
+/.php-cs-fixer.cache
 
 # PHPUnit
-.phpunit.result.cache
-/reports/
+/.phpunit.result.cache
 /.phpunit.cache/
+/reports/
