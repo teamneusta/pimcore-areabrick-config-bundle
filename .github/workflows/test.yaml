@@ -1,4 +1,4 @@
-name: test
+name: Tests
 
 on:
   push:
@@ -11,7 +11,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  tests:
+    name: PHPUnit with PHP ${{ matrix.php-version }} ${{ dependencies }}
     runs-on: ubuntu-latest
 
     strategy:
