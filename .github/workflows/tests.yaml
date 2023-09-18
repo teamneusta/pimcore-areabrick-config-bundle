@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   tests:
-    name: PHPUnit with PHP ${{ matrix.php-version }} ${{ dependencies }}
+    name: PHPUnit with PHP ${{ matrix.php-version }} ${{ matrix.dependencies }}
     runs-on: ubuntu-latest
 
     strategy:
