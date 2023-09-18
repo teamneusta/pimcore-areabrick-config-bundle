@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   qa:
+    name: Quality Checks
     runs-on: ubuntu-latest
 
     steps:
