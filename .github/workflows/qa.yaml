@@ -24,7 +24,7 @@ jobs:
         with:
           php-version: 8.2
 
-      - name: Validate composer.json and composer.lock
+      - name: Validate composer.json
         run: composer validate --strict
 
       - name: Install dependencies
