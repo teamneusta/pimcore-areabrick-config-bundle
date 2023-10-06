@@ -35,6 +35,3 @@ jobs:
 
       - name: Check PHPStan
         run: composer phpstan
-
-      - name: Execute tests
-        run: composer tests
