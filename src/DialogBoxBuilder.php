@@ -6,6 +6,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\CheckboxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\DateItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\InputItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\LinkItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
@@ -95,6 +96,11 @@ class DialogBoxBuilder
     public function createDate(string $name): DateItem
     {
         return new DateItem($name);
+    }
+
+    public function createLink(string $name): LinkItem
+    {
+        return new LinkItem($name);
     }
 
     public function build(): EditableDialogBoxConfiguration
