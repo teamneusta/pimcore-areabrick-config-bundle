@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+</head>
+
+<body>
+
+<style type="text/css">
+    table {
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border: none;
+    }
+
+    thead {
+        background-color: #0096f3;
+    }
+
+    tfoot {
+        background-color: #F7F1D4;
+        font-size: 80%;
+        border-top: 1px solid #999;
+    }
+
+    td, th {
+        text-align: left;
+        padding: 0.5em 1em;
+    }
+</style>
+
+
+<div id="site">
+    <table id="logo">
+        <thead>
+        <th>Name</th>
+        <th>ID</th>
+        <th>Tags</th>
+        <th><strike>Unpublished</strike> Pages (using Brick)</th>
+        </thead>
+        {% for brick in bricks %}
+            <tbody>
+            <td>{{ brick.name }}</td>
+            <td>{{ brick.id }}</td>
+            <td>
+                {% for tag in brick.tags %}
+                    {% if tag in brick.tags %}
+                        {{ tag }},
+                    {% else %}
+                        <strikethrough>{{ tag }}</strikethrough>,
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for fullPath in brick.pageFullPaths %}
+                    {% if fullPath[0] %}
+                    <a href="{{ fullPath[1] }}">{{ fullPath[1] }}</a>,
+                    {% else %}
+                        <strike>{{ fullPath[1] }}</strike>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
