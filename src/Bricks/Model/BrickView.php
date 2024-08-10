@@ -7,9 +7,9 @@ class BrickView
     public string $name;
     public string $id;
 
-    /** @var array<string> */
-    public array $tags;
-
     /** @var array<mixed> */
     public array $pageFullPaths;
+
+    /** @var array<string, mixed> */
+    public array $additionalCols;
 }
