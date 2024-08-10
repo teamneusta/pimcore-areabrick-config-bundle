@@ -24,7 +24,7 @@ class NumericItem extends EditableItem
     public function setDefaultValue(int $value): static
     {
         if ($this->min > $value || $value > $this->max) {
-            throw new \InvalidArgumentException(sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
+            throw new \InvalidArgumentException(\sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
         }
 
         return $this->addConfig('defaultValue', $value);
