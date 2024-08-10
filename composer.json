@@ -28,7 +28,6 @@
     "phpstan/phpstan-phpunit": "^1.4",
     "phpstan/phpstan-symfony": "^1.4.7",
     "phpunit/phpunit": "^9.6.20",
-    "teamneusta/converter-bundle": "^1.6",
     "teamneusta/pimcore-testing-framework": "^0.11.1"
   },
   "extra": {
