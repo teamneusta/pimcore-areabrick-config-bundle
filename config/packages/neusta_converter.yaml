@@ -1,10 +1,9 @@
 neusta_converter:
   converter:
-    brick.converter:
+    pimcore.areabrick.config.brick.converter:
       target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\BrickView
       populators:
         - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
       properties:
         name: ~
         id: ~
-        tags: ~

@@ -17,7 +17,7 @@ services:
       class: Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController
       public: true
       arguments:
-        $brickConverter: '@brick.converter'
+        $brickConverter: '@pimcore.areabrick.config.brick.converter'
       tags: [ 'controller.service_arguments' ]
 
     Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator: ~
