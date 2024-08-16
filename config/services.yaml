@@ -1,7 +1,3 @@
-imports:
-  - { resource: packages/* }
-  - { resource: pimcore/* }
-
 services:
   _defaults:
     autowire: true

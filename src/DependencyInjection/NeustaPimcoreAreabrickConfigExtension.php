@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Loader;
 
 class NeustaPimcoreAreabrickConfigExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(\dirname(__DIR__, 2) . '/config'));
         $loader->load('services.yaml');
