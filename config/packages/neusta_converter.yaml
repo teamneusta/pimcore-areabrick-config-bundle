@@ -1,9 +1,15 @@
-neusta_converter:
-  converter:
-    pimcore.areabrick.config.brick.converter:
-      target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\BrickView
-      populators:
-        - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
-      properties:
-        name: ~
-        id: ~
+#neusta_converter:
+#  converter:
+#    pimcore.areabrick.config.brick.converter:
+#      target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick
+#      populators:
+#        - pimcore.areabrick.config.brick.page.populator
+#      properties:
+#        name: ~
+#        id: ~
+#
+#    pimcore.areabrick.config.page.converter:
+#      target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Page
+#      properties:
+#        published: ~
+#        url: fullPath

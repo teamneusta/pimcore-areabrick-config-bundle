@@ -13,5 +13,7 @@ services:
         $brickConverter: '@pimcore.areabrick.config.brick.converter'
       tags: [ 'controller.service_arguments' ]
 
-    Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator: ~
-
+    pimcore.areabrick.config.brick.page.populator:
+      class: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
+      arguments:
+        $pageConverter: '@pimcore.areabrick.config.page.converter'

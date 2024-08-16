@@ -36,8 +36,8 @@
         <th>Name</th>
         <th>ID</th>
         <th><strike>Unpublished</strike> Pages (using Brick)</th>
-        {% for columnHeader in brick.additionalCols %}
-            <th>{{ columnHeader }}</th>
+        {% for additionalProperty in brick.additionalProperties %}
+            <th>{{ additionalProperty.propertyName }}</th>
         {% endfor %}
         </thead>
         {% for brick in bricks %}
@@ -45,16 +45,16 @@
             <td>{{ brick.name }}</td>
             <td>{{ brick.id }}</td>
             <td>
-                {% for fullPath in brick.pageFullPaths %}
-                    {% if fullPath[0] %}
-                        <a href="{{ fullPath[1] }}">{{ fullPath[1] }}</a>,
+                {% for page in brick.pages %}
+                    {% if page.published %}
+                        <a href="{{ page.url }}">{{ page.url }}</a>,
                     {% else %}
-                        <strike>{{ fullPath[1] }}</strike>
+                        <strike>{{ page.url }}</strike>
                     {% endif %}
                 {% endfor %}
             </td>
-            {% for columnHeader, columnValue in brick.additionalCols %}
-                <td>{{ columnValue }}</td>
+            {% for additionalProperty in brick.additionalProperties %}
+                <td>{{ additionalProperty.propertyValue }}</td>
             {% endfor %}
             </tbody>
         {% endfor %}
