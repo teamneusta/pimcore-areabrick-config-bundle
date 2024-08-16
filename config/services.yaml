@@ -14,7 +14,6 @@ services:
     public: false
 
     Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController:
-      class: Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController
       public: true
       arguments:
         $brickConverter: '@pimcore.areabrick.config.brick.converter'
