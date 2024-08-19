@@ -30,10 +30,8 @@ final class AreabrickOverviewController extends UserAwareController
         $ctx = null;
 
         $bricks = array_map(
-            function ($item) use ($ctx) {
-                return $this->brickConverter->convert($item, $ctx);
-            },
-            $this->areabrickManager->getBricks()
+            fn ($item) => $this->brickConverter->convert($item, $ctx),
+            $this->areabrickManager->getBricks(),
         );
 
         return $this->render(
