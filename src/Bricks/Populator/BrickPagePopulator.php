@@ -30,7 +30,7 @@ class BrickPagePopulator implements Populator
     {
         $editableUsages = Db::get()->fetchAllAssociative(\sprintf(self::SQL_ALL_DOCUMENTS_BY_EDITABLE, $source->getId()));
         $target->pages = [];
-        foreach (array_values($editableUsages) as $docId) {
+        foreach ($editableUsages as $docId) {
             $page = Page::getById($docId['documentId']);
             if ($page) {
                 $target->pages[] = $this->pageConverter->convert($page);
