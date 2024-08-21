@@ -28,36 +28,62 @@
         text-align: left;
         padding: 0.5em 1em;
     }
+
+    /* Hintergrundfarbe für ungerade Zeilen (1., 3., 5., ...) */
+    tbody tr:nth-child(odd) {
+        background-color: #ffffff; /* Weiß */
+    }
+
+    /* Hintergrundfarbe für gerade Zeilen (2., 4., 6., ...) */
+    tbody tr:nth-child(even) {
+        background-color: #d9d9d9; /* Hellgrau */
+    }
 </style>
 
+{% set showAdditionalPropertiesColumn = false %}
+
+{% for brick in bricks %}
+    {% if showAdditionalPropertiesColumn or (brick.additionalProperties is defined and brick.additionalProperties is not empty) %}
+        {% set showAdditionalPropertiesColumn = true %}
+    {% endif %}
+{% endfor %}
+
 <div id="site">
-    <table id="logo">
+    <table id="areabricks">
         <thead>
-        <th>Name</th>
+        <th>Name</th> {#  TODO: Column headers durch localized keys ersetzen #}
         <th>ID</th>
+        <th>Version</th>
+        <th>Description</th>
+        <th>Template</th>
         <th><strike>Unpublished</strike> Pages (using Brick)</th>
-        {% for additionalProperty in brick.additionalProperties %}
-            <th>{{ additionalProperty.propertyName }}</th>
-        {% endfor %}
+        {% if showAdditionalPropertiesColumn %}
+            <th>Additional Properties</th>
+        {% endif %}
         </thead>
+        <tbody>
         {% for brick in bricks %}
-            <tbody>
-            <td>{{ brick.name }}</td>
-            <td>{{ brick.id }}</td>
-            <td>
-                {% for page in brick.pages %}
-                    {% if page.published %}
-                        <a href="{{ page.url }}">{{ page.url }}</a>,
-                    {% else %}
-                        <strike>{{ page.url }}</strike>
-                    {% endif %}
-                {% endfor %}
-            </td>
-            {% for additionalProperty in brick.additionalProperties %}
-                <td>{{ additionalProperty.propertyValue }}</td>
-            {% endfor %}
-            </tbody>
+            <tr>
+                <td>{{ brick.name }}</td>
+                <td>{{ brick.id }}</td>
+                <td>{{ brick.version }}</td>
+                <td>{{ brick.description }}</td>
+                <td>{{ brick.template }}</td>
+                <td>
+                    {% for page in brick.pages %}
+                        {% if page.published %}
+                            <li><a href="{{ page.url }}">{{ page.url }}</a></li>
+                        {% else %}
+                            <li><strike>{{ page.url }}</strike></li>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                {% if showAdditionalPropertiesColumn %}
+                    {% include '@NeustaPimcoreAreabrickConfig/bricks/additional_properties.html.twig' with { 'additionalProperties': brick.additionalProperties|default([]) } %}
+                {% endif %}
+            </tr>
         {% endfor %}
+        </tbody>
     </table>
 </div>
 

@@ -6,6 +6,9 @@ class Brick
 {
     public string $name;
     public string $id;
+    public string $version;
+    public string $description;
+    public string $template;
 
     /** @var array<Page> */
     public array $pages;

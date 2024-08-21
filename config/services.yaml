@@ -3,13 +3,13 @@ services:
     autowire: true
     autoconfigure: true
 
-    Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController:
-      public: true
-      arguments:
-        $brickConverter: '@pimcore.areabrick.config.brick.converter'
-      tags: [ 'controller.service_arguments' ]
+  Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController:
+    public: true
+    arguments:
+      $brickConverter: '@pimcore.areabrick.config.brick.converter'
+    tags: [ 'controller.service_arguments' ]
 
-    pimcore.areabrick.config.brick.page.populator:
-      class: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
-      arguments:
-        $pageConverter: '@pimcore.areabrick.config.page.converter'
+  pimcore.areabrick.config.brick.page.populator:
+    class: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
+    arguments:
+      $pageConverter: '@pimcore.areabrick.config.page.converter'

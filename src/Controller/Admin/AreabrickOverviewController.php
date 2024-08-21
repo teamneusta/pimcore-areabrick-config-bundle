@@ -5,7 +5,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin;
 use Neusta\ConverterBundle\Converter;
 use Neusta\ConverterBundle\Converter\Context\GenericContext;
 use Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick;
-use Pimcore\Controller\UserAwareController;
+use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use Pimcore\Extension\Document\Areabrick\AreabrickInterface;
 use Pimcore\Extension\Document\Areabrick\AreabrickManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 // Todo: check if this can't be accessed outside the admin context in Pimcore 11
-final class AreabrickOverviewController extends UserAwareController
+final class AreabrickOverviewController extends AdminAbstractController // UserAwareController
 {
     /**
      * @param Converter<AreabrickInterface, Brick, GenericContext|null> $brickConverter
@@ -35,7 +35,7 @@ final class AreabrickOverviewController extends UserAwareController
         );
 
         return $this->render(
-            'bricks/default.html.twig',
+            '@NeustaPimcoreAreabrickConfig/bricks/default.html.twig',
             [
                 'bricks' => $bricks,
             ]
