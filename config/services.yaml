@@ -13,3 +13,8 @@ services:
     class: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
     arguments:
       $pageConverter: '@pimcore.areabrick.config.page.converter'
+
+  Neusta\Pimcore\AreabrickConfigBundle\EventListener\PimcoreAdminListener:
+    tags:
+      - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }
+      - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }

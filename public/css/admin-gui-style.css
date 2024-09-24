@@ -1,0 +1,43 @@
+/* Neusta/TrinityPimcoreBundle/src/Resources/public/css/admin-gui-style.css */
+
+
+#jd_signet {
+    background-color: transparent !important;
+    width: 60px;
+    height: 48px;
+    background-image: url(/bundles/neustatrinitypimcore/img/bundle-icon.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: right 5px;
+    background-position-y: top -2px;
+    position: absolute;
+    left: 0;
+    bottom: 230px;
+
+}
+
+#jd_signet>span {
+    color: white;
+    text-align: center;
+    text-shadow: -1px -1px 0 #00000077, 1px -1px 0 #00000077, -1px 1px 0 #00000077, 1px 1px 0 #00000077;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 1.3em;
+    display: block;
+}
+
+#jd_signet.jd--show {
+    opacity: 1;
+    -webkit-transition: opacity 500ms ease-out;
+    -moz-transition: opacity 500ms ease-out;
+    -o-transition: opacity 500ms ease-out;
+    transition: opacity 500ms ease-out;
+}
+
+#jd_signet.jd--hide {
+    opacity: 0;
+    -webkit-transition: opacity 500ms ease-out;
+    -moz-transition: opacity 500ms ease-out;
+    -o-transition: opacity 500ms ease-out;
+    transition: opacity 500ms ease-out;
+}
