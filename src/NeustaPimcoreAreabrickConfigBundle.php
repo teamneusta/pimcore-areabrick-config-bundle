@@ -9,7 +9,7 @@ use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 use Pimcore\HttpKernel\Bundle\DependentBundleInterface;
 use Pimcore\HttpKernel\BundleCollection\BundleCollection;
 
-final class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle implements DependentBundleInterface, PimcoreBundleAdminClassicInterface
+final class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle implements DependentBundleInterface
 {
     use PackageVersionTrait;
 
@@ -21,27 +21,5 @@ final class NeustaPimcoreAreabrickConfigBundle extends AbstractPimcoreBundle imp
     public static function registerDependentBundles(BundleCollection $collection): void
     {
         $collection->addBundle(NeustaConverterBundle::class);
-    }
-
-    public function getJsPaths(): array
-    {
-        return [
-            '/bundles/pimcoreareabrickconfig/js/areabricksOverview.js',
-        ];
-    }
-
-    public function getCssPaths(): array
-    {
-        return [];
-    }
-
-    public function getEditmodeJsPaths(): array
-    {
-        return [];
-    }
-
-    public function getEditmodeCssPaths(): array
-    {
-        return [];
     }
 }
