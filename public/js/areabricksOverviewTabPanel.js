@@ -20,6 +20,9 @@ neusta.areabrick_config.tab_panel = Class.create({
                 iconCls: 'pimcore_icon_areabrick',
                 border: false,
                 layout: 'fit',
+                flex: 1,
+                width: '100%',
+                scrollable: true,
                 closable: true
             });
 
@@ -37,9 +40,11 @@ neusta.areabrick_config.tab_panel = Class.create({
                 url: '/admin/areabricks/list', // URL zu deinem Controller
                 success: function(response) {
                     var htmlContent = response.responseText; // HTML-Content vom Controller
-                    alert(htmlContent);
-                    // Neuen Tab mit dem dynamischen HTML-Content hinzufügen
-                    this.panel.setHtml(htmlContent);
+                    me.panel.add({
+                        title: 'Areabrick Overview',
+                        html: htmlContent,
+                        autoScroll: true
+                    });
                 },
                 failure: function() {
                     Ext.Msg.alert('Fehler', 'Der HTML-Inhalt konnte nicht geladen werden.');
