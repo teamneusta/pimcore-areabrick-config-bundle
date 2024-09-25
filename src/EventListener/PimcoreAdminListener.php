@@ -21,7 +21,8 @@ class PimcoreAdminListener
         $event->setPaths(array_merge(
             $event->getPaths(),
             [
-                '/bundles/neustapimcoreareabrickconfig/js/areabricksOverview.js',
+                '/bundles/neustapimcoreareabrickconfig/js/areabricksOverviewMenuItem.js',
+                '/bundles/neustapimcoreareabrickconfig/js/areabricksOverviewTabPanel.js',
             ],
         ));
     }
