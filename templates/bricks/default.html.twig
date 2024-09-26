@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Areabrick Overview</title>
+    <title>{% neusta_pimcore_areabrick_config.areabricks.overview.title|trans %}</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
     }
 </style>
 
-{% set showAdditionalPropertiesColumn = false %}
+{% set showAdditionalPropertiesColumn = true %}
 
 {% for brick in bricks %}
     {% if showAdditionalPropertiesColumn or (brick.additionalProperties is defined and brick.additionalProperties is not empty) %}
@@ -51,14 +51,14 @@
 <div id="site">
     <table id="areabricks" style="width: 100%;">
         <thead>
-        <th>Name</th> {#  TODO: Column headers durch localized keys ersetzen #}
-        <th>ID</th>
-        <th>Version</th>
-        <th>Description</th>
-        <th>Template</th>
-        <th><strike>Unpublished</strike> Pages (using Brick)</th>
+        <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.0|trans %}</th> {#  TODO: Column headers durch localized keys ersetzen #}
+        <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.1|trans %}</th>
+        <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.2|trans %}</th>
+        <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.3|trans %}</th>
+        <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.4|trans %}</th>
+        <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.5|trans %}</th>
         {% if showAdditionalPropertiesColumn %}
-            <th>Additional Properties</th>
+            <th>{% neusta_pimcore_areabrick_config.areabricks.overview.table.colHeaders.6|trans %}</th>
         {% endif %}
         </thead>
         <tbody>

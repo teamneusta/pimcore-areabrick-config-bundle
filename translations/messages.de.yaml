@@ -1,0 +1,14 @@
+neusta_pimcore_areabrick_config:
+  areabricks:
+    overview:
+      title: Areabrick Übersicht
+      table:
+        colHeaders:
+          - Name
+          - ID
+          - Version
+          - Beschreibung
+          - Twig Template
+          - <strike>unveröffentlichte</strike> Seiten (mit Brick)
+          - zusätzliche Eigenschaften
+        no_additional_properties: Keine zusätzlichen Eigenschaften

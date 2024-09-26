@@ -16,7 +16,7 @@ neusta.areabrick_config.tab_panel = Class.create({
 
             this.panel = Ext.create('Ext.panel.Panel', {
                 id: 'neusta-areabrick-overview-tab',
-                title: t('neusta_pimcore_areabrick_config.menu.areabrick_overview'),
+                title: t('neusta_pimcore_areabrick_config.areabricks.overview.title'),
                 iconCls: 'pimcore_icon_areabrick',
                 border: false,
                 layout: 'fit',
@@ -41,7 +41,6 @@ neusta.areabrick_config.tab_panel = Class.create({
                 success: function(response) {
                     var htmlContent = response.responseText; // HTML-Content vom Controller
                     me.panel.add({
-                        title: 'Areabrick Overview',
                         html: htmlContent,
                         autoScroll: true
                     });

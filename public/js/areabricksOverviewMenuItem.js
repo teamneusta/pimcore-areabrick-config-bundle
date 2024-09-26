@@ -17,7 +17,7 @@ neusta.areabrick_config.menu_item = Class.create({
         if (user.isAllowed("areabricks") && perspectiveCfg.inToolbar("tools.areabricks")) {
             // simply push the new menu item in a existing menu
             menu.extras.items.push({
-                text: t("neusta_pimcore_areabrick_config.menu.areabrick_overview"),
+                text: t("neusta_pimcore_areabrick_config.areabricks.overview.title"),
                 iconCls: "pimcore_nav_icon_areabricks", // make sure your icon class exists
                 priority: 31, // define the position where you menu should be shown. Core menu items will leave a gap of 10 custom menu items
                 itemId: 'pimcore_menu_tools_areabricks', // specify your custom itemId here
