@@ -18,11 +18,11 @@ class DialogBoxBuilder
 {
     private EditableDialogBoxConfiguration $config;
     private TabPanelItem $tabs;
+    private PanelItem $content;
 
     public function __construct()
     {
         $this->config = new EditableDialogBoxConfiguration();
-        $this->tabs = new TabPanelItem();
     }
 
     /**
@@ -58,8 +58,31 @@ class DialogBoxBuilder
     /**
      * @return $this
      */
+    public function addContent(EditableItem ...$items): static
+    {
+        if (isset($this->tabs)) {
+            throw new \LogicException('You cannot add content and tabs at the same time.');
+        }
+
+        $this->content ??= new PanelItem('', []);
+
+        foreach ($items as $item) {
+            $this->content->addItem($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function addTab(string $title, EditableItem ...$items): static
     {
+        if (isset($this->content)) {
+            throw new \LogicException('You cannot add tabs and content at the same time.');
+        }
+
+        $this->tabs ??= new TabPanelItem();
         $this->tabs->addTab(new PanelItem($title, array_values($items)));
 
         return $this;
@@ -105,8 +128,10 @@ class DialogBoxBuilder
 
     public function build(): EditableDialogBoxConfiguration
     {
-        if (!$this->tabs->isEmpty()) {
-            $this->config->setItems($this->tabs->toArray());
+        $items = $this->content ?? $this->tabs ?? null;
+
+        if ($items && !$items->isEmpty()) {
+            $this->config->setItems($items->toArray());
         }
 
         return $this->config;
