@@ -1,0 +1,8 @@
+services:
+  php:
+    environment:
+      - COMPOSER_HOME
+      - COMPOSER_CACHE_DIR
+    volumes:
+      - ${COMPOSER_HOME:-$HOME/.config/composer}:$COMPOSER_HOME
+      - ${COMPOSER_CACHE_DIR:-$HOME/.cache/composer}:$COMPOSER_CACHE_DIR

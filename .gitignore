@@ -1,3 +1,6 @@
+# Docker
+/compose.override.yaml
+
 # Composer
 /composer.lock
 /vendor/
