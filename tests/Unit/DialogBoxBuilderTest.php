@@ -16,6 +16,26 @@ class DialogBoxBuilderTest extends TestCase
     /**
      * @test
      */
+    public function addingContent(): void
+    {
+        $dialogBuilder = new DialogBoxBuilder();
+        $editableItem1 = new EditableItem('type1', 'name1');
+        $editableItem2 = new EditableItem('type2', 'name2');
+        $editableItem3 = new EditableItem('type3', 'name3');
+
+        $expected = new PanelItem('', [$editableItem1, $editableItem2, $editableItem3]);
+
+        $dialogBox = $dialogBuilder
+            ->addContent($editableItem1, $editableItem2)
+            ->addContent($editableItem3)
+            ->build();
+
+        self::assertSame($expected->toArray(), $dialogBox->getItems());
+    }
+
+    /**
+     * @test
+     */
     public function addingTwoTabsWithSomeItems(): void
     {
         $dialogBuilder = new DialogBoxBuilder();
@@ -33,5 +53,27 @@ class DialogBoxBuilderTest extends TestCase
             ->build();
 
         self::assertSame($expected->toArray(), $dialogBox->getItems());
+    }
+
+    /**
+     * @test
+     */
+    public function addingContentAndThenTabs(): void
+    {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('You cannot add tabs and content at the same time.');
+
+        (new DialogBoxBuilder())->addContent()->addTab('Test');
+    }
+
+    /**
+     * @test
+     */
+    public function addingTabsAndThenContent(): void
+    {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('You cannot add content and tabs at the same time.');
+
+        (new DialogBoxBuilder())->addTab('Test')->addContent();
     }
 }

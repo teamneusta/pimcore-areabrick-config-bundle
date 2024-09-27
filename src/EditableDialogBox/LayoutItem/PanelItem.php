@@ -19,6 +19,11 @@ class PanelItem extends LayoutItem
         $this->title = $title;
     }
 
+    public function addItem(DialogBoxItem $item): static
+    {
+        return parent::addItem($item);
+    }
+
     protected function getAttributes(): array
     {
         return ['title' => $this->title] + parent::getAttributes();
