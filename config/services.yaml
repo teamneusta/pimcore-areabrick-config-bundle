@@ -4,7 +4,6 @@ services:
     autoconfigure: true
 
   Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController:
-    public: true
     arguments:
       $brickConverter: '@pimcore_areabrick_config.brick.converter'
     tags: [ 'controller.service_arguments' ]

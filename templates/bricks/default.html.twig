@@ -3,50 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.title'|trans }}</title>
+    <style type="text/css">
+        table {
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border: none;
+        }
+
+        thead {
+            background-color: #0096f3;
+        }
+
+        tfoot {
+            background-color: #F7F1D4;
+            font-size: 80%;
+            border-top: 1px solid #999;
+        }
+
+        td, th {
+            text-align: left;
+            padding: 0.5em 1em;
+        }
+
+        /* Hintergrundfarbe für ungerade Zeilen (1., 3., 5., ...) */
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff; /* Weiß */
+        }
+
+        /* Hintergrundfarbe für gerade Zeilen (2., 4., 6., ...) */
+        tbody tr:nth-child(even) {
+            background-color: #d9d9d9; /* Hellgrau */
+        }
+    </style>
 </head>
 
 <body>
-
-<style type="text/css">
-    table {
-        background-color: #ffffff;
-        border-collapse: collapse;
-        border: none;
-    }
-
-    thead {
-        background-color: #0096f3;
-    }
-
-    tfoot {
-        background-color: #F7F1D4;
-        font-size: 80%;
-        border-top: 1px solid #999;
-    }
-
-    td, th {
-        text-align: left;
-        padding: 0.5em 1em;
-    }
-
-    /* Hintergrundfarbe für ungerade Zeilen (1., 3., 5., ...) */
-    tbody tr:nth-child(odd) {
-        background-color: #ffffff; /* Weiß */
-    }
-
-    /* Hintergrundfarbe für gerade Zeilen (2., 4., 6., ...) */
-    tbody tr:nth-child(even) {
-        background-color: #d9d9d9; /* Hellgrau */
-    }
-</style>
-
-{% set showAdditionalPropertiesColumn = true %}
-
-{% for brick in bricks %}
-    {% if showAdditionalPropertiesColumn or (brick.additionalProperties is defined and brick.additionalProperties is not empty) %}
-        {% set showAdditionalPropertiesColumn = true %}
-    {% endif %}
-{% endfor %}
 
 <div id="site">
     <table id="areabricks" style="width: 100%;">
@@ -79,7 +70,7 @@
                     {% endfor %}
                 </td>
                 {% if showAdditionalPropertiesColumn %}
-                    {% include '@NeustaPimcoreAreabrickConfig/bricks/additional_properties.html.twig' with { 'additionalProperties': brick.additionalProperties|default([]) } %}
+                    {% include '@NeustaPimcoreAreabrickConfig/bricks/additional_properties.html.twig' with { 'additionalProperties': brick.additionalProperties|default([]) } only %}
                 {% endif %}
             </tr>
         {% endfor %}
