@@ -8,10 +8,13 @@ services:
       $brickConverter: '@pimcore_areabrick_config.brick.converter'
     tags: [ 'controller.service_arguments' ]
 
+  Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPageEditModeUrlPopulator: ~
+
   pimcore_areabrick_config.brick.page.populator:
     class: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
     arguments:
       $pageConverter: '@pimcore_areabrick_config.page.converter'
+
 
   Neusta\Pimcore\AreabrickConfigBundle\EventListener\PimcoreAdminListener:
     tags:

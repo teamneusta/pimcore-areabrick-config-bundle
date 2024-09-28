@@ -5,15 +5,14 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin;
 use Neusta\ConverterBundle\Converter;
 use Neusta\ConverterBundle\Converter\Context\GenericContext;
 use Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick;
-use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
+use Pimcore\Controller\FrontendController;
 use Pimcore\Extension\Document\Areabrick\AreabrickInterface;
 use Pimcore\Extension\Document\Areabrick\AreabrickManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-// Todo: check if this can't be accessed outside the admin context in Pimcore 11
-final class AreabrickOverviewController extends AdminAbstractController // UserAwareController
+final class AreabrickOverviewController extends FrontendController // UserAwareController
 {
     /**
      * @param Converter<AreabrickInterface, Brick, GenericContext|null> $brickConverter

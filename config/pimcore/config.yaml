@@ -13,6 +13,8 @@ neusta_converter:
 
     pimcore_areabrick_config.page.converter:
       target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Page
+      populators:
+        - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPageEditModeUrlPopulator
       properties:
         published: ~
         url: fullPath

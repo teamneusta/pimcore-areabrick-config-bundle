@@ -63,9 +63,9 @@
                 <td>
                     {% for page in brick.pages %}
                         {% if page.published %}
-                            <li><a href="{{ page.url }}">{{ page.url }}</a></li>
+                            <li><a href="{{ page.editModeUrl }}">{{ page.url }}</a> (<a href="{{ page.url }}">Frontend</a>)</li>
                         {% else %}
-                            <li><strike>{{ page.url }}</strike></li>
+                            <li style="text-decoration: line-through;"><a href="{{ page.editModeUrl }}">{{ page.url }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </td>
