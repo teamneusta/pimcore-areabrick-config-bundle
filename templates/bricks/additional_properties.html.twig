@@ -1,10 +1,8 @@
 {# Additional Properties of Brick #}
-{% if brick.additionalProperties is defined and brick.additionalProperties is not empty %}
+{% if additionalProperties is not empty %}
     <td>
-        {% for additionalProperty in brick.additionalProperties|default([]) %}
-            {% if additionalProperty is defined and additionalProperty.propertyValue is not empty %}
-                <li>{{ additionalProperty.propertyName }}:{{ additionalProperty.propertyValue }}</li>
-            {% endif %}
+        {% for additionalProperty in additionalProperties %}
+            <li>{{ additionalProperty.propertyName }}:{{ additionalProperty.propertyValue }}</li>
         {% endfor %}
     </td>
 {% else %}

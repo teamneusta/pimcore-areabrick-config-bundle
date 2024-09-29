@@ -37,7 +37,7 @@ final class AreabrickOverviewController extends FrontendController // UserAwareC
             '@NeustaPimcoreAreabrickConfig/bricks/default.html.twig',
             [
                 'bricks' => $bricks,
-                'showAdditionalPropertiesColumn' => array_filter($bricks, fn ($brick) => !empty($brick->additionalProperties)),
+                'showAdditionalPropertiesColumn' => !empty(array_filter($bricks, fn ($brick) => !empty($brick->additionalProperties))),
             ]
         );
     }
