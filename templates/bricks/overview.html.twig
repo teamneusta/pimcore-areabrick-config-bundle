@@ -31,7 +31,7 @@
                 {% if hasAdditionalProperties %}
                     <td>
                         {% for additionalProperty in additionalProperties %}
-                            <li>{{ additionalProperty.propertyName }}: {{ additionalProperty.propertyValue }}</li>
+                            <li>{{ additionalProperty.name }}: {{ additionalProperty.value }}</li>
                         {% else %}
                             {{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.no_additional_properties'|trans }}
                         {% endfor %}

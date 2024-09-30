@@ -4,6 +4,6 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model;
 
 final class BrickProperty
 {
-    public string $propertyName;
-    public string $propertyValue;
+    public string $name;
+    public string $value;
 }

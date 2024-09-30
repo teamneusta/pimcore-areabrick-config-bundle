@@ -10,9 +10,9 @@ final class Brick
     public ?string $description;
     public ?string $template;
 
-    /** @var array<Page> */
+    /** @var list<Page> */
     public array $pages;
 
-    /** @var array<BrickProperty> */
+    /** @var list<BrickProperty> */
     public array $additionalProperties;
 }
