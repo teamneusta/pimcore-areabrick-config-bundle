@@ -1,5 +1,3 @@
-// /public/js/exportPage.js
-
 pimcore.registerNS("neusta.areabrick_config.menu_item");
 
 neusta.areabrick_config.menu_item = Class.create({
@@ -48,4 +46,4 @@ neusta.areabrick_config.menu_item = Class.create({
 
 });
 
-var NeustaPimcoreAreabrickConfigBundlePlugin = new neusta.areabrick_config.menu_item();
+new neusta.areabrick_config.menu_item();

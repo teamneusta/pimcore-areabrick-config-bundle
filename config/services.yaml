@@ -15,7 +15,6 @@ services:
     arguments:
       $pageConverter: '@pimcore_areabrick_config.page.converter'
 
-
   Neusta\Pimcore\AreabrickConfigBundle\EventListener\PimcoreAdminListener:
     tags:
       - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }

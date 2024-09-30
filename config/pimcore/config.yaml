@@ -5,8 +5,8 @@ neusta_converter:
       populators:
         - pimcore_areabrick_config.brick.page.populator
       properties:
-        name: ~
         id: ~
+        name: ~
         version: ~
         description: ~
         template: ~

@@ -1,5 +1,3 @@
-// /public/js/exportPage.js
-
 pimcore.registerNS("neusta.areabrick_config.tab_panel");
 
 neusta.areabrick_config.tab_panel = Class.create({
@@ -9,11 +7,7 @@ neusta.areabrick_config.tab_panel = Class.create({
     },
 
     getTabPanel: function () {
-
         if (!this.panel) {
-
-            var me = this;
-
             this.panel = Ext.create('Ext.panel.Panel', {
                 id: 'neusta-areabrick-overview-tab',
                 title: t('neusta_pimcore_areabrick_config.areabricks.overview.title'),
@@ -23,11 +17,10 @@ neusta.areabrick_config.tab_panel = Class.create({
                 flex: 1,
                 width: '100%',
                 scrollable: true,
-                closable: true
+                closable: true,
             });
 
-
-            var tabPanel = Ext.getCmp('pimcore_panel_tabs');
+            const tabPanel = Ext.getCmp('pimcore_panel_tabs');
             tabPanel.add(this.panel);
             tabPanel.setActiveItem('neusta-areabrick-overview-tab');
 
@@ -35,19 +28,14 @@ neusta.areabrick_config.tab_panel = Class.create({
                 pimcore.globalmanager.remove('neusta-areabrick-overview-tab');
             }.bind(this));
 
-            // Ajax-Anfrage zum Abrufen des HTML-Inhalts vom Controller
             Ext.Ajax.request({
-                url: '/admin/areabricks/list', // URL zu deinem Controller
+                url: '/admin/areabricks/list',
                 success: function(response) {
-                    var htmlContent = response.responseText; // HTML-Content vom Controller
-                    me.panel.add({
-                        html: htmlContent,
-                        autoScroll: true
+                    this.panel.add({
+                        html: response.responseText,
+                        autoScroll: true,
                     });
-                },
-                failure: function() {
-                    Ext.Msg.alert('Fehler', 'Der HTML-Inhalt konnte nicht geladen werden.');
-                }
+                }.bind(this),
             });
         }
 
