@@ -16,6 +16,6 @@ final class BrickPageEditModeUrlPopulator implements Populator
 {
     public function populate(object $target, object $source, ?object $ctx = null): void
     {
-        $target->editModeUrl = \sprintf('/admin/login/deeplink?document_%s_page', $source->getId());
+        $target->editModeUrl = \sprintf('/admin/login/deeplink?document_%d_page', $source->getId());
     }
 }
