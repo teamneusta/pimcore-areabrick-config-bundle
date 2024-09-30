@@ -1,14 +1,13 @@
 neusta_pimcore_areabrick_config:
   areabricks:
     overview:
-      title: Areabrick overview
       table:
-        colHeaders:
-          - name
-          - id
-          - version
-          - description
-          - twig template
-          - <strike>unpublished</strike> pages (using brick)
-          - additional properties
+        col_headers:
+          id: id
+          name: name
+          version: version
+          description: description
+          template: twig template
+          published: <strike>unpublished</strike> pages (using brick)
+          additional_properties: additional properties
         no_additional_properties: No additional properties

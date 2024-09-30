@@ -29,7 +29,7 @@ final class AreabrickOverviewController
         $bricks = array_map($this->brickConverter->convert(...), $this->areabrickManager->getBricks());
         $hasAdditionalProperties = [] !== array_filter($bricks, fn ($brick) => !empty($brick->additionalProperties));
 
-        return new Response($this->twig->render('@NeustaPimcoreAreabrickConfig/bricks/default.html.twig', [
+        return new Response($this->twig->render('@NeustaPimcoreAreabrickConfig/bricks/overview.html.twig', [
             'bricks' => $bricks,
             'hasAdditionalProperties' => $hasAdditionalProperties,
         ]));

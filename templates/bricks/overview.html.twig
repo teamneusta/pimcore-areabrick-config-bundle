@@ -1,0 +1,44 @@
+<div id="neusta_areabrick_config">
+    <table>
+        <thead>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.name'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.id'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.published'|trans }}</th>
+            {% if hasAdditionalProperties %}
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.additional_properties'|trans }}</th>
+            {% endif %}
+        </thead>
+        <tbody>
+        {% for brick in bricks %}
+            <tr>
+                <td>{{ brick.name }}</td>
+                <td>{{ brick.id }}</td>
+                <td>{{ brick.version }}</td>
+                <td>{{ brick.description }}</td>
+                <td>{{ brick.template }}</td>
+                <td>
+                    {% for page in brick.pages %}
+                        {% if page.published %}
+                            <li><a href="{{ page.editModeUrl }}">{{ page.url }}</a> (<a href="{{ page.url }}">Frontend</a>)</li>
+                        {% else %}
+                            <li style="text-decoration: line-through;"><a href="{{ page.editModeUrl }}">{{ page.url }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                {% if hasAdditionalProperties %}
+                    <td>
+                        {% for additionalProperty in additionalProperties %}
+                            <li>{{ additionalProperty.propertyName }}: {{ additionalProperty.propertyValue }}</li>
+                        {% else %}
+                            {{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.no_additional_properties'|trans }}
+                        {% endfor %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
