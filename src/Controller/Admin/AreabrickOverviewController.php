@@ -5,13 +5,13 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin;
 use Neusta\ConverterBundle\Converter;
 use Neusta\ConverterBundle\Converter\Context\GenericContext;
 use Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick;
-use Pimcore\Controller\FrontendController;
 use Pimcore\Extension\Document\Areabrick\AreabrickInterface;
 use Pimcore\Extension\Document\Areabrick\AreabrickManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
-final class AreabrickOverviewController extends FrontendController // UserAwareController
+final class AreabrickOverviewController
 {
     /**
      * @param Converter<AreabrickInterface, Brick, GenericContext|null> $brickConverter
@@ -19,6 +19,7 @@ final class AreabrickOverviewController extends FrontendController // UserAwareC
     public function __construct(
         private AreabrickManagerInterface $areabrickManager,
         private Converter $brickConverter,
+        private Environment $twig,
     ) {
     }
 
@@ -26,13 +27,11 @@ final class AreabrickOverviewController extends FrontendController // UserAwareC
     public function defaultAction(): Response
     {
         $bricks = array_map($this->brickConverter->convert(...), $this->areabrickManager->getBricks());
+        $hasAdditionalProperties = [] !== array_filter($bricks, fn ($brick) => !empty($brick->additionalProperties));
 
-        return $this->render(
-            '@NeustaPimcoreAreabrickConfig/bricks/default.html.twig',
-            [
-                'bricks' => $bricks,
-                'showAdditionalPropertiesColumn' => !empty(array_filter($bricks, fn ($brick) => !empty($brick->additionalProperties))),
-            ]
-        );
+        return new Response($this->twig->render('@NeustaPimcoreAreabrickConfig/bricks/default.html.twig', [
+            'bricks' => $bricks,
+            'hasAdditionalProperties' => $hasAdditionalProperties,
+        ]));
     }
 }
