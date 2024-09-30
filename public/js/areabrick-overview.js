@@ -1,6 +1,6 @@
-pimcore.registerNS("neusta.areabrick_config.tab_panel");
+pimcore.registerNS('neusta.areabrick_config.areabrick_overview');
 
-neusta.areabrick_config.tab_panel = Class.create({
+neusta.areabrick_config.areabrick_overview = Class.create({
 
     initialize: function () {
         this.getTabPanel();

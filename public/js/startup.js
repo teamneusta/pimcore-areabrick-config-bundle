@@ -1,6 +1,6 @@
-pimcore.registerNS("neusta.areabrick_config.menu_item");
+pimcore.registerNS('neusta.areabrick_config.startup');
 
-neusta.areabrick_config.menu_item = Class.create({
+neusta.areabrick_config.startup = Class.create({
 
     initialize: function () {
         if (pimcore.events.preMenuBuild) {
@@ -12,17 +12,17 @@ neusta.areabrick_config.menu_item = Class.create({
     },
 
     preMenuBuild: function (e) {
-        if (!pimcore.globalmanager.get("perspective").inToolbar("tools.areabricks")) {
+        if (!pimcore.globalmanager.get('perspective').inToolbar('tools.areabricks')) {
             return;
         }
 
-        if (!pimcore.globalmanager.get('user').isAllowed("areabricks")) {
+        if (!pimcore.globalmanager.get('user').isAllowed('areabricks')) {
             return;
         }
 
         const items = {
-            text: t("neusta_pimcore_areabrick_config.areabricks.overview.title"),
-            iconCls: "pimcore_nav_icon_objectbricks",
+            text: t('neusta_pimcore_areabrick_config.areabricks.overview.title'),
+            iconCls: 'pimcore_nav_icon_objectbricks',
             priority: 31,
             itemId: 'pimcore_menu_tools_areabricks',
             handler: this.openAreabrickOverview,
@@ -36,14 +36,14 @@ neusta.areabrick_config.menu_item = Class.create({
         }
     },
 
-    openAreabrickOverview: function(e) {
+    openAreabrickOverview: function() {
         try {
-            pimcore.globalmanager.get("neusta_areabrick_config").activate();
+            pimcore.globalmanager.get('neusta_areabrick_config_areabrick_overview').activate();
         } catch (e) {
-            pimcore.globalmanager.add("neusta_areabrick_config", new neusta.areabrick_config.tab_panel());
+            pimcore.globalmanager.add('neusta_areabrick_config_areabrick_overview', new neusta.areabrick_config.areabrick_overview());
         }
     },
 
 });
 
-new neusta.areabrick_config.menu_item();
+new neusta.areabrick_config.startup();

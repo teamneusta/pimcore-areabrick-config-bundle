@@ -4,20 +4,20 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EventListener;
 
 use Pimcore\Event\BundleManager\PathsEvent;
 
-class PimcoreAdminListener
+final class PimcoreAdminListener
 {
     public function addCSSFiles(PathsEvent $event): void
     {
         $event->addPaths([
-            '/bundles/neustapimcoreareabrickconfig/css/admin-gui-style.css',
+            '/bundles/neustapimcoreareabrickconfig/css/admin-style.css',
         ]);
     }
 
     public function addJSFiles(PathsEvent $event): void
     {
         $event->addPaths([
-            '/bundles/neustapimcoreareabrickconfig/js/areabricksOverviewMenuItem.js',
-            '/bundles/neustapimcoreareabrickconfig/js/areabricksOverviewTabPanel.js',
+            '/bundles/neustapimcoreareabrickconfig/js/startup.js',
+            '/bundles/neustapimcoreareabrickconfig/js/areabrick-overview.js',
         ]);
     }
 }
