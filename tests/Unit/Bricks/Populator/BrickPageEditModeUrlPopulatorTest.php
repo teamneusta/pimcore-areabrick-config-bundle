@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\AreabrickConfigBundle\Bricks\Populator;
+namespace Neusta\Pimcore\AreabrickConfigBundle\Tests\Unit\Bricks\Populator;
 
 use Neusta\ConverterBundle\Populator;
 use Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Page;
