@@ -2,7 +2,7 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model;
 
-class Brick
+final class Brick
 {
     public string $id;
     public string $name;

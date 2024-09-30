@@ -2,7 +2,7 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model;
 
-class Page
+final class Page
 {
     public string $name;
     public bool $published = false;

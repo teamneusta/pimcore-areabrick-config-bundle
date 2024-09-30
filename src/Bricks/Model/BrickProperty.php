@@ -2,7 +2,7 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model;
 
-class BrickProperty
+final class BrickProperty
 {
     public string $propertyName;
     public string $propertyValue;
