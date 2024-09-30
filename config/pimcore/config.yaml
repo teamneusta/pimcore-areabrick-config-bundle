@@ -1,6 +1,6 @@
 neusta_converter:
   converter:
-    pimcore_areabrick_config.brick.converter:
+    neusta_pimcore_areabrick_config.brick.converter:
       target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick
       populators:
         - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
@@ -11,7 +11,7 @@ neusta_converter:
         description: ~
         template: ~
 
-    pimcore_areabrick_config.page.converter:
+    neusta_pimcore_areabrick_config.page.converter:
       target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Page
       populators:
         - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPageEditModeUrlPopulator
