@@ -3,7 +3,7 @@ neusta_converter:
     pimcore_areabrick_config.brick.converter:
       target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick
       populators:
-        - pimcore_areabrick_config.brick.page.populator
+        - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
       properties:
         id: ~
         name: ~

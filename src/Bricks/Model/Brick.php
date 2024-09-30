@@ -4,8 +4,8 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model;
 
 class Brick
 {
-    public string $name;
     public string $id;
+    public string $name;
     public ?string $version;
     public ?string $description;
     public ?string $template;
