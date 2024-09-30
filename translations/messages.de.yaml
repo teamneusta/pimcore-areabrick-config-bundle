@@ -8,6 +8,6 @@ neusta_pimcore_areabrick_config:
           version: Version
           description: Beschreibung
           template: Twig Template
-          published: <strike>unveröffentlichte</strike> Seiten (mit Brick)
+          pages: <strike>unveröffentlichte</strike> Seiten (mit Brick)
           additional_properties: zusätzliche Eigenschaften
         no_additional_properties: Keine zusätzlichen Eigenschaften
