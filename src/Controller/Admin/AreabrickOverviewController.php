@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
+#[Route('/areabricks/list', name: 'areabrick_overview', methods: ['GET'])]
 final class AreabrickOverviewController
 {
     /**
@@ -23,8 +24,7 @@ final class AreabrickOverviewController
     ) {
     }
 
-    #[Route('/areabricks/list', name: 'areabrick_overview', methods: ['GET'])]
-    public function defaultAction(): Response
+    public function __invoke(): Response
     {
         $bricks = array_map($this->brickConverter->convert(...), $this->areabrickManager->getBricks());
         $hasAdditionalProperties = [] !== array_filter($bricks, fn ($brick) => !empty($brick->additionalProperties));
