@@ -3,6 +3,7 @@
 namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Result;
 use Neusta\ConverterBundle\Converter;
 use Neusta\ConverterBundle\Converter\Context\GenericContext;
 use Neusta\ConverterBundle\Populator;
@@ -33,11 +34,13 @@ final class BrickPagePopulator implements Populator
             ->from('documents_editables')
             ->where('data LIKE :data')
             ->setParameter('data', '%' . $source->getId() . '%')
-            ->execute()
-            ->fetchFirstColumn();
+            ->execute();
+
+        // Todo: remove after upgrade to doctrine/dbal >=3.9
+        \assert($editableUsages instanceof Result);
 
         $target->pages = [];
-        foreach ($editableUsages as $docId) {
+        foreach ($editableUsages->fetchFirstColumn() as $docId) {
             if ($page = Page::getById($docId)) {
                 $target->pages[] = $this->pageConverter->convert($page);
             }
