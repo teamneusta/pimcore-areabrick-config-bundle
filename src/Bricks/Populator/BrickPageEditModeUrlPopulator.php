@@ -12,7 +12,7 @@ use Pimcore\Model\Document\Page as PimcorePage;
 /**
  * @implements Populator<PimcorePage, Page, GenericContext|null>
  */
-class BrickPageEditModeUrlPopulator implements Populator
+final class BrickPageEditModeUrlPopulator implements Populator
 {
     public function populate(object $target, object $source, ?object $ctx = null): void
     {

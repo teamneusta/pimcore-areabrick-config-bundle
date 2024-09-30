@@ -1,3 +1,7 @@
 neusta_pimcore_areabrick_config:
   resource: '@NeustaPimcoreAreabrickConfigBundle/src/Controller/Admin/'
   type: annotation
+  name_prefix: neusta_areabrick_config_
+  prefix: /admin/bundle/neusta-areabrick-config
+  options:
+    expose: true

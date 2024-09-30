@@ -8,7 +8,6 @@ use Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick;
 use Pimcore\Controller\FrontendController;
 use Pimcore\Extension\Document\Areabrick\AreabrickInterface;
 use Pimcore\Extension\Document\Areabrick\AreabrickManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,15 +22,10 @@ final class AreabrickOverviewController extends FrontendController // UserAwareC
     ) {
     }
 
-    #[Route('/admin/areabricks/list', name: 'areabrick_overview', methods: ['GET'])]
-    public function defaultAction(Request $request): Response
+    #[Route('/areabricks/list', name: 'areabrick_overview', methods: ['GET'])]
+    public function defaultAction(): Response
     {
-        $ctx = null;
-
-        $bricks = array_map(
-            fn ($item) => $this->brickConverter->convert($item, $ctx),
-            $this->areabrickManager->getBricks(),
-        );
+        $bricks = array_map($this->brickConverter->convert(...), $this->areabrickManager->getBricks());
 
         return $this->render(
             '@NeustaPimcoreAreabrickConfig/bricks/default.html.twig',

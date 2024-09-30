@@ -29,7 +29,7 @@ neusta.areabrick_config.tab_panel = Class.create({
             }.bind(this));
 
             Ext.Ajax.request({
-                url: '/admin/areabricks/list',
+                url: Routing.generate('neusta_areabrick_config_areabrick_overview'),
                 success: function(response) {
                     this.panel.add({
                         html: response.responseText,
