@@ -22,9 +22,9 @@
                 <td>
                     {% for page in brick.pages %}
                         {% if page.published %}
-                            <li><a href="{{ page.editModeUrl }}">{{ page.url }}</a> (<a href="{{ page.url }}">Frontend</a>)</li>
+                            <li><a href="#" data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">{{ page.url }}</a> (<a href="{{ page.url }}">Frontend</a>)</li>
                         {% else %}
-                            <li style="text-decoration: line-through;"><a href="{{ page.editModeUrl }}">{{ page.url }}</a></li>
+                            <li style="text-decoration: line-through;"><a href="#" data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">{{ page.url }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </td>

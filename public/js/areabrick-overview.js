@@ -2,6 +2,9 @@ pimcore.registerNS('neusta.areabrick_config.areabrick_overview');
 
 neusta.areabrick_config.areabrick_overview = Class.create({
 
+    tabId: 'neusta-areabrick-overview-tab',
+    panel: null,
+
     initialize: function () {
         this.getTabPanel();
     },
@@ -9,7 +12,7 @@ neusta.areabrick_config.areabrick_overview = Class.create({
     getTabPanel: function () {
         if (!this.panel) {
             this.panel = Ext.create('Ext.panel.Panel', {
-                id: 'neusta-areabrick-overview-tab',
+                id: this.tabId,
                 title: t('neusta_pimcore_areabrick_config.areabricks.overview.title'),
                 iconCls: 'pimcore_icon_areabrick',
                 border: false,
@@ -22,10 +25,10 @@ neusta.areabrick_config.areabrick_overview = Class.create({
 
             const tabPanel = Ext.getCmp('pimcore_panel_tabs');
             tabPanel.add(this.panel);
-            tabPanel.setActiveItem('neusta-areabrick-overview-tab');
+            tabPanel.setActiveItem(this.tabId);
 
             this.panel.on('destroy', function () {
-                pimcore.globalmanager.remove('neusta-areabrick-overview-tab');
+                pimcore.globalmanager.remove(this.tabId);
             }.bind(this));
 
             Ext.Ajax.request({
@@ -36,6 +39,14 @@ neusta.areabrick_config.areabrick_overview = Class.create({
                         autoScroll: true,
                     });
                 }.bind(this),
+            });
+
+            document.getElementById(this.tabId).addEventListener('click', event => {
+                const el = event.target.closest('#neusta_areabrick_config a[data-page-id]');
+
+                if (el) {
+                    pimcore.helpers.openDocument(el.dataset.pageId, el.dataset.pageType);
+                }
             });
         }
 

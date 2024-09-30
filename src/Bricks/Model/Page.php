@@ -4,8 +4,8 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model;
 
 final class Page
 {
-    public string $name;
+    public int $id;
+    public string $type;
     public string $url;
-    public string $editModeUrl;
     public bool $published = false;
 }
