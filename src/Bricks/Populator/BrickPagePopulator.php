@@ -32,7 +32,7 @@ final class BrickPagePopulator implements Populator
             ->distinct()
             ->from('documents_editables')
             ->where('data LIKE :data')
-            ->setParameter('data','%' . $source->getId() . '%')
+            ->setParameter('data', '%' . $source->getId() . '%')
             ->execute()
             ->fetchFirstColumn();
 
