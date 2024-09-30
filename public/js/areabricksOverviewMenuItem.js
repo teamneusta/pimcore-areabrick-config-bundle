@@ -5,24 +5,36 @@ pimcore.registerNS("neusta.areabrick_config.menu_item");
 neusta.areabrick_config.menu_item = Class.create({
 
     initialize: function () {
-        document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
+        if (pimcore.events.preMenuBuild) {
+            document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
+        } else {
+            // Todo: remove when we drop Pimcore 10 support
+            document.addEventListener(pimcore.events.pimcoreReady, this.preMenuBuild.bind(this));
+        }
     },
 
     preMenuBuild: function (e) {
-        let menu = e.detail.menu;
-        // get the user to check for permissions
-        const user = pimcore.globalmanager.get('user');
-        const perspectiveCfg = pimcore.globalmanager.get("perspective");
+        if (!pimcore.globalmanager.get("perspective").inToolbar("tools.areabricks")) {
+            return;
+        }
 
-        if (user.isAllowed("areabricks") && perspectiveCfg.inToolbar("tools.areabricks")) {
-            // simply push the new menu item in a existing menu
-            menu.extras.items.push({
-                text: t("neusta_pimcore_areabrick_config.areabricks.overview.title"),
-                iconCls: "pimcore_nav_icon_areabricks", // make sure your icon class exists
-                priority: 31, // define the position where you menu should be shown. Core menu items will leave a gap of 10 custom menu items
-                itemId: 'pimcore_menu_tools_areabricks', // specify your custom itemId here
-                handler: this.openAreabrickOverview
-            });
+        if (!pimcore.globalmanager.get('user').isAllowed("areabricks")) {
+            return;
+        }
+
+        const items = {
+            text: t("neusta_pimcore_areabrick_config.areabricks.overview.title"),
+            iconCls: "pimcore_nav_icon_objectbricks",
+            priority: 31,
+            itemId: 'pimcore_menu_tools_areabricks',
+            handler: this.openAreabrickOverview,
+        }
+
+        if (e.type === pimcore.events.preMenuBuild) {
+            e.detail.menu.extras.items.push(items);
+        } else {
+            // Todo: remove when we drop Pimcore 10 support
+            pimcore.globalmanager.get('layout_toolbar').extrasMenu.insert(4, items);
         }
     },
 
