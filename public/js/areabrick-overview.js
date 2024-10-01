@@ -13,7 +13,7 @@ neusta.areabrick_config.areabrick_overview = Class.create({
         if (!this.panel) {
             this.panel = Ext.create('Ext.panel.Panel', {
                 id: this.tabId,
-                title: t('neusta_pimcore_areabrick_config.areabricks.overview.title'),
+                title: t('neusta_areabrick_config.areabrick_overview'),
                 iconCls: 'pimcore_icon_areabrick',
                 border: false,
                 layout: 'fit',

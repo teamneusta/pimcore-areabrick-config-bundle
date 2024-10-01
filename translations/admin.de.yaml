@@ -1,4 +1,2 @@
-neusta_pimcore_areabrick_config:
-  areabricks:
-    overview:
-      title: Areabrick-Übersicht
+neusta_areabrick_config:
+  areabrick_overview: Areabrick-Übersicht

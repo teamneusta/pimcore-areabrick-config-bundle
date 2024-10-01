@@ -16,12 +16,12 @@ neusta.areabrick_config.startup = Class.create({
             return;
         }
 
-        if (!pimcore.globalmanager.get('user').isAllowed('areabricks')) {
+        if (!pimcore.globalmanager.get('user').isAllowed('neusta_areabrick_config.areabrick_overview')) {
             return;
         }
 
         const items = {
-            text: t('neusta_pimcore_areabrick_config.areabricks.overview.title'),
+            text: t('neusta_areabrick_config.areabrick_overview'),
             iconCls: 'pimcore_nav_icon_objectbricks',
             priority: 31,
             itemId: 'pimcore_menu_tools_areabricks',
