@@ -1,0 +1,24 @@
+doctrine_migrations:
+  migrations_paths:
+    Neusta\Pimcore\AreabrickConfigBundle\Migrations: '@NeustaPimcoreAreabrickConfigBundle/migrations'
+
+neusta_converter:
+  converter:
+    neusta_pimcore_areabrick_config.brick.converter:
+      target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Brick
+      populators:
+        - Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator
+      properties:
+        id: ~
+        name: ~
+        version: ~
+        description: ~
+        template: ~
+
+    neusta_pimcore_areabrick_config.page.converter:
+      target: Neusta\Pimcore\AreabrickConfigBundle\Bricks\Model\Page
+      properties:
+        id: ~
+        type: ~
+        url: fullPath
+        published: ~

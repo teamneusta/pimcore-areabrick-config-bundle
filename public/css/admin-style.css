@@ -1,0 +1,108 @@
+#neusta_areabrick_config table {
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
+
+#neusta_areabrick_config thead {
+    background-color: #177fac;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    color: #ffffff;
+}
+
+#neusta_areabrick_config tfoot {
+    background-color: #F7F1D4;
+    font-size: 80%;
+    border-top: 1px solid #999;
+}
+
+#neusta_areabrick_config td,
+#neusta_areabrick_config th {
+    text-align: match-parent;
+    padding: 0.5em 1em;
+    width: auto;
+}
+
+#neusta_areabrick_config tbody {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#neusta_areabrick_config thead,
+#neusta_areabrick_config tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Prevents columns of different widths */
+}
+
+#neusta_areabrick_config tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+#neusta_areabrick_config tbody tr:nth-child(even) {
+    background-color: #d9d9d9;
+}
+
+#neusta_areabrick_config a {
+    color: #0096f3;
+    text-decoration: none;
+}
+
+#neusta_areabrick_config a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Additional Properties */
+#neusta_areabrick_config ul.additional-properties li {
+    list-style-type: none;
+    margin-left: 5px;
+    width: 150px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+    color: #ffffff;
+}
+
+#neusta_areabrick_config ul.additional-properties li.tag {
+    background-color: #2a6f9c;
+}
+
+#neusta_areabrick_config ul.additional-properties li.group {
+    background-color: #194567;
+}
+
+/* Accordion */
+#neusta_areabrick_config .accordion button {
+    background-color: #efefef;
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-bottom: 3px;
+}
+
+#neusta_areabrick_config .accordion button.active,
+#neusta_areabrick_config .accordion button:hover {
+    background-color: #ccc;
+}
+
+#neusta_areabrick_config .accordion ul {
+    padding: 0 18px;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+#neusta_areabrick_config .accordion ul.active {
+    display: block;
+}

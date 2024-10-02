@@ -1,0 +1,20 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Neusta\Pimcore\AreabrickConfigBundle\Controller\Admin\AreabrickOverviewController:
+    arguments:
+      $brickConverter: '@neusta_pimcore_areabrick_config.brick.converter'
+    tags: [ 'controller.service_arguments' ]
+
+  Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPageEditModeUrlPopulator: ~
+
+  Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator\BrickPagePopulator:
+    arguments:
+      $pageConverter: '@neusta_pimcore_areabrick_config.page.converter'
+
+  Neusta\Pimcore\AreabrickConfigBundle\EventListener\PimcoreAdminListener:
+    tags:
+      - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }
+      - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }
