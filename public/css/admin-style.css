@@ -1,3 +1,4 @@
+
 #neusta_areabrick_config table {
     background-color: #ffffff;
     border-collapse: collapse;
@@ -6,7 +7,11 @@
 }
 
 #neusta_areabrick_config thead {
-    background-color: #0096f3;
+    background-color: #177fac;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    color: #ffffff; /* Textfarbe des Headers */
 }
 
 #neusta_areabrick_config tfoot {
@@ -19,6 +24,24 @@
 #neusta_areabrick_config th {
     text-align: left;
     padding: 0.5em 1em;
+    width: auto;
+}
+
+#neusta_areabrick_config .strike-through {
+    text-decoration: line-through;
+}
+
+#neusta_areabrick_config tbody {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#neusta_areabrick_config thead,
+#neusta_areabrick_config tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Verhindert, dass Spalten unterschiedlich breit werden */
 }
 
 #neusta_areabrick_config tbody tr:nth-child(odd) {
@@ -27,4 +50,76 @@
 
 #neusta_areabrick_config tbody tr:nth-child(even) {
     background-color: #d9d9d9;
+}
+
+#neusta_areabrick_config li {
+    list-style-type: none;
+}
+
+#neusta_areabrick_config a {
+    color: #0096f3;
+    text-decoration: none;
+}
+
+#neusta_areabrick_config a:hover {
+    text-decoration: underline;
+}
+
+/*#neusta_areabrick_config li.strike-through a {
+    text-decoration: line-through; !* Für durchgestrichene Links *!
+}*/
+
+/*Additional properties*/
+#neusta_areabrick_config .highlight-tag {
+    background-color: #2a6f9c;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block; /* Farbe für Tags */
+}
+
+#neusta_areabrick_config .highlight-group {
+    background-color: #194567;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+#neusta_areabrick_config .highlight-tag,
+#neusta_areabrick_config .highlight-group {
+    margin-left: 5px;
+    width: 150px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* Accordion css*/
+#neusta_areabrick_config .accordion {
+    background-color: #efefef;
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-bottom: 3px;
+}
+
+#neusta_areabrick_config .accordion.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+#neusta_areabrick_config .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+#neusta_areabrick_config .strike-through {
+    text-decoration: line-through;
 }
