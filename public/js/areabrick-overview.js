@@ -41,16 +41,28 @@ neusta.areabrick_config.areabrick_overview = Class.create({
                 }.bind(this),
             });
 
-            document.getElementById(this.tabId).addEventListener('click', event => {
-                const el = event.target.closest('#neusta_areabrick_config a[data-page-id]');
+            this.handleClick('#neusta_areabrick_config a[data-page-id]', el => {
+                pimcore.helpers.openDocument(el.dataset.pageId, el.dataset.pageType);
+            })
 
-                if (el) {
-                    pimcore.helpers.openDocument(el.dataset.pageId, el.dataset.pageType);
+            this.handleClick('#neusta_areabrick_config .accordion', (el, event) => {
+                if (event.target.tagName === 'BUTTON') {
+                    el.querySelectorAll('button, ul').forEach(el => el.classList.toggle('active'));
                 }
-            });
+            })
         }
 
         return this.panel;
+    },
+
+    handleClick: function (selector, handler) {
+        document.getElementById(this.tabId).addEventListener('click', event => {
+            const el = event.target.closest(selector);
+
+            if (el) {
+                handler(el, event);
+            }
+        });
     },
 
 });
