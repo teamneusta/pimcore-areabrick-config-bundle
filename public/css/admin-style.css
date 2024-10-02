@@ -22,7 +22,7 @@
 
 #neusta_areabrick_config td,
 #neusta_areabrick_config th {
-    text-align: left;
+    text-align: match-parent;
     padding: 0.5em 1em;
     width: auto;
 }

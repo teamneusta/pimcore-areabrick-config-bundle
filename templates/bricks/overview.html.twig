@@ -5,6 +5,7 @@
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.name'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.id'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans|raw }}</th>
             {% if hasAdditionalProperties %}
@@ -18,6 +19,7 @@
                 <td>{{ brick.name }}</td>
                 <td>{{ brick.id }}</td>
                 <td>{{ brick.version }}</td>
+                <td>{{ brick.description }}</td>
                 <td>{{ brick.template }}</td>
                 {% if hasAdditionalProperties %}
                     <td>
