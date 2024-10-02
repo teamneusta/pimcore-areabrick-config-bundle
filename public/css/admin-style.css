@@ -1,4 +1,3 @@
-
 #neusta_areabrick_config table {
     background-color: #ffffff;
     border-collapse: collapse;
@@ -11,7 +10,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    color: #ffffff; /* Textfarbe des Headers */
+    color: #ffffff;
 }
 
 #neusta_areabrick_config tfoot {
@@ -65,27 +64,7 @@
     text-decoration: underline;
 }
 
-/*#neusta_areabrick_config li.strike-through a {
-    text-decoration: line-through; !* Für durchgestrichene Links *!
-}*/
-
 /*Additional properties*/
-#neusta_areabrick_config .highlight-tag {
-    background-color: #2a6f9c;
-    color: #ffffff;
-    padding: 2px 4px;
-    border-radius: 3px;
-    display: inline-block; /* Farbe für Tags */
-}
-
-#neusta_areabrick_config .highlight-group {
-    background-color: #194567;
-    color: #ffffff;
-    padding: 2px 4px;
-    border-radius: 3px;
-    display: inline-block;
-}
-
 #neusta_areabrick_config .highlight-tag,
 #neusta_areabrick_config .highlight-group {
     margin-left: 5px;
@@ -93,6 +72,15 @@
     padding: 2px 4px;
     border-radius: 3px;
     display: inline-block;
+    color: #ffffff;
+}
+
+#neusta_areabrick_config .highlight-tag {
+    background-color: #2a6f9c;
+}
+
+#neusta_areabrick_config .highlight-group {
+    background-color: #194567;
 }
 
 /* Accordion css*/
@@ -109,7 +97,8 @@
     margin-bottom: 3px;
 }
 
-#neusta_areabrick_config .accordion.active, .accordion:hover {
+#neusta_areabrick_config .accordion.active,
+#neusta_areabrick_config .accordion:hover {
     background-color: #ccc;
 }
 
@@ -120,6 +109,6 @@
     overflow: hidden;
 }
 
-#neusta_areabrick_config .strike-through {
-    text-decoration: line-through;
+#neusta_areabrick_config .panel.active {
+    display: block;
 }

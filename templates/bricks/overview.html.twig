@@ -21,46 +21,48 @@
                 <td>{{ brick.version }}</td>
                 <td>{{ brick.description }}</td>
                 <td>{{ brick.template }}</td>
+                <td>
+                    {% set published_pages = brick.pages|filter(page => page.published) %}
+                    {% set unpublished_pages = brick.pages|filter(page => not page.published) %}
+
+                    {% if published_pages is not empty %}
+                        <!-- Published Pages Accordion -->
+                        <div>
+                            <button class="accordion">Published Pages</button>
+                            <div class="panel">
+                                <ul>
+                                    {% for page in published_pages %}
+                                        <li>
+                                            <a href="#" data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
+                                                {{ page.url }}
+                                            </a>
+                                            (<a href="{{ page.url }}">Frontend</a>)
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if unpublished_pages is not empty %}
+                        <!-- Unpublished Pages Accordion -->
+                        <div>
+                            <button class="accordion">Unpublished Pages</button>
+                            <div class="panel">
+                                <ul>
+                                    {% for page in unpublished_pages %}
+                                        <li class="strike-through">
+                                            <a href="#" data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
+                                                {{ page.url }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+                </td>
                 {% if hasAdditionalProperties %}
-                    <td>
-                        {% set published_pages = brick.pages|filter(page => page.published) %}
-                        {% set unpublished_pages = brick.pages|filter(page => not page.published) %}
-
-                        {% if published_pages|length > 0 %}
-                            <!-- Published Pages Accordion -->
-                            <div>
-                                <button class="accordion">Published Pages</button>
-                                <div class="panel">
-                                    <ul>
-                                        {% for page in published_pages %}
-                                            <li>
-                                                <a href="#" data-page-id="{{ page.id }}"
-                                                   data-page-type="{{ page.type }}">{{ page.url }}</a>
-                                                <a href="{{ page.url }}"></a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if unpublished_pages|length > 0 %}
-                            <!-- Unpublished Pages Accordion -->
-                            <div>
-                                <button class="accordion">Unpublished Pages</button>
-                                <div class="panel">
-                                    <ul>
-                                        {% for page in unpublished_pages %}
-                                            <li class="strike-through">
-                                                <a href="#" data-page-id="{{ page.id }}"
-                                                   data-page-type="{{ page.type }}">{{ page.url }}</a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </td>
                     <td>
                         <ul>
                             {% for additionalProperty in brick.additionalProperties %}
