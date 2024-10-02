@@ -18,6 +18,7 @@ final class PimcoreAdminListener
         $event->addPaths([
             '/bundles/neustapimcoreareabrickconfig/js/startup.js',
             '/bundles/neustapimcoreareabrickconfig/js/areabrick-overview.js',
+            '/bundles/neustapimcoreareabrickconfig/js/areabrick-overview-unpublished-toggle.js',
         ]);
     }
 }
