@@ -7,7 +7,7 @@
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans|raw }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans }}</th>
             {% if hasAdditionalProperties %}
                 <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.additional_properties'|trans }}</th>
             {% endif %}
@@ -27,46 +27,42 @@
 
                     {% if published_pages is not empty %}
                         <!-- Published Pages Accordion -->
-                        <div>
-                            <button class="accordion">Published Pages</button>
-                            <div class="panel">
-                                <ul>
-                                    {% for page in published_pages %}
-                                        <li>
-                                            <a href="#" data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
-                                                {{ page.url }}
-                                            </a>
-                                            (<a href="{{ page.url }}">Frontend</a>)
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                        <div class="accordion">
+                            <button>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans }}</button>
+                            <ul>
+                                {% for page in published_pages %}
+                                    <li>
+                                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
+                                            {{ page.url }}
+                                        </a>
+                                        (<a href="{{ page.url }}">Frontend</a>)
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     {% endif %}
 
                     {% if unpublished_pages is not empty %}
                         <!-- Unpublished Pages Accordion -->
-                        <div>
-                            <button class="accordion">Unpublished Pages</button>
-                            <div class="panel">
-                                <ul>
-                                    {% for page in unpublished_pages %}
-                                        <li class="strike-through">
-                                            <a href="#" data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
-                                                {{ page.url }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                        <div class="accordion">
+                            <button>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans }}</button>
+                            <ul>
+                                {% for page in unpublished_pages %}
+                                    <li>
+                                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
+                                            {{ page.url }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     {% endif %}
                 </td>
                 {% if hasAdditionalProperties %}
                     <td>
-                        <ul>
+                        <ul class="additional-properties">
                             {% for additionalProperty in brick.additionalProperties %}
-                                <li class="{% if additionalProperty.name == 'tags' %}highlight-tag{% elseif additionalProperty.name == 'groups' %}highlight-group{% endif %}">
+                                <li class="{% if additionalProperty.name == 'tags' %}tag{% elseif additionalProperty.name == 'groups' %}group{% endif %}">
                                     {{ additionalProperty.name }}: {{ additionalProperty.value }}
                                 </li>
                             {% else %}

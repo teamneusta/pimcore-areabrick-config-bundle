@@ -8,6 +8,8 @@ neusta_pimcore_areabrick_config:
           version: version
           description: description
           template: twig template
-          pages: <strike>unpublished</strike> pages (using brick)
+          pages: pages (using brick)
           additional_properties: additional properties
         no_additional_properties: No additional properties
+        published_pages: Published Pages
+        unpublished_pages: Unpublished Pages

@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const el = event.target.closest('#neusta_areabrick_config .accordion');
 
         if (el) {
-            el.classList.toggle('active');
-            el.nextElementSibling.classList.toggle('active');
+            el.querySelectorAll('button, ul').forEach(el => el.classList.toggle('active'));
         }
     });
 }, { once: true });

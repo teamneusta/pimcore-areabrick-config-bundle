@@ -26,10 +26,6 @@
     width: auto;
 }
 
-#neusta_areabrick_config .strike-through {
-    text-decoration: line-through;
-}
-
 #neusta_areabrick_config tbody {
     display: block;
     height: 100%;
@@ -40,7 +36,7 @@
 #neusta_areabrick_config tbody tr {
     display: table;
     width: 100%;
-    table-layout: fixed; /* Verhindert, dass Spalten unterschiedlich breit werden */
+    table-layout: fixed; /* Prevents columns of different widths */
 }
 
 #neusta_areabrick_config tbody tr:nth-child(odd) {
@@ -51,10 +47,6 @@
     background-color: #d9d9d9;
 }
 
-#neusta_areabrick_config li {
-    list-style-type: none;
-}
-
 #neusta_areabrick_config a {
     color: #0096f3;
     text-decoration: none;
@@ -62,11 +54,12 @@
 
 #neusta_areabrick_config a:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
-/*Additional properties*/
-#neusta_areabrick_config .highlight-tag,
-#neusta_areabrick_config .highlight-group {
+/* Additional Properties */
+#neusta_areabrick_config ul.additional-properties li {
+    list-style-type: none;
     margin-left: 5px;
     width: 150px;
     padding: 2px 4px;
@@ -75,16 +68,16 @@
     color: #ffffff;
 }
 
-#neusta_areabrick_config .highlight-tag {
+#neusta_areabrick_config ul.additional-properties li.tag {
     background-color: #2a6f9c;
 }
 
-#neusta_areabrick_config .highlight-group {
+#neusta_areabrick_config ul.additional-properties li.group {
     background-color: #194567;
 }
 
-/* Accordion css*/
-#neusta_areabrick_config .accordion {
+/* Accordion */
+#neusta_areabrick_config .accordion button {
     background-color: #efefef;
     color: #444;
     cursor: pointer;
@@ -97,18 +90,19 @@
     margin-bottom: 3px;
 }
 
-#neusta_areabrick_config .accordion.active,
-#neusta_areabrick_config .accordion:hover {
+#neusta_areabrick_config .accordion button.active,
+#neusta_areabrick_config .accordion button:hover {
     background-color: #ccc;
 }
 
-#neusta_areabrick_config .panel {
+#neusta_areabrick_config .accordion ul {
     padding: 0 18px;
     display: none;
-    background-color: white;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px;
 }
 
-#neusta_areabrick_config .panel.active {
+#neusta_areabrick_config .accordion ul.active {
     display: block;
 }
