@@ -26,9 +26,8 @@
                     {% set unpublished_pages = brick.pages|filter(page => not page.published) %}
 
                     {% if published_pages is not empty %}
-                        <!-- Published Pages Accordion -->
-                        <div class="accordion">
-                            <button>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans }}</button>
+                        <details class="accordion">
+                            <summary>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans }}</summary>
                             <ul>
                                 {% for page in published_pages %}
                                     <li>
@@ -39,13 +38,12 @@
                                     </li>
                                 {% endfor %}
                             </ul>
-                        </div>
+                        </details>
                     {% endif %}
 
                     {% if unpublished_pages is not empty %}
-                        <!-- Unpublished Pages Accordion -->
-                        <div class="accordion">
-                            <button>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans }}</button>
+                        <details class="accordion">
+                            <summary>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans }}</summary>
                             <ul>
                                 {% for page in unpublished_pages %}
                                     <li>
@@ -55,7 +53,7 @@
                                     </li>
                                 {% endfor %}
                             </ul>
-                        </div>
+                        </details>
                     {% endif %}
                 </td>
                 {% if hasAdditionalProperties %}

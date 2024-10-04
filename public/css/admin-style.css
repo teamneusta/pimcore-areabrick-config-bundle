@@ -81,7 +81,7 @@
 }
 
 /* Accordion */
-#neusta_areabrick_config .accordion button {
+#neusta_areabrick_config details.accordion > summary {
     background-color: #efefef;
     color: #444;
     cursor: pointer;
@@ -94,19 +94,14 @@
     margin-bottom: 3px;
 }
 
-#neusta_areabrick_config .accordion button.active,
-#neusta_areabrick_config .accordion button:hover {
+#neusta_areabrick_config details[open].accordion > summary,
+#neusta_areabrick_config details.accordion > summary:hover {
     background-color: #ccc;
 }
 
-#neusta_areabrick_config .accordion ul {
+#neusta_areabrick_config details.accordion > ul {
     padding: 0 18px;
-    display: none;
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 500px;
-}
-
-#neusta_areabrick_config .accordion ul.active {
-    display: block;
 }

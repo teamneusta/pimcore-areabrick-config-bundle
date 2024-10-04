@@ -44,12 +44,6 @@ neusta.areabrick_config.areabrick_overview = Class.create({
             this.handleClick('#neusta_areabrick_config a[data-page-id]', el => {
                 pimcore.helpers.openDocument(el.dataset.pageId, el.dataset.pageType);
             })
-
-            this.handleClick('#neusta_areabrick_config .accordion', (el, event) => {
-                if (event.target.tagName === 'BUTTON') {
-                    el.querySelectorAll('button, ul').forEach(el => el.classList.toggle('active'));
-                }
-            })
         }
 
         return this.panel;
