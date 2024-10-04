@@ -64,11 +64,14 @@
 
 #neusta_areabrick_config ul.additional-properties li {
     list-style-type: none;
-    margin-left: 5px;
-    width: 150px;
+    width: 100%;
     padding: 2px 4px;
     border-radius: 3px;
     display: inline-block;
+}
+
+#neusta_areabrick_config ul.additional-properties li + li {
+    margin-top: 3px;
 }
 
 #neusta_areabrick_config ul.additional-properties li.empty {
