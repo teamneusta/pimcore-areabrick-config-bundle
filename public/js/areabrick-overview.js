@@ -43,7 +43,11 @@ neusta.areabrick_config.areabrick_overview = Class.create({
                         .querySelectorAll('#neusta_areabrick_config ul.additional-properties > li')
                         .forEach(el => {
                             const name = el.querySelector('span').textContent;
-                            const rgb = this.hslToRgb(this.textToHSL(name));
+                            const rgb = this.hslToRgb(this.textToHSL(name, {
+                                hue: [190,220],
+                                sat: [60,80],
+                                lit: [30,70],
+                            }));
 
                             el.style.backgroundColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
                             el.style.color = this.contrastingColor(rgb);
