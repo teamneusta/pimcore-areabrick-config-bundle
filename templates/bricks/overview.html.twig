@@ -61,13 +61,15 @@
                 {% if hasAdditionalProperties %}
                     <td>
                         <ul class="additional-properties">
-                            {% for additionalProperty in brick.additionalProperties %}
-                                <li class="{% if additionalProperty.name == 'tags' %}tag{% elseif additionalProperty.name == 'groups' %}group{% endif %}">
-                                    {{ additionalProperty.name }}: {{ additionalProperty.value }}
-                                </li>
+                            {% if brick.additionalProperties is defined %}
+                                {% for additionalProperty in brick.additionalProperties %}
+                                    <li class="{% if additionalProperty.name == 'tags' %}tag{% elseif additionalProperty.name == 'groups' %}group{% endif %}">
+                                        {{ additionalProperty.name }}: {{ additionalProperty.value }}
+                                    </li>
+                                {% endfor %}
                             {% else %}
-                                <li>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.no_additional_properties'|trans }}</li>
-                            {% endfor %}
+                                <li style="color: #404040">{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.no_additional_properties'|trans }}</li>
+                            {% endif %}
                         </ul>
                     </td>
                 {% endif %}
