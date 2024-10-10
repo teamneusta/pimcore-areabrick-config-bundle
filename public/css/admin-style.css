@@ -76,6 +76,10 @@
     background-color: #194567;
 }
 
+#neusta_areabrick_config ul.additional-properties li.empty {
+    color: #404040;
+}
+
 /* Accordion */
 #neusta_areabrick_config .accordion button {
     background-color: #efefef;
