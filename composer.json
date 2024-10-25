@@ -52,6 +52,9 @@
     }
   },
   "autoload-dev": {
+    "classmap": [
+      "tests/app/TestKernel.php"
+    ],
     "psr-4": {
       "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "tests/"
     }
