@@ -1,11 +1,19 @@
+{% set hasVersions = bricks|filter(b => b.version is not empty)|length > 0 %}
+{% set hasDescriptions = bricks|filter(b => b.description is not empty)|length > 0 %}
+{% set hasAdditionalProperties = bricks|filter(b => b.additionalProperties is not empty)|length > 0 %}
+
 <div id="neusta_areabrick_config">
     <table>
         <thead>
         <tr>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.name'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.id'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
+            {% if hasVersions %}
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
+            {% endif %}
+            {% if hasDescriptions %}
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
+            {% endif %}
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans }}</th>
             {% if hasAdditionalProperties %}
@@ -18,8 +26,12 @@
             <tr>
                 <td>{{ brick.name|trans }}</td>
                 <td>{{ brick.id }}</td>
-                <td>{{ brick.version }}</td>
-                <td>{{ brick.description|trans }}</td>
+                {% if hasVersions %}
+                    <td>{{ brick.version }}</td>
+                {% endif %}
+                {% if hasDescriptions %}
+                    <td>{{ brick.description|trans }}</td>
+                {% endif %}
                 <td>{{ brick.template }}</td>
                 <td>
                     {% embed "@NeustaPimcoreAreabrickConfig/bricks/pages_accordion.html.twig" with {
@@ -40,7 +52,7 @@
                 {% if hasAdditionalProperties %}
                     <td>
                         <ul class="additional-properties">
-                            {% for additionalProperty in brick.additionalProperties|default([]) %}
+                            {% for additionalProperty in brick.additionalProperties %}
                                 <li class="{% if additionalProperty.name == 'tags' %}tag{% elseif additionalProperty.name == 'groups' %}group{% endif %}">
                                     {{ additionalProperty.name }}: {{ additionalProperty.value }}
                                 </li>

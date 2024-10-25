@@ -14,5 +14,5 @@ final class Brick
     public array $pages;
 
     /** @var list<BrickProperty> */
-    public array $additionalProperties;
+    public array $additionalProperties = [];
 }
