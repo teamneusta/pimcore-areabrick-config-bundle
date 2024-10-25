@@ -39,25 +39,13 @@ neusta.areabrick_config.areabrick_overview = Class.create({
                         autoScroll: true,
                     });
 
-                    document.getElementById(this.tabId)
-                        .querySelectorAll('#neusta_areabrick_config ul.additional-properties > li')
-                        .forEach(el => {
-                            const name = el.querySelector('span').textContent;
-                            const rgb = this.hslToRgb(this.textToHSL(name, {
-                                hue: [190,220],
-                                sat: [60,80],
-                                lit: [30,70],
-                            }));
-
-                            el.style.backgroundColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-                            el.style.color = this.contrastingColor(rgb);
-                        });
+                    this.colorizeAdditionalProperties();
                 }.bind(this),
             });
 
             this.handleClick('#neusta_areabrick_config a[data-page-id]', el => {
                 pimcore.helpers.openDocument(el.dataset.pageId, el.dataset.pageType);
-            })
+            });
         }
 
         return this.panel;
@@ -71,6 +59,22 @@ neusta.areabrick_config.areabrick_overview = Class.create({
                 handler(el, event);
             }
         });
+    },
+
+    colorizeAdditionalProperties: function () {
+        document.getElementById(this.tabId)
+            .querySelectorAll('#neusta_areabrick_config ul.additional-properties > li:not(.empty)')
+            .forEach(el => {
+                const name = el.querySelector('span').textContent;
+                const rgb = this.hslToRgb(this.textToHSL(name, {
+                    hue: [190,220],
+                    sat: [60,80],
+                    lit: [30,70],
+                }));
+
+                el.style.backgroundColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+                el.style.color = this.contrastingColor(rgb);
+            });
     },
 
     // https://gist.github.com/0x263b/2bdd90886c2036a1ad5bcf06d6e6fb37#hsl
