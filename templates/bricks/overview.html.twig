@@ -16,10 +16,10 @@
         <tbody>
         {% for brick in bricks %}
             <tr>
-                <td>{{ brick.name }}</td>
+                <td>{{ brick.name|trans }}</td>
                 <td>{{ brick.id }}</td>
                 <td>{{ brick.version }}</td>
-                <td>{{ brick.description }}</td>
+                <td>{{ brick.description|trans }}</td>
                 <td>{{ brick.template }}</td>
                 <td>
                     {% set published_pages = brick.pages|filter(page => page.published) %}
