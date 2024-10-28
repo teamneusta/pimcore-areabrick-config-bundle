@@ -1,0 +1,8 @@
+services:
+  Neusta\Pimcore\AreabrickConfigBundle\Tests\app\src\Document\Areabrick\CustomTemplate:
+    tags:
+      - { name: pimcore.area.brick, id: custom-template }
+
+  Neusta\Pimcore\AreabrickConfigBundle\Tests\app\src\Document\Areabrick\GlobalTemplateLocation:
+    tags:
+      - { name: pimcore.area.brick, id: global-template-location }
