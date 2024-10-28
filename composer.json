@@ -23,7 +23,6 @@
     "symfony/dependency-injection": "^5.4 || ^6.4",
     "symfony/http-foundation": "^5.4 || ^6.4",
     "symfony/http-kernel": "^5.4 || ^6.4",
-    "symfony/polyfill-php84": "^1.31",
     "symfony/routing": "^5.4 || ^6.4",
     "symfony/translation": "^5.4 || ^6.4",
     "teamneusta/converter-bundle": "^1.6",
