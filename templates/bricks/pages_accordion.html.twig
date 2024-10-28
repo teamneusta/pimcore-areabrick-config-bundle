@@ -1,0 +1,14 @@
+{% if pages is not empty %}
+    <details class="accordion">
+        <summary>{{ title }} ({{ pages|length }})</summary>
+        <ul>
+            {% for page in pages %}
+                <li>
+                    {% block page %}
+                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">{{ page.url }}</a>
+                    {% endblock %}
+                </li>
+            {% endfor %}
+        </ul>
+    </details>
+{% endif %}

@@ -22,39 +22,20 @@
                 <td>{{ brick.description|trans }}</td>
                 <td>{{ brick.template }}</td>
                 <td>
-                    {% set published_pages = brick.pages|filter(page => page.published) %}
-                    {% set unpublished_pages = brick.pages|filter(page => not page.published) %}
+                    {% embed "@NeustaPimcoreAreabrickConfig/bricks/pages_accordion.html.twig" with {
+                        title: 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans,
+                        pages: brick.pages|filter(page => page.published),
+                    } only %}
+                        {% block page %}
+                            {{ parent() }} (<a href="{{ page.url }}" target="_blank">Frontend</a>)
+                        {% endblock %}
+                    {% endembed %}
 
-                    {% if published_pages is not empty %}
-                        <details class="accordion">
-                            <summary>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans }}</summary>
-                            <ul>
-                                {% for page in published_pages %}
-                                    <li>
-                                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
-                                            {{ page.url }}
-                                        </a>
-                                        (<a href="{{ page.url }}" target="_blank">Frontend</a>)
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </details>
-                    {% endif %}
-
-                    {% if unpublished_pages is not empty %}
-                        <details class="accordion">
-                            <summary>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans }}</summary>
-                            <ul>
-                                {% for page in unpublished_pages %}
-                                    <li>
-                                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
-                                            {{ page.url }}
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </details>
-                    {% endif %}
+                    {% embed "@NeustaPimcoreAreabrickConfig/bricks/pages_accordion.html.twig" with {
+                        title: 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans,
+                        pages: brick.pages|filter(page => not page.published),
+                    } only %}
+                    {% endembed %}
                 </td>
                 {% if hasAdditionalProperties %}
                     <td>
