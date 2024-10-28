@@ -1,6 +1,6 @@
-{% set hasVersions = bricks|filter(b => b.version is not empty)|length > 0 %}
-{% set hasDescriptions = bricks|filter(b => b.description is not empty)|length > 0 %}
-{% set hasAdditionalProperties = bricks|filter(b => b.additionalProperties is not empty)|length > 0 %}
+{% set hasVersions = bricks|any(b => b.version is not empty) %}
+{% set hasDescriptions = bricks|any(b => b.description is not empty) %}
+{% set hasAdditionalProperties = bricks|any(b => b.additionalProperties is not empty) %}
 
 <div id="neusta_areabrick_config">
     <table>

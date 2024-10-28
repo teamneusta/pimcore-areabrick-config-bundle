@@ -18,3 +18,5 @@ services:
     tags:
       - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }
       - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }
+
+  Neusta\Pimcore\AreabrickConfigBundle\Twig\NeustaExtension: ~
