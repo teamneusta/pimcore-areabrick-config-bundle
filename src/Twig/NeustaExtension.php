@@ -11,6 +11,7 @@ final class NeustaExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
+            // Todo: remove in favor of the `any`-test once [#4422](https://github.com/twigphp/Twig/pull/4422) got released
             new TwigFilter('any', self::any(...)),
         ];
     }
