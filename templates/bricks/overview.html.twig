@@ -1,11 +1,19 @@
+{% set hasVersions = bricks has some brick => brick.version is not empty %}
+{% set hasDescriptions = bricks has some brick => brick.description is not empty %}
+{% set hasAdditionalProperties = bricks has some brick => brick.additionalProperties is not empty %}
+
 <div id="neusta_areabrick_config">
     <table>
         <thead>
         <tr>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.name'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.id'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
+            {% if hasVersions %}
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
+            {% endif %}
+            {% if hasDescriptions %}
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
+            {% endif %}
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans }}</th>
             <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans }}</th>
             {% if hasAdditionalProperties %}
@@ -16,45 +24,30 @@
         <tbody>
         {% for brick in bricks %}
             <tr>
-                <td>{{ brick.name }}</td>
+                <td>{{ brick.name|trans }}</td>
                 <td>{{ brick.id }}</td>
-                <td>{{ brick.version }}</td>
-                <td>{{ brick.description }}</td>
+                {% if hasVersions %}
+                    <td>{{ brick.version }}</td>
+                {% endif %}
+                {% if hasDescriptions %}
+                    <td>{{ brick.description|trans }}</td>
+                {% endif %}
                 <td>{{ brick.template }}</td>
                 <td>
-                    {% set published_pages = brick.pages|filter(page => page.published) %}
-                    {% set unpublished_pages = brick.pages|filter(page => not page.published) %}
+                    {% embed "@NeustaPimcoreAreabrickConfig/bricks/pages_accordion.html.twig" with {
+                        title: 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans,
+                        pages: brick.pages|filter(page => page.published),
+                    } only %}
+                        {% block page %}
+                            {{ parent() }} (<a href="{{ page.url }}" target="_blank">Frontend</a>)
+                        {% endblock %}
+                    {% endembed %}
 
-                    {% if published_pages is not empty %}
-                        <details class="accordion">
-                            <summary>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.published_pages'|trans }}</summary>
-                            <ul>
-                                {% for page in published_pages %}
-                                    <li>
-                                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
-                                            {{ page.url }}
-                                        </a>
-                                        (<a href="{{ page.url }}" target="_blank">Frontend</a>)
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </details>
-                    {% endif %}
-
-                    {% if unpublished_pages is not empty %}
-                        <details class="accordion">
-                            <summary>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans }}</summary>
-                            <ul>
-                                {% for page in unpublished_pages %}
-                                    <li>
-                                        <a data-page-id="{{ page.id }}" data-page-type="{{ page.type }}">
-                                            {{ page.url }}
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </details>
-                    {% endif %}
+                    {% embed "@NeustaPimcoreAreabrickConfig/bricks/pages_accordion.html.twig" with {
+                        title: 'neusta_pimcore_areabrick_config.areabricks.overview.table.unpublished_pages'|trans,
+                        pages: brick.pages|filter(page => not page.published),
+                    } only %}
+                    {% endembed %}
                 </td>
                 {% if hasAdditionalProperties %}
                     <td>
