@@ -28,20 +28,22 @@ final class BrickPagePopulator implements Populator
 
     public function populate(object $target, object $source, ?object $ctx = null): void
     {
-        $editableUsages = $this->connection->createQueryBuilder()
+        $areabrickName = $source->getId();
+        $documentIds = $this->connection->createQueryBuilder()
             ->select('documentId')
             ->distinct()
             ->from('documents_editables')
-            ->where('data LIKE :data')
-            ->setParameter('data', '%' . $source->getId() . '%')
+            ->where('type IN ("area", "areablock")')
+            ->andWhere('data LIKE :data')
+            ->setParameter('data', \sprintf('%%"type";s:%d:"%s";%%', \strlen($areabrickName), $areabrickName))
             ->execute();
 
         // Todo: remove after upgrade to doctrine/dbal >=3.9
-        \assert($editableUsages instanceof Result);
+        \assert($documentIds instanceof Result);
 
         $target->pages = [];
-        foreach ($editableUsages->fetchFirstColumn() as $docId) {
-            if ($page = Page::getById($docId)) {
+        foreach ($documentIds->fetchFirstColumn() as $id) {
+            if ($page = Page::getById($id)) {
                 $target->pages[] = $this->pageConverter->convert($page);
             }
         }
