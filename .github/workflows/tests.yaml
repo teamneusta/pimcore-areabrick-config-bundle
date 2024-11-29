@@ -26,6 +26,9 @@ jobs:
           - php-version: "8.2"
             dependencies: "highest"
             tests: --fail-on-risky
+          - php-version: "8.3"
+            dependencies: "highest"
+            tests: --fail-on-risky
 
     steps:
       - name: Git Checkout
