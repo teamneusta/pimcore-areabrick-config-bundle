@@ -33,8 +33,8 @@ class NumericItem extends EditableItem
     protected function getConfig(): array
     {
         return [
-            'minValue' => (string) $this->min,
-            'maxValue' => (string) $this->max,
+            'minValue' => $this->min,
+            'maxValue' => $this->max,
         ];
     }
 }
