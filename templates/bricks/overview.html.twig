@@ -6,31 +6,31 @@
     <table>
         <thead>
         <tr>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.name'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.id'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.name'|trans([], 'admin') }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.id'|trans([], 'admin') }}</th>
             {% if hasVersions %}
-                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans }}</th>
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.version'|trans([], 'admin') }}</th>
             {% endif %}
             {% if hasDescriptions %}
-                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans }}</th>
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.description'|trans([], 'admin') }}</th>
             {% endif %}
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans }}</th>
-            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.template'|trans([], 'admin') }}</th>
+            <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.pages'|trans([], 'admin') }}</th>
             {% if hasAdditionalProperties %}
-                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.additional_properties'|trans }}</th>
+                <th>{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.col_headers.additional_properties'|trans([], 'admin') }}</th>
             {% endif %}
         </tr>
         </thead>
         <tbody>
         {% for brick in bricks %}
             <tr>
-                <td>{{ brick.name|trans }}</td>
+                <td>{{ brick.name|trans([], 'admin') }}</td>
                 <td>{{ brick.id }}</td>
                 {% if hasVersions %}
                     <td>{{ brick.version }}</td>
                 {% endif %}
                 {% if hasDescriptions %}
-                    <td>{{ brick.description|trans }}</td>
+                    <td>{{ brick.description|trans([], 'admin') }}</td>
                 {% endif %}
                 <td>{{ brick.template }}</td>
                 <td>
@@ -55,7 +55,7 @@
                             {% for additionalProperty in brick.additionalProperties|default([]) %}
                                 <li><span>{{ additionalProperty.name }}</span>: {{ additionalProperty.value }}</li>
                             {% else %}
-                                <li class="empty">{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.no_additional_properties'|trans }}</li>
+                                <li class="empty">{{ 'neusta_pimcore_areabrick_config.areabricks.overview.table.no_additional_properties'|trans([], 'admin') }}</li>
                             {% endfor %}
                         </ul>
                     </td>
