@@ -24,13 +24,13 @@
         <tbody>
         {% for brick in bricks %}
             <tr>
-                <td>{{ brick.name|trans }}</td>
+                <td>{{ brick.name|trans(domain='admin') }}</td>
                 <td>{{ brick.id }}</td>
                 {% if hasVersions %}
                     <td>{{ brick.version }}</td>
                 {% endif %}
                 {% if hasDescriptions %}
-                    <td>{{ brick.description|trans }}</td>
+                    <td>{{ brick.description|trans(domain='admin') }}</td>
                 {% endif %}
                 <td>{{ brick.template }}</td>
                 <td>
