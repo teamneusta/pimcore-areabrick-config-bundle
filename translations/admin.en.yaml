@@ -1,2 +1,16 @@
 neusta_areabrick_config:
   areabrick_overview: Areabrick Overview
+  areabricks:
+    overview:
+      table:
+        col_headers:
+          id: ID
+          name: Name
+          version: Version
+          description: Description
+          template: Twig template
+          pages: Pages (using brick)
+          additional_properties: Additional properties
+        no_additional_properties: No additional properties
+        published_pages: Published Pages
+        unpublished_pages: Unpublished Pages
