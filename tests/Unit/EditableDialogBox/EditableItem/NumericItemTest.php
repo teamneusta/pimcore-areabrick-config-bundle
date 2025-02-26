@@ -4,9 +4,13 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\Tests\Unit\EditableDialogBox\Edit
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class NumericItemTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @test
      */
@@ -24,7 +28,7 @@ class NumericItemTest extends TestCase
                     'maxValue' => 10,
                 ],
             ],
-            $item->toArray(),
+            $item->toArray($this->prophesize(TranslatorInterface::class)->reveal()),
         );
     }
 
@@ -46,7 +50,7 @@ class NumericItemTest extends TestCase
                     'maxValue' => 24,
                 ],
             ],
-            $item->toArray(),
+            $item->toArray($this->prophesize(TranslatorInterface::class)->reveal()),
         );
     }
 
