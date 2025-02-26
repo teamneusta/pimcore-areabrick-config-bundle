@@ -6,7 +6,6 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 use Symfony\Contracts\Translation\TranslatableInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PanelItem extends LayoutItem
 {
@@ -26,8 +25,8 @@ class PanelItem extends LayoutItem
         return parent::addItem($item);
     }
 
-    protected function getAttributes(TranslatorInterface $translator): array
+    protected function getAttributes(): array
     {
-        return ['title' => $this->title] + parent::getAttributes($translator);
+        return ['title' => $this->title] + parent::getAttributes();
     }
 }
