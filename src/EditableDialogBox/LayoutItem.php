@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 abstract class LayoutItem extends DialogBoxItem
 {
     /**
@@ -17,7 +19,7 @@ abstract class LayoutItem extends DialogBoxItem
 
     public function isEmpty(): bool
     {
-        return 0 === \count(array_filter($this->items, [$this, 'isNotEmpty']));
+        return 0 === \count(array_filter($this->items, $this->isNotEmpty(...)));
     }
 
     /**
@@ -30,12 +32,12 @@ abstract class LayoutItem extends DialogBoxItem
         return $this;
     }
 
-    protected function getAttributes(): array
+    protected function getAttributes(?TranslatorInterface $translator): array
     {
         return [
             'items' => array_map(
-                static fn (DialogBoxItem $item): array => $item->toArray(),
-                array_values(array_filter($this->items, [$this, 'isNotEmpty'])),
+                static fn (DialogBoxItem $item): array => $item->toArray($translator),
+                array_values(array_filter($this->items, $this->isNotEmpty(...))),
             ),
         ];
     }
