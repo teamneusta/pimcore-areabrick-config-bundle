@@ -13,6 +13,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectIt
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItemOptions;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Translation\TranslatorWithDefaultDomain;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 use Symfony\Contracts\Translation\TranslatableInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -23,9 +24,22 @@ class DialogBoxBuilder
     private TabPanelItem $tabs;
     private PanelItem $content;
 
-    public function __construct()
-    {
+    public function __construct(
+        private TranslatorInterface $translator,
+    ) {
         $this->config = new EditableDialogBoxConfiguration();
+    }
+
+    /**
+     * @return $this
+     */
+    public function defaultTranslationDomain(string $domain): static
+    {
+        $this->translator = $this->translator instanceof TranslatorWithDefaultDomain
+            ? $this->translator->withDefaultDomain($domain)
+            : new TranslatorWithDefaultDomain($this->translator, $domain);
+
+        return $this;
     }
 
     /**
@@ -126,35 +140,14 @@ class DialogBoxBuilder
         return new LinkItem($name);
     }
 
-    public function build(?TranslatorInterface $translator = null): EditableDialogBoxConfiguration
+    public function build(): EditableDialogBoxConfiguration
     {
         $items = $this->content ?? $this->tabs ?? null;
 
         if ($items && !$items->isEmpty()) {
-            $this->config->setItems($items->toArray($translator ?? $this->getTranslatorStub()));
+            $this->config->setItems($items->toArray($this->translator));
         }
 
         return $this->config;
-    }
-
-    private function getTranslatorStub(): TranslatorInterface
-    {
-        static $translator;
-
-        return $translator ??= new class implements TranslatorInterface {
-            public function trans(
-                string $id,
-                array $parameters = [],
-                ?string $domain = null,
-                ?string $locale = null
-            ): string {
-                throw new \LogicException('Not implemented');
-            }
-
-            public function getLocale(): string
-            {
-                throw new \LogicException('Not implemented');
-            }
-        };
     }
 }
