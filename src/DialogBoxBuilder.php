@@ -10,9 +10,12 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\LinkItem
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItemOptions;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
+use Symfony\Contracts\Translation\TranslatableInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DialogBoxBuilder
 {
@@ -101,7 +104,7 @@ class DialogBoxBuilder
     }
 
     /**
-     * @param non-empty-array<array-key, string> $store
+     * @param non-empty-array<array-key, string|TranslatableInterface> $store
      */
     public function createSelect(string $name, array $store): SelectItem
     {
@@ -123,12 +126,12 @@ class DialogBoxBuilder
         return new LinkItem($name);
     }
 
-    public function build(): EditableDialogBoxConfiguration
+    public function build(?TranslatorInterface $translator = null): EditableDialogBoxConfiguration
     {
         $items = $this->content ?? $this->tabs ?? null;
 
         if ($items && !$items->isEmpty()) {
-            $this->config->setItems($items->toArray());
+            $this->config->setItems($items->toArray($translator));
         }
 
         return $this->config;

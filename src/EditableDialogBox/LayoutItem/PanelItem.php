@@ -5,18 +5,20 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
+use Symfony\Contracts\Translation\TranslatableInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @extends LayoutItem<DialogBoxItem>
  */
 class PanelItem extends LayoutItem
 {
-    public readonly string $title;
+    public readonly string|TranslatableInterface $title;
 
     /**
      * @param list<DialogBoxItem> $items
      */
-    public function __construct(string $title, array $items = [])
+    public function __construct(string|TranslatableInterface $title, array $items = [])
     {
         parent::__construct('panel', $items);
         $this->title = $title;
@@ -31,8 +33,12 @@ class PanelItem extends LayoutItem
         return $this;
     }
 
-    protected function getAttributes(): array
+    protected function getAttributes(?TranslatorInterface $translator): array
     {
-        return ['title' => $this->title] + parent::getAttributes();
+        $title = $translator && $this->title instanceof TranslatableInterface
+            ? $this->title->trans($translator)
+            : $this->title;
+
+        return ['title' => $title] + parent::getAttributes($translator);
     }
 }
