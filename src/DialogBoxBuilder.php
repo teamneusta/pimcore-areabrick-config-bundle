@@ -131,9 +131,30 @@ class DialogBoxBuilder
         $items = $this->content ?? $this->tabs ?? null;
 
         if ($items && !$items->isEmpty()) {
-            $this->config->setItems($items->toArray($translator));
+            $this->config->setItems($items->toArray($translator ?? $this->getTranslatorStub()));
         }
 
         return $this->config;
+    }
+
+    private function getTranslatorStub(): TranslatorInterface
+    {
+        static $translator;
+
+        return $translator ??= new class implements TranslatorInterface {
+            public function trans(
+                string $id,
+                array $parameters = [],
+                ?string $domain = null,
+                ?string $locale = null
+            ): string {
+                throw new \LogicException('Not implemented');
+            }
+
+            public function getLocale(): string
+            {
+                throw new \LogicException('Not implemented');
+            }
+        };
     }
 }
