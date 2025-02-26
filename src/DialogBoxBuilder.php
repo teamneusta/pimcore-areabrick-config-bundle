@@ -10,7 +10,6 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\LinkItem
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
-use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItemOptions;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\Translation\TranslatorWithDefaultDomain;

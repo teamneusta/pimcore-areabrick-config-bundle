@@ -2,10 +2,10 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle;
 
+use Neusta\Pimcore\AreabrickConfigBundle\Translation\TranslatorWithDefaultDomain;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 use Pimcore\Model\Document\Editable;
 use Pimcore\Model\Document\Editable\Area\Info;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @template T of DialogBoxBuilder
@@ -26,7 +26,7 @@ trait HasDialogBox
      */
     private function createDialogBoxBuilder(Editable $area, ?Info $info): DialogBoxBuilder
     {
-        return new DialogBoxBuilder($this->container->get(TranslatorInterface::class));
+        return new DialogBoxBuilder($this->container->get(TranslatorWithDefaultDomain::class));
     }
 
     /**
