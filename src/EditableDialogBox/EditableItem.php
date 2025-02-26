@@ -44,22 +44,16 @@ class EditableItem extends DialogBoxItem
         return $this;
     }
 
-    final protected function getAttributes(?TranslatorInterface $translator): array
+    final protected function getAttributes(TranslatorInterface $translator): array
     {
-        $label = $this->label;
+        $label = $this->label instanceof TranslatableInterface ? $this->label->trans($translator) : $this->label;
         $config = array_merge($this->config, $this->getConfig());
 
-        if ($translator) {
-            if ($label instanceof TranslatableInterface) {
-                $label = $label->trans($translator);
+        array_walk_recursive($config, function (&$value) use ($translator) {
+            if ($value instanceof TranslatableInterface) {
+                $value = $value->trans($translator);
             }
-
-            array_walk_recursive($config, function (&$value) use ($translator) {
-                if ($value instanceof TranslatableInterface) {
-                    $value = $value->trans($translator);
-                }
-            });
-        }
+        });
 
         return array_filter([
             'name' => $this->name,

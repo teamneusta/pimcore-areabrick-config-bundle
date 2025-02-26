@@ -32,7 +32,7 @@ abstract class LayoutItem extends DialogBoxItem
         return $this;
     }
 
-    protected function getAttributes(?TranslatorInterface $translator): array
+    protected function getAttributes(TranslatorInterface $translator): array
     {
         return [
             'items' => array_map(

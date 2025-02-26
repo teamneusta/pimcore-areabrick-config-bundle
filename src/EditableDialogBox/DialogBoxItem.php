@@ -15,7 +15,7 @@ abstract class DialogBoxItem
     /**
      * @return array<string, mixed>
      */
-    public function toArray(?TranslatorInterface $translator): array
+    public function toArray(TranslatorInterface $translator): array
     {
         return ['type' => $this->type] + $this->getAttributes($translator);
     }
@@ -23,5 +23,5 @@ abstract class DialogBoxItem
     /**
      * @return array<string, mixed>
      */
-    abstract protected function getAttributes(?TranslatorInterface $translator): array;
+    abstract protected function getAttributes(TranslatorInterface $translator): array;
 }
