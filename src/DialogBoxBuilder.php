@@ -144,7 +144,15 @@ class DialogBoxBuilder
         $items = $this->content ?? $this->tabs ?? null;
 
         if ($items && !$items->isEmpty()) {
-            $this->config->setItems($items->toArray($this->translator));
+            $rawItems = $items->toArray();
+
+            array_walk_recursive($rawItems, function (&$value) {
+                if ($value instanceof TranslatableInterface) {
+                    $value = $value->trans($this->translator);
+                }
+            });
+
+            $this->config->setItems($rawItems);
         }
 
         return $this->config;

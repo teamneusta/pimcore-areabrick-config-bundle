@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
-
 /**
  * @template TItem of DialogBoxItem
  */
@@ -48,12 +46,12 @@ abstract class LayoutItem extends DialogBoxItem
         return $this;
     }
 
-    protected function getAttributes(TranslatorInterface $translator): array
+    protected function getAttributes(): array
     {
         $items = [];
         foreach ($this->items as $item) {
             if ($this->isNotEmpty($item)) {
-                $items[] = $item->toArray($translator);
+                $items[] = $item->toArray();
             }
         }
 
