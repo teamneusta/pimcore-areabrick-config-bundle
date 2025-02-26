@@ -32,7 +32,7 @@ class DialogBoxBuilderTest extends TestCase
             ->addContent($editableItem3)
             ->build();
 
-        self::assertSame($expected->toArray($translator->reveal()), $dialogBox->getItems());
+        self::assertSame($expected->toArray(), $dialogBox->getItems());
     }
 
     /**
@@ -55,7 +55,7 @@ class DialogBoxBuilderTest extends TestCase
             ->addTab('Other', $editableItem3)
             ->build();
 
-        self::assertSame($expected->toArray($translator->reveal()), $dialogBox->getItems());
+        self::assertSame($expected->toArray(), $dialogBox->getItems());
     }
 
     /**

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 
 use Symfony\Contracts\Translation\TranslatableInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EditableItem extends DialogBoxItem
 {
@@ -44,7 +43,7 @@ class EditableItem extends DialogBoxItem
         return $this;
     }
 
-    final protected function getAttributes(TranslatorInterface $translator): array
+    final protected function getAttributes(): array
     {
         return array_filter([
             'name' => $this->name,
