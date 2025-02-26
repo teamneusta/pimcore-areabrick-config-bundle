@@ -25,6 +25,7 @@
     "symfony/http-kernel": "^5.4 || ^6.4",
     "symfony/routing": "^5.4 || ^6.4",
     "symfony/translation": "^5.4 || ^6.4",
+    "symfony/translation-contracts": "^2.5|^3.0",
     "teamneusta/converter-bundle": "^1.6",
     "twig/twig": "^3.8"
   },
