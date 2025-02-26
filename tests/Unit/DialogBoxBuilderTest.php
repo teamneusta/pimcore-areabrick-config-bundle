@@ -8,6 +8,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DialogBoxBuilderTest extends TestCase
 {
@@ -18,7 +19,8 @@ class DialogBoxBuilderTest extends TestCase
      */
     public function addingContent(): void
     {
-        $dialogBuilder = new DialogBoxBuilder();
+        $translator = $this->prophesize(TranslatorInterface::class);
+        $dialogBuilder = new DialogBoxBuilder($translator->reveal());
         $editableItem1 = new EditableItem('type1', 'name1');
         $editableItem2 = new EditableItem('type2', 'name2');
         $editableItem3 = new EditableItem('type3', 'name3');
@@ -30,7 +32,7 @@ class DialogBoxBuilderTest extends TestCase
             ->addContent($editableItem3)
             ->build();
 
-        self::assertSame($expected->toArray(), $dialogBox->getItems());
+        self::assertSame($expected->toArray($translator->reveal()), $dialogBox->getItems());
     }
 
     /**
@@ -38,7 +40,8 @@ class DialogBoxBuilderTest extends TestCase
      */
     public function addingTwoTabsWithSomeItems(): void
     {
-        $dialogBuilder = new DialogBoxBuilder();
+        $translator = $this->prophesize(TranslatorInterface::class);
+        $dialogBuilder = new DialogBoxBuilder($translator->reveal());
         $editableItem1 = new EditableItem('type1', 'name1');
         $editableItem2 = new EditableItem('type2', 'name2');
         $editableItem3 = new EditableItem('type3', 'name3');
@@ -52,7 +55,7 @@ class DialogBoxBuilderTest extends TestCase
             ->addTab('Other', $editableItem3)
             ->build();
 
-        self::assertSame($expected->toArray(), $dialogBox->getItems());
+        self::assertSame($expected->toArray($translator->reveal()), $dialogBox->getItems());
     }
 
     /**
@@ -81,10 +84,12 @@ class DialogBoxBuilderTest extends TestCase
      */
     public function addingContentAndThenTabs(): void
     {
+        $translator = $this->prophesize(TranslatorInterface::class);
+
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('You cannot add tabs and content at the same time.');
 
-        (new DialogBoxBuilder())->addContent()->addTab('Test');
+        (new DialogBoxBuilder($translator->reveal()))->addContent()->addTab('Test');
     }
 
     /**
@@ -92,9 +97,11 @@ class DialogBoxBuilderTest extends TestCase
      */
     public function addingTabsAndThenContent(): void
     {
+        $translator = $this->prophesize(TranslatorInterface::class);
+
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('You cannot add content and tabs at the same time.');
 
-        (new DialogBoxBuilder())->addTab('Test')->addContent();
+        (new DialogBoxBuilder($translator->reveal()))->addTab('Test')->addContent();
     }
 }
