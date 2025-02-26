@@ -46,19 +46,10 @@ class EditableItem extends DialogBoxItem
 
     final protected function getAttributes(TranslatorInterface $translator): array
     {
-        $label = $this->label instanceof TranslatableInterface ? $this->label->trans($translator) : $this->label;
-        $config = array_merge($this->config, $this->getConfig());
-
-        array_walk_recursive($config, function (&$value) use ($translator) {
-            if ($value instanceof TranslatableInterface) {
-                $value = $value->trans($translator);
-            }
-        });
-
         return array_filter([
             'name' => $this->name,
-            'label' => $label,
-            'config' => $config,
+            'label' => $this->label,
+            'config' => array_merge($this->config, $this->getConfig()),
         ]);
     }
 

@@ -35,10 +35,6 @@ class PanelItem extends LayoutItem
 
     protected function getAttributes(TranslatorInterface $translator): array
     {
-        $title = $this->title instanceof TranslatableInterface
-            ? $this->title->trans($translator)
-            : $this->title;
-
-        return ['title' => $title] + parent::getAttributes($translator);
+        return ['title' => $this->title] + parent::getAttributes($translator);
     }
 }
