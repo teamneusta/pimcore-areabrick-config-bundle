@@ -4,14 +4,15 @@ declare(strict_types=1);
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 class SelectItem extends EditableItem
 {
-    /** @var list<array{array-key, string}> */
+    /** @var list<array{array-key, string|TranslatableInterface}> */
     private array $store;
 
     /**
-     * @param non-empty-array<array-key, string> $store
+     * @param non-empty-array<array-key, string|TranslatableInterface> $store
      */
     public function __construct(string $name, array $store)
     {
@@ -29,9 +30,9 @@ class SelectItem extends EditableItem
     }
 
     /**
-     * @param array<array-key, string> $data
+     * @param array<array-key, string|TranslatableInterface> $data
      *
-     * @return list<array{array-key, string}>
+     * @return list<array{array-key, string|TranslatableInterface}>
      */
     protected static function pack(array $data): array
     {

@@ -12,7 +12,10 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\Relation
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
+use Neusta\Pimcore\AreabrickConfigBundle\Translation\TranslatorWithDefaultDomain;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
+use Symfony\Contracts\Translation\TranslatableInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DialogBoxBuilder
 {
@@ -20,9 +23,22 @@ class DialogBoxBuilder
     private TabPanelItem $tabs;
     private PanelItem $content;
 
-    public function __construct()
-    {
+    public function __construct(
+        private TranslatorInterface $translator,
+    ) {
         $this->config = new EditableDialogBoxConfiguration();
+    }
+
+    /**
+     * @return $this
+     */
+    public function defaultTranslationDomain(string $domain): static
+    {
+        $this->translator = $this->translator instanceof TranslatorWithDefaultDomain
+            ? $this->translator->withDefaultDomain($domain)
+            : new TranslatorWithDefaultDomain($this->translator, $domain);
+
+        return $this;
     }
 
     /**
@@ -104,7 +120,7 @@ class DialogBoxBuilder
     }
 
     /**
-     * @param non-empty-array<array-key, string> $store
+     * @param non-empty-array<array-key, string|TranslatableInterface> $store
      */
     public function createSelect(string $name, array $store): SelectItem
     {
@@ -131,7 +147,15 @@ class DialogBoxBuilder
         $items = $this->content ?? $this->tabs ?? null;
 
         if ($items && !$items->isEmpty()) {
-            $this->config->setItems($items->toArray());
+            $rawItems = $items->toArray();
+
+            array_walk_recursive($rawItems, function (&$value) {
+                if ($value instanceof TranslatableInterface) {
+                    $value = $value->trans($this->translator);
+                }
+            });
+
+            $this->config->setItems($rawItems);
         }
 
         return $this->config;

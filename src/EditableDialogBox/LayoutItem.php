@@ -17,7 +17,7 @@ abstract class LayoutItem extends DialogBoxItem
 
     public function isEmpty(): bool
     {
-        return 0 === \count(array_filter($this->items, [$this, 'isNotEmpty']));
+        return 0 === \count(array_filter($this->items, $this->isNotEmpty(...)));
     }
 
     /**
@@ -35,7 +35,7 @@ abstract class LayoutItem extends DialogBoxItem
         return [
             'items' => array_map(
                 static fn (DialogBoxItem $item): array => $item->toArray(),
-                array_values(array_filter($this->items, [$this, 'isNotEmpty'])),
+                array_values(array_filter($this->items, $this->isNotEmpty(...))),
             ),
         ];
     }

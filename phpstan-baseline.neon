@@ -1,0 +1,16 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Method Neusta\\\\Pimcore\\\\AreabrickConfigBundle\\\\DependencyInjection\\\\NeustaPimcoreAreabrickConfigExtension\\:\\:loadInternal\\(\\) has parameter \\$mergedConfig with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DependencyInjection/NeustaPimcoreAreabrickConfigExtension.php
+
+		-
+			message: "#^Method Neusta\\\\Pimcore\\\\AreabrickConfigBundle\\\\Translation\\\\TranslatorWithDefaultDomain\\:\\:trans\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Translation/TranslatorWithDefaultDomain.php
