@@ -27,7 +27,7 @@ class NumericItem extends EditableItem
             throw new \InvalidArgumentException(\sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
         }
 
-        return $this->addConfig('defaultValue', (string) $value);
+        return $this->addConfig('defaultValue', $value);
     }
 
     protected function getConfig(): array
