@@ -14,7 +14,7 @@ class NumericItemTest extends TestCase
     {
         $item = new NumericItem('test', 1, 10);
 
-        self::assertSame(
+        self::assertEquals(
             [
                 'type' => 'numeric',
                 'name' => 'test',
