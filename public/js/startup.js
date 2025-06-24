@@ -12,7 +12,7 @@ neusta.areabrick_config.startup = Class.create({
     },
 
     preMenuBuild: function (e) {
-        if (!pimcore.globalmanager.get('perspective').inToolbar('tools.areabricks')) {
+        if (!pimcore.globalmanager.get('perspective').inToolbar('extras.areabricks')) {
             return;
         }
 
