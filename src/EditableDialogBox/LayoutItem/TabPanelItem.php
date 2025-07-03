@@ -22,6 +22,17 @@ class TabPanelItem extends LayoutItem
         $this->items = array_column($items, null, 'title');
     }
 
+    public function getOrCreateTab(string $title): PanelItem
+    {
+        if (isset($this->items[$title])) {
+            return $this->items[$title];
+        }
+
+        $this->addTab($tab = new PanelItem($title));
+
+        return $tab;
+    }
+
     /**
      * @return $this
      */
@@ -34,16 +45,5 @@ class TabPanelItem extends LayoutItem
         $this->items[$tab->title] = $tab;
 
         return $this->addItem($tab);
-    }
-
-    public function getOrCreateTab(string $title): PanelItem
-    {
-        if (isset($this->items[$title])) {
-            return $this->items[$title];
-        }
-
-        $this->addTab($tab = new PanelItem($title));
-
-        return $tab;
     }
 }
