@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 
+/**
+ * @template TItem of DialogBoxItem
+ */
 abstract class LayoutItem extends DialogBoxItem
 {
     /**
-     * @param list<DialogBoxItem> $items
+     * @param list<TItem> $items
      */
     public function __construct(
         string $type,
@@ -17,10 +20,12 @@ abstract class LayoutItem extends DialogBoxItem
 
     public function isEmpty(): bool
     {
-        return 0 === \count(array_filter($this->items, [$this, 'isNotEmpty']));
+        return 0 === \count(array_filter($this->items, $this->isNotEmpty(...)));
     }
 
     /**
+     * @param TItem $item
+     *
      * @return $this
      */
     protected function addItem(DialogBoxItem $item): static
@@ -35,7 +40,7 @@ abstract class LayoutItem extends DialogBoxItem
         return [
             'items' => array_map(
                 static fn (DialogBoxItem $item): array => $item->toArray(),
-                array_values(array_filter($this->items, [$this, 'isNotEmpty'])),
+                array_values(array_filter($this->items, $this->isNotEmpty(...))),
             ),
         ];
     }

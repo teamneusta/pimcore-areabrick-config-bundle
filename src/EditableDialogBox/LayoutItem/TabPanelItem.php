@@ -5,6 +5,9 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
+/**
+ * @extends LayoutItem<PanelItem>
+ */
 class TabPanelItem extends LayoutItem
 {
     /**
@@ -23,11 +26,10 @@ class TabPanelItem extends LayoutItem
         return $this->addItem($tab);
     }
 
-    public function getTabByTitle(string $title): ?PanelItem
+    public function findTab(string $title): ?PanelItem
     {
-        /** @var PanelItem $item */
         foreach ($this->items as $item) {
-            if ($item->hasTitle($title)) {
+            if ($item->title === $title) {
                 return $item;
             }
         }
