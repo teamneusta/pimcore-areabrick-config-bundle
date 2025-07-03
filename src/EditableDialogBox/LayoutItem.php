@@ -10,7 +10,7 @@ abstract class LayoutItem extends DialogBoxItem
      */
     public function __construct(
         string $type,
-        private array $items,
+        protected array $items,
     ) {
         parent::__construct($type);
     }

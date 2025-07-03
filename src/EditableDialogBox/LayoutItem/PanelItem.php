@@ -24,6 +24,11 @@ class PanelItem extends LayoutItem
         return parent::addItem($item);
     }
 
+    public function hasTitle(string $title): bool
+    {
+        return $this->title === $title;
+    }
+
     protected function getAttributes(): array
     {
         return ['title' => $this->title] + parent::getAttributes();

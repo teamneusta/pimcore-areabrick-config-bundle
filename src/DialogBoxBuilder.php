@@ -83,7 +83,11 @@ class DialogBoxBuilder
         }
 
         $this->tabs ??= new TabPanelItem();
-        $this->tabs->addTab(new PanelItem($title, array_values($items)));
+
+        $panelItem = $this->tabs->getTabByTitle($title) ?? new PanelItem($title, []);
+        array_map(fn ($item) => $panelItem->addItem($item), array_values($items));
+
+        $this->tabs->addTab($panelItem);
 
         return $this;
     }

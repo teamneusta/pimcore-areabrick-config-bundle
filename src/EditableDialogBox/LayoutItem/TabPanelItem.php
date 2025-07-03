@@ -22,4 +22,16 @@ class TabPanelItem extends LayoutItem
     {
         return $this->addItem($tab);
     }
+
+    public function getTabByTitle(string $title): ?PanelItem
+    {
+        /** @var PanelItem $item */
+        foreach ($this->items as $item) {
+            if ($item->hasTitle($title)) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
 }
