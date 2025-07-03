@@ -8,14 +8,16 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
  */
 abstract class LayoutItem extends DialogBoxItem
 {
+    /** @var list<TItem> */
+    private array $items;
+
     /**
      * @param list<TItem> $items
      */
-    public function __construct(
-        string $type,
-        protected array $items,
-    ) {
+    public function __construct(string $type, array $items)
+    {
         parent::__construct($type);
+        $this->items = $items;
     }
 
     public function isEmpty(): bool

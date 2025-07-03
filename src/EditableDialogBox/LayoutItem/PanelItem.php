@@ -11,14 +11,15 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
  */
 class PanelItem extends LayoutItem
 {
+    public readonly string $title;
+
     /**
      * @param list<DialogBoxItem> $items
      */
-    public function __construct(
-        public readonly string $title,
-        array $items,
-    ) {
+    public function __construct(string $title, array $items)
+    {
         parent::__construct('panel', $items);
+        $this->title = $title;
     }
 
     public function addItem(DialogBoxItem $item): static

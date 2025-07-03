@@ -10,12 +10,16 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
  */
 class TabPanelItem extends LayoutItem
 {
+    /** @var array<string, PanelItem> */
+    private array $items;
+
     /**
      * @param list<PanelItem> $items
      */
     public function __construct(array $items = [])
     {
         parent::__construct('tabpanel', $items);
+        $this->items = array_column($items, null, 'title');
     }
 
     /**
@@ -23,17 +27,13 @@ class TabPanelItem extends LayoutItem
      */
     public function addTab(PanelItem $tab): static
     {
+        $this->items[$tab->title] = $tab;
+
         return $this->addItem($tab);
     }
 
     public function findTab(string $title): ?PanelItem
     {
-        foreach ($this->items as $item) {
-            if ($item->title === $title) {
-                return $item;
-            }
-        }
-
-        return null;
+        return $this->items[$title] ?? null;
     }
 }
