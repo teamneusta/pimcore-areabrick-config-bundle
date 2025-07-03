@@ -22,12 +22,7 @@ class PanelItem extends LayoutItem
         $this->title = $title;
     }
 
-    public function addItem(DialogBoxItem $item): static
-    {
-        return parent::addItem($item);
-    }
-
-    public function addItems(DialogBoxItem ...$items): static
+    public function addItem(DialogBoxItem ...$items): static
     {
         foreach ($items as $item) {
             parent::addItem($item);

@@ -27,6 +27,10 @@ class TabPanelItem extends LayoutItem
      */
     public function addTab(PanelItem $tab): static
     {
+        if (isset($this->items[$tab->title]) && $this->items[$tab->title] !== $tab) {
+            throw new \InvalidArgumentException(\sprintf('Tab "%s" already exists.', $tab->title));
+        }
+
         $this->items[$tab->title] = $tab;
 
         return $this->addItem($tab);
@@ -34,6 +38,12 @@ class TabPanelItem extends LayoutItem
 
     public function getOrCreateTab(string $title): PanelItem
     {
-        return $this->items[$title] ?? $this->addTab(new PanelItem($title));
+        if (isset($this->items[$title])) {
+            return $this->items[$title];
+        }
+
+        $this->addTab($tab = new PanelItem($title));
+
+        return $tab;
     }
 }
