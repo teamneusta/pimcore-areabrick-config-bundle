@@ -44,12 +44,33 @@ class DialogBoxBuilderTest extends TestCase
         $editableItem3 = new EditableItem('type3', 'name3');
 
         $expected = new TabPanelItem();
-        $expected->addTab(new PanelItem('Settings', [$editableItem1, $editableItem2]));
-        $expected->addTab(new PanelItem('Other', [$editableItem3]));
+        $expected->getOrCreateTab('Settings')->addItem($editableItem1, $editableItem2);
+        $expected->getOrCreateTab('Other')->addItem($editableItem3);
 
         $dialogBox = $dialogBuilder
             ->addTab('Settings', $editableItem1, $editableItem2)
             ->addTab('Other', $editableItem3)
+            ->build();
+
+        self::assertSame($expected->toArray(), $dialogBox->getItems());
+    }
+
+    /**
+     * @test
+     */
+    public function addingItemsToExistingTab(): void
+    {
+        $dialogBuilder = new DialogBoxBuilder();
+        $editableItem1 = new EditableItem('type1', 'name1');
+        $editableItem2 = new EditableItem('type2', 'name2');
+        $editableItem3 = new EditableItem('type3', 'name3');
+
+        $expected = new TabPanelItem();
+        $expected->getOrCreateTab('Settings')->addItem($editableItem1, $editableItem2, $editableItem3);
+
+        $dialogBox = $dialogBuilder
+            ->addTab('Settings', $editableItem1, $editableItem2)
+            ->addTab('Settings', $editableItem3)
             ->build();
 
         self::assertSame($expected->toArray(), $dialogBox->getItems());

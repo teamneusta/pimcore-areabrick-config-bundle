@@ -6,22 +6,29 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
+/**
+ * @extends LayoutItem<DialogBoxItem>
+ */
 class PanelItem extends LayoutItem
 {
-    private string $title;
+    public readonly string $title;
 
     /**
      * @param list<DialogBoxItem> $items
      */
-    public function __construct(string $title, array $items)
+    public function __construct(string $title, array $items = [])
     {
         parent::__construct('panel', $items);
         $this->title = $title;
     }
 
-    public function addItem(DialogBoxItem $item): static
+    public function addItem(DialogBoxItem ...$items): static
     {
-        return parent::addItem($item);
+        foreach ($items as $item) {
+            parent::addItem($item);
+        }
+
+        return $this;
     }
 
     protected function getAttributes(): array

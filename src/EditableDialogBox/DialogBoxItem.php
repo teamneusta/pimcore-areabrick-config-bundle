@@ -6,7 +6,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 abstract class DialogBoxItem
 {
     public function __construct(
-        private string $type,
+        private readonly string $type,
     ) {
     }
 
