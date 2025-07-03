@@ -16,7 +16,7 @@ class PanelItem extends LayoutItem
     /**
      * @param list<DialogBoxItem> $items
      */
-    public function __construct(string $title, array $items)
+    public function __construct(string $title, array $items = [])
     {
         parent::__construct('panel', $items);
         $this->title = $title;
@@ -25,6 +25,15 @@ class PanelItem extends LayoutItem
     public function addItem(DialogBoxItem $item): static
     {
         return parent::addItem($item);
+    }
+
+    public function addItems(DialogBoxItem ...$items): static
+    {
+        foreach ($items as $item) {
+            parent::addItem($item);
+        }
+
+        return $this;
     }
 
     protected function getAttributes(): array

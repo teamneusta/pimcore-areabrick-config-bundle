@@ -32,8 +32,8 @@ class TabPanelItem extends LayoutItem
         return $this->addItem($tab);
     }
 
-    public function findTab(string $title): ?PanelItem
+    public function getOrCreateTab(string $title): PanelItem
     {
-        return $this->items[$title] ?? null;
+        return $this->items[$title] ?? $this->addTab(new PanelItem($title));
     }
 }

@@ -65,10 +65,7 @@ class DialogBoxBuilder
         }
 
         $this->content ??= new PanelItem('', []);
-
-        foreach ($items as $item) {
-            $this->content->addItem($item);
-        }
+        $this->content->addItems(...$items);
 
         return $this;
     }
@@ -83,13 +80,7 @@ class DialogBoxBuilder
         }
 
         $this->tabs ??= new TabPanelItem();
-
-        $tab = $this->tabs->findTab($title) ?? new PanelItem($title, []);
-        foreach ($items as $item) {
-            $tab->addItem($item);
-        }
-
-        $this->tabs->addTab($tab);
+        $this->tabs->getOrCreateTab($title)->addItems(...$items);
 
         return $this;
     }
