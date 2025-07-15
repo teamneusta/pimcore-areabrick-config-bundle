@@ -9,7 +9,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 abstract class LayoutItem extends DialogBoxItem
 {
     /** @var array<int, TItem> */
-    private array $items;
+    private array $items = [];
 
     /**
      * @param list<TItem> $items
