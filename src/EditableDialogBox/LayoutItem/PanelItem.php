@@ -5,18 +5,19 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @extends LayoutItem<DialogBoxItem>
  */
 class PanelItem extends LayoutItem
 {
-    public readonly string $title;
+    public readonly string|TranslatableInterface $title;
 
     /**
      * @param list<DialogBoxItem> $items
      */
-    public function __construct(string $title, array $items = [])
+    public function __construct(string|TranslatableInterface $title, array $items = [])
     {
         parent::__construct('panel', $items);
         $this->title = $title;
