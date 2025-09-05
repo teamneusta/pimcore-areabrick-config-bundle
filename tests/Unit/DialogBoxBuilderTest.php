@@ -63,7 +63,8 @@ class DialogBoxBuilderTest extends TestCase
      */
     public function addingItemsToExistingTab(): void
     {
-        $dialogBuilder = new DialogBoxBuilder();
+        $translator = $this->prophesize(TranslatorInterface::class);
+        $dialogBuilder = new DialogBoxBuilder($translator->reveal());
         $editableItem1 = new EditableItem('type1', 'name1');
         $editableItem2 = new EditableItem('type2', 'name2');
         $editableItem3 = new EditableItem('type3', 'name3');
