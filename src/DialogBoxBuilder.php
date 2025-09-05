@@ -89,7 +89,7 @@ class DialogBoxBuilder
     /**
      * @return $this
      */
-    public function addTab(string $title, EditableItem ...$items): static
+    public function addTab(string|TranslatableInterface $title, EditableItem ...$items): static
     {
         if (isset($this->content)) {
             throw new \LogicException('You cannot add tabs and content at the same time.');
