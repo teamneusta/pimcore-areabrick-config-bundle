@@ -7,6 +7,7 @@ class EditableItem extends DialogBoxItem
 {
     private string $name;
     private string $label = '';
+    private string $description = '';
     /** @var array<string, bool|float|int|string> */
     private array $config = [];
 
@@ -34,6 +35,16 @@ class EditableItem extends DialogBoxItem
     /**
      * @return $this
      */
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function addConfig(string $key, bool|float|int|string $value): static
     {
         $this->config[$key] = $value;
@@ -46,6 +57,7 @@ class EditableItem extends DialogBoxItem
         return array_filter([
             'name' => $this->name,
             'label' => $this->label,
+            'description' => $this->description,
             'config' => array_merge($this->config, $this->getConfig()),
         ]);
     }
