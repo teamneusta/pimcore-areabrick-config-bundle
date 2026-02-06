@@ -2,12 +2,15 @@
 
 namespace Neusta\Pimcore\AreabrickConfigBundle;
 
+use Pimcore\Extension\Document\Areabrick\AbstractAreabrick;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 use Pimcore\Model\Document\Editable;
 use Pimcore\Model\Document\Editable\Area\Info;
 
 /**
  * @template T of DialogBoxBuilder
+ *
+ * @mixin AbstractAreabrick
  */
 trait HasDialogBox
 {
@@ -16,6 +19,12 @@ trait HasDialogBox
         $builder = $this->createDialogBoxBuilder($area, $info);
 
         $this->buildDialogBox($builder, $area, $info);
+
+        if ($configurator = $info?->getParam('dialogBoxConfigurator')) {
+            if ($this->container->has($configurator)) {
+                $this->container->get($configurator)->configureDialogBox($builder, $area, $info);
+            }
+        }
 
         return $builder->build();
     }

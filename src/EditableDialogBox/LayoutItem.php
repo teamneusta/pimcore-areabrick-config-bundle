@@ -46,6 +46,16 @@ abstract class LayoutItem extends DialogBoxItem
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    protected function removeItem(DialogBoxItem $item): static
+    {
+        unset($this->items[spl_object_id($item)]);
+
+        return $this;
+    }
+
     protected function getAttributes(): array
     {
         $items = [];

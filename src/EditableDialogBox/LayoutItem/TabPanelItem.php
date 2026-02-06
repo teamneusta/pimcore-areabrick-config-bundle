@@ -30,4 +30,26 @@ class TabPanelItem extends LayoutItem
 
         return $this->items[$title];
     }
+
+    public function hasTab(string $title): bool
+    {
+        return isset($this->items[$title]);
+    }
+
+    public function getTab(string $title): PanelItem
+    {
+        return $this->items[$title]
+            ?? throw new \InvalidArgumentException(\sprintf('Tab with title "%s" not found.', $title));
+    }
+
+    public function removeTab(string $title): static
+    {
+        if (!$item = $this->items[$title] ?? null) {
+            throw new \InvalidArgumentException(\sprintf('Tab with title "%s" not found.', $title));
+        }
+
+        unset($this->items[$title]);
+
+        return $this->removeItem($item);
+    }
 }
