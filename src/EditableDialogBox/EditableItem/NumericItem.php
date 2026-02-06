@@ -9,13 +9,42 @@ class NumericItem extends EditableItem
 {
     private int $min;
     private int $max;
+    private int $default;
 
     public function __construct(string $name, int $min, int $max)
     {
         parent::__construct('numeric', $name);
         $this->min = $min;
         $this->max = $max;
-        $this->setDefaultValue($this->min);
+        $this->default = $min;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setMin(int $min): static
+    {
+        $this->min = $min;
+
+        if ($this->default < $min) {
+            $this->default = $min;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setMax(int $max): static
+    {
+        $this->max = $max;
+
+        if ($this->default > $max) {
+            $this->default = $max;
+        }
+
+        return $this;
     }
 
     /**
@@ -27,7 +56,9 @@ class NumericItem extends EditableItem
             throw new \InvalidArgumentException(\sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
         }
 
-        return $this->addConfig('defaultValue', (string) $value);
+        $this->default = $value;
+
+        return $this;
     }
 
     protected function getConfig(): array
@@ -35,6 +66,7 @@ class NumericItem extends EditableItem
         return [
             'minValue' => $this->min,
             'maxValue' => $this->max,
+            'defaultValue' => (string) $this->default,
         ];
     }
 }

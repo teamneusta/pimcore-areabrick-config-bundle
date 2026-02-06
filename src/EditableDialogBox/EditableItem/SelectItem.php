@@ -16,8 +16,19 @@ class SelectItem extends EditableItem
     public function __construct(string $name, array $store)
     {
         parent::__construct('select', $name);
+        $this->setStore($store);
+    }
+
+    /**
+     * @param non-empty-array<array-key, string> $store
+     *
+     * @return $this
+     */
+    public function setStore(array $store): static
+    {
         $this->store = self::pack($store);
-        $this->setDefaultValue(array_key_first($store));
+
+        return $this->setDefaultValue(array_key_first($store));
     }
 
     /**

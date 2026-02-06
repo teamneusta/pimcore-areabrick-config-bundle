@@ -93,7 +93,7 @@ class DialogBoxBuilderTest extends TestCase
     public function addingTabsAndThenContent(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('You cannot add content and tabs at the same time.');
+        $this->expectExceptionMessage('You already have tabs and cannot have content at the same time.');
 
         (new DialogBoxBuilder())->addTab('Test')->addContent();
     }
