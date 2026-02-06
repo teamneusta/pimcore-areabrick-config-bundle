@@ -30,6 +30,14 @@ class NumericItem extends EditableItem
         return $this->addConfig('defaultValue', (string) $value);
     }
 
+    /**
+     * @return $this
+     */
+    public function setWidth(int $width): static
+    {
+        return $this->addConfig('width', $width);
+    }
+
     protected function getConfig(): array
     {
         return [

@@ -29,6 +29,14 @@ class SelectItem extends EditableItem
     }
 
     /**
+     * @return $this
+     */
+    public function setWidth(int $width): static
+    {
+        return $this->addConfig('width', $width);
+    }
+
+    /**
      * @param array<array-key, string> $data
      *
      * @return list<array{array-key, string}>

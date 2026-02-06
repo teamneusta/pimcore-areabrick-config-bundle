@@ -27,4 +27,12 @@ class InputItem extends EditableItem
     {
         return $this->addConfig('placeholder', $value);
     }
+
+    /**
+     * @return $this
+     */
+    public function setWidth(int $width): static
+    {
+        return $this->addConfig('width', $width);
+    }
 }
