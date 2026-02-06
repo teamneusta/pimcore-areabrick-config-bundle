@@ -70,6 +70,20 @@ class DialogBoxBuilder
         return $this;
     }
 
+    public function hasContent(): bool
+    {
+        return isset($this->content);
+    }
+
+    public function getContent(): PanelItem
+    {
+        if (!isset($this->content)) {
+            throw new \LogicException('You cannot get content without adding content first.');
+        }
+
+        return $this->content;
+    }
+
     /**
      * @return $this
      */
@@ -83,6 +97,20 @@ class DialogBoxBuilder
         $this->tabs->getOrCreateTab($title)->addItem(...$items);
 
         return $this;
+    }
+
+    public function hasTab(string $title): bool
+    {
+        return isset($this->tabs) && $this->tabs->hasTab($title);
+    }
+
+    public function getTab(string $title): PanelItem
+    {
+        if (!isset($this->tabs)) {
+            throw new \LogicException('You cannot get a tab without adding tabs first.');
+        }
+
+        return $this->tabs->getTab($title);
     }
 
     public function createCheckbox(string $name): CheckboxItem
