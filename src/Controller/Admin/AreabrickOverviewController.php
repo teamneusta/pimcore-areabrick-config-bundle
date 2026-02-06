@@ -30,7 +30,7 @@ final class AreabrickOverviewController
     public function __invoke(): Response
     {
         if (!$this->tokenResolver->getUser()?->isAllowed('neusta_areabrick_config.areabrick_overview')) {
-            new AccessDeniedHttpException('Access Denied.');
+            throw new AccessDeniedHttpException('Access Denied.');
         }
 
         $bricks = array_map($this->brickConverter->convert(...), $this->areabrickManager->getBricks());
