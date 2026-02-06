@@ -34,7 +34,7 @@ final class AreabrickOverviewController
         }
 
         $bricks = array_map($this->brickConverter->convert(...), $this->areabrickManager->getBricks());
-        usort($bricks, fn ($a, $b) => strcmp($a->name, $b->name));
+        usort($bricks, static fn ($a, $b) => strcmp($a->name, $b->name));
 
         return new Response($this->twig->render('@NeustaPimcoreAreabrickConfig/bricks/overview.html.twig', [
             'bricks' => $bricks,
