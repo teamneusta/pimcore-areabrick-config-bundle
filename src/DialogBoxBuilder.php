@@ -88,24 +88,28 @@ class DialogBoxBuilder
             throw new \LogicException('You cannot add tabs and content at the same time.');
         }
 
-        $this->tabs ??= new TabPanelItem();
-        $this->tabs->getOrCreateTab($title)->addItem(...$items);
+        $this->getTabs()->getOrCreateTab($title)->addItem(...$items);
 
         return $this;
     }
 
     public function hasTab(string $title): bool
     {
-        return isset($this->tabs) && $this->tabs->hasTab($title);
+        return $this->getTabs()->hasTab($title);
     }
 
     public function getTab(string $title): PanelItem
     {
-        if (!isset($this->tabs)) {
-            throw new \LogicException('You cannot get a tab without adding tabs first.');
+        return $this->getTabs()->getTab($title);
+    }
+
+    public function getTabs(): TabPanelItem
+    {
+        if (isset($this->content)) {
+            throw new \LogicException('You already have content and cannot have tabs at the same time.');
         }
 
-        return $this->tabs->getTab($title);
+        return $this->tabs ??= new TabPanelItem();
     }
 
     public function createCheckbox(string $name): CheckboxItem
