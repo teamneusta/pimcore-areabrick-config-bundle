@@ -7,8 +7,10 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 
 /**
  * @extends LayoutItem<PanelItem>
+ *
+ * @implements \IteratorAggregate<int, PanelItem>
  */
-class TabPanelItem extends LayoutItem
+class TabPanelItem extends LayoutItem implements \IteratorAggregate
 {
     /** @var array<string, PanelItem> */
     private array $items;
@@ -54,5 +56,13 @@ class TabPanelItem extends LayoutItem
         unset($this->items[$title]);
 
         return $this->removeItem($item);
+    }
+
+    /**
+     * @return \ArrayIterator<int, PanelItem>
+     */
+    public function getIterator(): \ArrayIterator
+    {
+        return new \ArrayIterator(array_values($this->items));
     }
 }
