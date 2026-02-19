@@ -29,7 +29,7 @@ use Pimcore\Model\Document\Editable\Area\Info;
  *         $dialogBox->height(500);
  *
  *         $dialogBox->getTab('General')
- *             ->getEditableItem('my-select')
+ *             ->getEditable('my-select')
  *                 ->setStore([
  *                     'option1' => 'Option 1',
  *                     'option2' => 'Option 2',

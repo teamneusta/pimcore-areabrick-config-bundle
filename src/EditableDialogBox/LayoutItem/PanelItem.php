@@ -42,18 +42,18 @@ class PanelItem extends LayoutItem implements \IteratorAggregate
         return $this;
     }
 
-    public function hasEditableItem(string $name): bool
+    public function hasEditable(string $name): bool
     {
         return isset($this->editableItems[$name]);
     }
 
-    public function getEditableItem(string $name): EditableItem
+    public function getEditable(string $name): EditableItem
     {
         return $this->editableItems[$name]
             ?? throw new \InvalidArgumentException(\sprintf('Editable item with name "%s" not found.', $name));
     }
 
-    public function removeEditableItem(string $name): static
+    public function removeEditable(string $name): static
     {
         if (!$item = $this->editableItems[$name] ?? null) {
             throw new \InvalidArgumentException(\sprintf('Editable item with name "%s" not found.', $name));
