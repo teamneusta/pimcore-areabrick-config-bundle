@@ -84,11 +84,13 @@ class DialogBoxBuilder
      */
     public function addTab(string $title, EditableItem ...$items): static
     {
-        if (isset($this->content)) {
-            throw new \LogicException('You cannot add tabs and content at the same time.');
+        $tabs = $this->getTabs();
+
+        if (!$tabs->hasTab($title)) {
+            $tabs->addTab(new PanelItem($title));
         }
 
-        $this->getTabs()->getOrCreateTab($title)->addItem(...$items);
+        $tabs->getTab($title)->addEditable(...$items);
 
         return $this;
     }

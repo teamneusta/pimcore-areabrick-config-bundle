@@ -44,8 +44,8 @@ class DialogBoxBuilderTest extends TestCase
         $editableItem3 = new EditableItem('type3', 'name3');
 
         $expected = new TabPanelItem();
-        $expected->getOrCreateTab('Settings')->addItem($editableItem1, $editableItem2);
-        $expected->getOrCreateTab('Other')->addItem($editableItem3);
+        $expected->addTab(new PanelItem('Settings', [$editableItem1, $editableItem2]));
+        $expected->addTab(new PanelItem('Other', [$editableItem3]));
 
         $dialogBox = $dialogBuilder
             ->addTab('Settings', $editableItem1, $editableItem2)
@@ -66,7 +66,7 @@ class DialogBoxBuilderTest extends TestCase
         $editableItem3 = new EditableItem('type3', 'name3');
 
         $expected = new TabPanelItem();
-        $expected->getOrCreateTab('Settings')->addItem($editableItem1, $editableItem2, $editableItem3);
+        $expected->addTab(new PanelItem('Settings', [$editableItem1, $editableItem2, $editableItem3]));
 
         $dialogBox = $dialogBuilder
             ->addTab('Settings', $editableItem1, $editableItem2)
