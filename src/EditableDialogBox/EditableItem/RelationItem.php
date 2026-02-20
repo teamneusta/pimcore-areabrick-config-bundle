@@ -52,7 +52,7 @@ class RelationItem extends EditableItem
         return $this->addConfig('width', $width);
     }
 
-    protected function getConfig(): array
+    protected function defaultConfig(): array
     {
         return array_filter([
             'types' => array_keys($this->types),

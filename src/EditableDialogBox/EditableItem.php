@@ -54,18 +54,32 @@ class EditableItem extends DialogBoxItem
 
     protected function getAttributes(): array
     {
+        if ([] !== $deprecatedGetConfig = $this->getConfig()) {
+            trigger_deprecation('teamneusta/pimcore-areabrick-config-bundle', '2.2.0', 'Overriding the method "%1$s::getConfig()" is deprecated, override "%1$s::defaultConfig()" instead.', self::class);
+        }
+
         return array_filter([
             'name' => $this->name,
             'label' => $this->label,
             'description' => $this->description,
-            'config' => array_merge($this->config, $this->getConfig()),
+            'config' => array_merge($this->defaultConfig(), $this->config, $deprecatedGetConfig),
         ]);
+    }
+
+    /**
+     * @deprecated since version 2.2.0, override "defaultConfig()" instead.
+     *
+     * @return array<string, mixed>
+     */
+    protected function getConfig(): array
+    {
+        return [];
     }
 
     /**
      * @return array<string, mixed>
      */
-    protected function getConfig(): array
+    protected function defaultConfig(): array
     {
         return [];
     }

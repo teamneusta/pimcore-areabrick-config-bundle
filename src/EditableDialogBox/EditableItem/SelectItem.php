@@ -62,7 +62,7 @@ class SelectItem extends EditableItem
         return $result;
     }
 
-    protected function getConfig(): array
+    protected function defaultConfig(): array
     {
         return [
             'store' => $this->store,
