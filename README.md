@@ -272,8 +272,9 @@ Currently, there is no configuration available.
 
 Feel free to open issues for any bug, feature request, or other ideas.
 
-This bundle does not yet cover all of Pimcore’s possibilities and will be expanded as needed.
-Pull Requests are welcome!
+> [!NOTE]
+> This bundle does not yet cover all of Pimcore’s possibilities and will be expanded as needed.
+> Pull Requests are welcome!
 
 Please remember to create an issue before creating large pull requests.
 
