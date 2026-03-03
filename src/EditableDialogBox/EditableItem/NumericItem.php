@@ -61,6 +61,14 @@ class NumericItem extends EditableItem
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    public function setWidth(int $width): static
+    {
+        return $this->addConfig('width', $width);
+    }
+
     protected function getConfig(): array
     {
         return [
