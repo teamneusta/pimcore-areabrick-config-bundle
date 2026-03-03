@@ -44,8 +44,8 @@ class DialogBoxBuilderTest extends TestCase
         $editableItem3 = new EditableItem('type3', 'name3');
 
         $expected = new TabPanelItem();
-        $expected->getOrCreateTab('Settings')->addItem($editableItem1, $editableItem2);
-        $expected->getOrCreateTab('Other')->addItem($editableItem3);
+        $expected->addTab(new PanelItem('Settings', [$editableItem1, $editableItem2]));
+        $expected->addTab(new PanelItem('Other', [$editableItem3]));
 
         $dialogBox = $dialogBuilder
             ->addTab('Settings', $editableItem1, $editableItem2)
@@ -66,7 +66,7 @@ class DialogBoxBuilderTest extends TestCase
         $editableItem3 = new EditableItem('type3', 'name3');
 
         $expected = new TabPanelItem();
-        $expected->getOrCreateTab('Settings')->addItem($editableItem1, $editableItem2, $editableItem3);
+        $expected->addTab(new PanelItem('Settings', [$editableItem1, $editableItem2, $editableItem3]));
 
         $dialogBox = $dialogBuilder
             ->addTab('Settings', $editableItem1, $editableItem2)
@@ -82,7 +82,7 @@ class DialogBoxBuilderTest extends TestCase
     public function addingContentAndThenTabs(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('You cannot add tabs and content at the same time.');
+        $this->expectExceptionMessage('You already have content and cannot have tabs at the same time.');
 
         (new DialogBoxBuilder())->addContent()->addTab('Test');
     }
@@ -93,7 +93,7 @@ class DialogBoxBuilderTest extends TestCase
     public function addingTabsAndThenContent(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('You cannot add content and tabs at the same time.');
+        $this->expectExceptionMessage('You already have tabs and cannot have content at the same time.');
 
         (new DialogBoxBuilder())->addTab('Test')->addContent();
     }

@@ -60,14 +60,23 @@ class DialogBoxBuilder
      */
     public function addContent(EditableItem ...$items): static
     {
-        if (isset($this->tabs)) {
-            throw new \LogicException('You cannot add content and tabs at the same time.');
-        }
-
-        $this->content ??= new PanelItem('', []);
-        $this->content->addItem(...$items);
+        $this->getContent()->addEditable(...$items);
 
         return $this;
+    }
+
+    public function hasContent(): bool
+    {
+        return isset($this->content);
+    }
+
+    public function getContent(): PanelItem
+    {
+        if (isset($this->tabs)) {
+            throw new \LogicException('You already have tabs and cannot have content at the same time.');
+        }
+
+        return $this->content ??= new PanelItem('');
     }
 
     /**
@@ -75,14 +84,34 @@ class DialogBoxBuilder
      */
     public function addTab(string $title, EditableItem ...$items): static
     {
-        if (isset($this->content)) {
-            throw new \LogicException('You cannot add tabs and content at the same time.');
+        $tabs = $this->getTabs();
+
+        if (!$tabs->hasTab($title)) {
+            $tabs->addTab(new PanelItem($title));
         }
 
-        $this->tabs ??= new TabPanelItem();
-        $this->tabs->getOrCreateTab($title)->addItem(...$items);
+        $tabs->getTab($title)->addEditable(...$items);
 
         return $this;
+    }
+
+    public function hasTab(string $title): bool
+    {
+        return $this->getTabs()->hasTab($title);
+    }
+
+    public function getTab(string $title): PanelItem
+    {
+        return $this->getTabs()->getTab($title);
+    }
+
+    public function getTabs(): TabPanelItem
+    {
+        if (isset($this->content)) {
+            throw new \LogicException('You already have content and cannot have tabs at the same time.');
+        }
+
+        return $this->tabs ??= new TabPanelItem();
     }
 
     public function createCheckbox(string $name): CheckboxItem
