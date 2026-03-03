@@ -72,30 +72,7 @@ class NumericItem extends EditableItem
         return $this->addConfig('width', $width);
     }
 
-    public function addConfig(string $key, float|bool|int|string $value): static
-    {
-        if ('defaultValue' === $key) {
-            if (!is_numeric($value)) {
-                throw new \InvalidArgumentException('The default value must be numeric.');
-            }
-
-            if (\is_string($value)) {
-                $value = str_contains($value, '.') ? (float) $value : (int) $value;
-            }
-
-            if ($this->min > $value || $value > $this->max) {
-                throw new \InvalidArgumentException(\sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
-            }
-
-            $this->default = $value;
-
-            return $this;
-        }
-
-        return parent::addConfig($key, $value);
-    }
-
-    protected function getConfig(): array
+    protected function defaultConfig(): array
     {
         return [
             'minValue' => $this->min,
