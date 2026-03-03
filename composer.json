@@ -12,6 +12,9 @@
     }
   ],
   "config": {
+    "audit": {
+      "block-insecure": false
+    },
     "preferred-install": "dist",
     "sort-packages": true
   },
