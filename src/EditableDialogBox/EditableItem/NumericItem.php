@@ -7,22 +7,21 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 class NumericItem extends EditableItem
 {
-    private int $min;
-    private int $max;
-    private int $default;
+    private int|float $min;
+    private int|float $max;
+    private int|float $default;
 
-    public function __construct(string $name, int $min, int $max)
+    public function __construct(string $name, int|float $min, int|float $max)
     {
         parent::__construct('numeric', $name);
-        $this->min = $min;
+        $this->min = $this->default = $min;
         $this->max = $max;
-        $this->default = $min;
     }
 
     /**
      * @return $this
      */
-    public function setMin(int $min): static
+    public function setMin(int|float $min): static
     {
         $this->min = $min;
 
@@ -36,7 +35,7 @@ class NumericItem extends EditableItem
     /**
      * @return $this
      */
-    public function setMax(int $max): static
+    public function setMax(int|float $max): static
     {
         $this->max = $max;
 
@@ -48,6 +47,10 @@ class NumericItem extends EditableItem
     }
 
     /**
+     * Sets the default value.
+     *
+     * Note: if you want to set `float`s, use `addConfig('defaultValue', $value)` instead until the next major release.
+     *
      * @return $this
      */
     public function setDefaultValue(int $value): static
@@ -67,6 +70,29 @@ class NumericItem extends EditableItem
     public function setWidth(int $width): static
     {
         return $this->addConfig('width', $width);
+    }
+
+    public function addConfig(string $key, float|bool|int|string $value): static
+    {
+        if ('defaultValue' === $key) {
+            if (!is_numeric($value)) {
+                throw new \InvalidArgumentException('The default value must be numeric.');
+            }
+
+            if (\is_string($value)) {
+                $value = str_contains($value, '.') ? (float) $value : (int) $value;
+            }
+
+            if ($this->min > $value || $value > $this->max) {
+                throw new \InvalidArgumentException(\sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
+            }
+
+            $this->default = $value;
+
+            return $this;
+        }
+
+        return parent::addConfig($key, $value);
     }
 
     protected function getConfig(): array
