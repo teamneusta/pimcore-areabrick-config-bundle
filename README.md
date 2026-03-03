@@ -207,6 +207,63 @@ $dialogBox->createInput('name')
     ->addConfig('any-editable-config-key', 'value');
 ```
 
+## DialogBoxConfigurator
+
+The `DialogBoxConfigurator` allows you to customize the dialog box configuration dynamically.
+This is particularly useful if an Areabrick is used within another Areabrick
+and you want to adjust settings like default values or select options based on the context.
+
+### 1. Create a Configurator Class
+
+Implement the `Neusta\Pimcore\AreabrickConfigBundle\DialogBoxConfigurator` interface:
+
+```php
+<?php
+
+namespace App\Areabrick;
+
+use Neusta\Pimcore\AreabrickConfigBundle\DialogBoxBuilder;
+use Neusta\Pimcore\AreabrickConfigBundle\DialogBoxConfigurator;
+use Pimcore\Model\Document\Editable;
+use Pimcore\Model\Document\Editable\Area\Info;
+
+final class MyAreabrickDialogBoxConfigurator implements DialogBoxConfigurator
+{
+    public function configureDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void
+    {
+        $dialogBox->height(500);
+
+        $dialogBox->getTab('Settings')
+            ->getEditable('my-input')
+                ->setDefaultValue('Custom Context Value');
+
+        $dialogBox->reloadOnClose(false);
+    }
+}
+```
+
+> [!IMPORTANT]
+> The configurator class must be registered as a `public` service in your container.
+
+### 2. Usage in Twig
+
+You can pass the service ID of your configurator via the `dialogBoxConfigurator` parameter
+in the `pimcore_area` or `pimcore_areablock` helpers.
+
+> [!TIP]
+> If the service ID matches the FQCN, you can simply use the FQCN.
+
+```twig
+{{ pimcore_area('myfield', {
+    type: 'my-areabrick',
+    params: {
+        'my-areabrick': {
+            dialogBoxConfigurator: 'App\Areabrick\MyAreabrickDialogBoxConfigurator',
+        }
+    },
+}) }}
+```
+
 ## Configuration
 
 Currently, there is no configuration available.

@@ -41,8 +41,13 @@ use Pimcore\Model\Document\Editable\Area\Info;
  * }
  * ```
  *
- * After registering the configurator with its FQCN in the container,
- * the configurator can be used like this:
+ * After registering the configurator as a service in the container,
+ * the configurator can be used by providing its service ID.
+ *
+ * Note: the service must be public!
+ *
+ * If the service ID matches the FQCN (the default for autowired services),
+ * the FQCN can be used directly:
  *
  * ```
  * {{ pimcore_area('myfield', {
