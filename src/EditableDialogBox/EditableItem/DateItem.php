@@ -58,4 +58,12 @@ class DateItem extends EditableItem
     {
         return $this->addConfig('outputIsoFormat', $value);
     }
+
+    /**
+     * @return $this
+     */
+    public function setWidth(int $width): static
+    {
+        return $this->addConfig('width', $width);
+    }
 }
