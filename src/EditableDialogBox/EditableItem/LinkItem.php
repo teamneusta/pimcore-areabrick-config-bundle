@@ -66,7 +66,7 @@ class LinkItem extends EditableItem
         return $this;
     }
 
-    protected function getConfig(): array
+    protected function defaultConfig(): array
     {
         return array_filter([
             'allowedTypes' => $this->allowedTypes,
