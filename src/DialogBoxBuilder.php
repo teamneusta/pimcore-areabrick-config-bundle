@@ -137,7 +137,7 @@ class DialogBoxBuilder
         return new SelectItem($name, $store);
     }
 
-    public function createNumeric(string $name, int $min, int $max): NumericItem
+    public function createNumeric(string $name, int|float $min, int|float $max): NumericItem
     {
         return new NumericItem($name, $min, $max);
     }

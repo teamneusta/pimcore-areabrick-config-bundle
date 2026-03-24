@@ -49,11 +49,9 @@ class NumericItem extends EditableItem
     /**
      * Sets the default value.
      *
-     * Note: if you want to set `float`s, use `addConfig('defaultValue', $value)` instead until the next major release.
-     *
      * @return $this
      */
-    public function setDefaultValue(int $value): static
+    public function setDefaultValue(int|float $value): static
     {
         if ($this->min > $value || $value > $this->max) {
             throw new \InvalidArgumentException(\sprintf('Default value "%d" is out of bounds: [%d,%d]', $value, $this->min, $this->max));
