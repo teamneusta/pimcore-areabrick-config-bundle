@@ -25,20 +25,6 @@ class TabPanelItem extends LayoutItem implements \IteratorAggregate
     }
 
     /**
-     * @deprecated since version 2.2.0, use `hasTab()` and `addTab()` instead.
-     */
-    public function getOrCreateTab(string $title): PanelItem
-    {
-        trigger_deprecation('teamneusta/pimcore-areabrick-config-bundle', '2.2.0', 'The method "%s()" is deprecated, use "%2$s::hasTab()" and "%2$s::addTab()" instead.', __METHOD__, static::class);
-
-        if (!isset($this->items[$title])) {
-            $this->addItem($this->items[$title] = new PanelItem($title));
-        }
-
-        return $this->items[$title];
-    }
-
-    /**
      * @return $this
      */
     public function addTab(PanelItem $item): static

@@ -20,40 +20,16 @@ class PanelItem extends LayoutItem implements \IteratorAggregate
     private array $items;
 
     /**
-     * @param list<DialogBoxItem> $items
+     * @param list<EditableItem> $items
      */
     public function __construct(string $title, array $items = [])
     {
         parent::__construct('panel', $items);
         $this->title = $title;
 
-        $deprecationTriggered = false;
         foreach ($items as $item) {
-            if ($item instanceof EditableItem) {
-                $this->items[$item->name()] = $item;
-            } elseif (!$deprecationTriggered) {
-                trigger_deprecation('teamneusta/pimcore-areabrick-config-bundle', '2.2.0', 'Not passing only "%s" to %s() is deprecated.', EditableItem::class, __METHOD__);
-                $deprecationTriggered = true;
-            }
+            $this->items[$item->name()] = $item;
         }
-    }
-
-    /**
-     * @deprecated since version 2.2.0, use `addEditable()` instead.
-     */
-    public function addItem(DialogBoxItem ...$items): static
-    {
-        trigger_deprecation('teamneusta/pimcore-areabrick-config-bundle', '2.2.0', 'The method "%s()" is deprecated, use "%s::addEditable()" instead.', __METHOD__, static::class);
-
-        foreach ($items as $item) {
-            parent::addItem($item);
-
-            if ($item instanceof EditableItem) {
-                $this->items[$item->name()] = $item;
-            }
-        }
-
-        return $this;
     }
 
     /**
