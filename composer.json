@@ -17,7 +17,9 @@
   ],
   "config": {
     "allow-plugins": {
-      "php-http/discovery": true
+      "ergebnis/composer-normalize": true,
+      "php-http/discovery": true,
+      "phpstan/extension-installer": true
     },
     "audit": {
       "block-insecure": false
@@ -39,13 +41,15 @@
     "twig/twig": "^3.21.1"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.62",
-    "jangregor/phpstan-prophecy": "^1.0.2",
-    "phpspec/prophecy-phpunit": "^2.2",
-    "phpstan/phpstan": "^1.11.10",
-    "phpstan/phpstan-phpunit": "^1.4",
-    "phpstan/phpstan-symfony": "^1.4.7",
-    "phpunit/phpunit": "^9.6.20",
+    "ergebnis/composer-normalize": "^2.50.0",
+    "friendsofphp/php-cs-fixer": "^3.94.2",
+    "jangregor/phpstan-prophecy": "^2.3.0",
+    "phpspec/prophecy-phpunit": "^2.5",
+    "phpstan/extension-installer": "^1.4.3",
+    "phpstan/phpstan": "^2.1.42",
+    "phpstan/phpstan-phpunit": "^2.0.16",
+    "phpstan/phpstan-symfony": "^2.0.15",
+    "phpunit/phpunit": "^9.6.34",
     "pimcore/admin-ui-classic-bundle": "^1.0 || ^2.0",
     "teamneusta/pimcore-testing-framework": "^0.13"
   },
