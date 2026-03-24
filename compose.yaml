@@ -20,7 +20,13 @@ services:
     volumes:
       - ./:/var/www/html/
     environment:
+      # Enable step debugging (will be activated by trigger). See https://xdebug.org/docs/all_settings#mode
+      XDEBUG_MODE: debug
+      # Use Host IP from Docker Daemon. See https://xdebug.org/docs/all_settings#client_host
+      XDEBUG_CLIENT_HOST: "host.docker.internal"
       MYSQL_SERVER_VERSION: 10.11.16-MariaDB
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       database:
         condition: service_healthy
