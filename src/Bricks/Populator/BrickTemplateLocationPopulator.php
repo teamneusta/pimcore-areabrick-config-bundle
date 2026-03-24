@@ -23,7 +23,6 @@ final class BrickTemplateLocationPopulator implements Populator
 
     public function populate(object $target, object $source, ?object $ctx = null): void
     {
-        // Todo: remove the second parameter when Pimcore 10 support is dropped
-        $target->template = ($this->resolveTemplate)($source, 'view');
+        $target->template = ($this->resolveTemplate)($source);
     }
 }
