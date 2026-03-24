@@ -30,7 +30,7 @@ class DateItem extends EditableItem
     }
 
     /**
-     * @deprecated since Pimcore 11.2 use setOutputIsoFormat instead
+     * @deprecated since version 2.2.4, use setOutputIsoFormat instead.
      *
      * @return $this
      */
@@ -42,7 +42,7 @@ class DateItem extends EditableItem
         if (version_compare($pimcoreVersion, '11.2', '>=')) {
             trigger_deprecation(
                 'pimcore/pimcore',
-                '11.2',
+                '2.2.4',
                 'Using "%s::setOutputFormat()" for date editable is deprecated, use "setOutputIsoFormat()" instead.',
                 static::class
             );
