@@ -1,8 +1,8 @@
 {
   "name": "teamneusta/pimcore-areabrick-config-bundle",
-  "type": "pimcore-bundle",
   "description": "Object-oriented editable dialog box configuration building for areabricks",
   "license": "MIT",
+  "type": "pimcore-bundle",
   "authors": [
     {
       "name": "team neusta GmbH",
@@ -15,18 +15,6 @@
       "role": "Developer"
     }
   ],
-  "config": {
-    "allow-plugins": {
-      "ergebnis/composer-normalize": true,
-      "php-http/discovery": true,
-      "phpstan/extension-installer": true
-    },
-    "audit": {
-      "block-insecure": false
-    },
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
   "require": {
     "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
     "doctrine/dbal": "^3.9 || ^4.0",
@@ -53,24 +41,36 @@
     "pimcore/admin-ui-classic-bundle": "^1.0 || ^2.0",
     "teamneusta/pimcore-testing-framework": "^0.13"
   },
-  "extra": {
-    "pimcore": {
-      "bundles": [
-        "Neusta\\Pimcore\\AreabrickConfigBundle\\NeustaPimcoreAreabrickConfigBundle"
-      ]
-    }
-  },
   "autoload": {
     "psr-4": {
       "Neusta\\Pimcore\\AreabrickConfigBundle\\": "src/"
     }
   },
   "autoload-dev": {
-    "classmap": [
-      "tests/app/TestKernel.php"
-    ],
     "psr-4": {
       "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "tests/"
+    },
+    "classmap": [
+      "tests/app/TestKernel.php"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "php-http/discovery": true,
+      "phpstan/extension-installer": true
+    },
+    "audit": {
+      "block-insecure": false
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "Neusta\\Pimcore\\AreabrickConfigBundle\\NeustaPimcoreAreabrickConfigBundle"
+      ]
     }
   },
   "scripts": {
