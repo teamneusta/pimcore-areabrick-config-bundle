@@ -58,10 +58,6 @@ jobs:
           dependency-versions: ${{ matrix.dependencies }}
           composer-options: ${{ matrix.composer-options }}
 
-      - name: Add Pimcore Admin UI
-        run: composer require --dev pimcore/admin-ui-classic-bundle --no-interaction
-        if: matrix.dependencies == 'highest'
-
       - name: Execute tests
         env:
           PIMCORE_ENCRYPTION_SECRET: ${{ secrets.PIMCORE_ENCRYPTION_SECRET }}
