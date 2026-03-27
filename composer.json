@@ -1,53 +1,45 @@
 {
   "name": "teamneusta/pimcore-areabrick-config-bundle",
-  "type": "pimcore-bundle",
   "description": "Object-oriented editable dialog box configuration building for areabricks",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
+  "type": "pimcore-bundle",
   "authors": [
     {
       "name": "team neusta GmbH",
       "email": "info@team-neusta.de",
-      "homepage": "https://www.team-neusta.de/",
+      "homepage": "https://www.team-neusta.de/"
+    },
+    {
+      "name": "Jacob Dreesen",
+      "email": "j.dreesen@neusta.de",
       "role": "Developer"
     }
   ],
-  "config": {
-    "audit": {
-      "block-insecure": false
-    },
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
   "require": {
-    "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
-    "doctrine/dbal": "^2.13 || ^3.9",
-    "pimcore/pimcore": "^10.6 || ^11.0",
-    "symfony/config": "^5.4 || ^6.4",
-    "symfony/dependency-injection": "^5.4 || ^6.4",
-    "symfony/http-foundation": "^5.4 || ^6.4",
-    "symfony/http-kernel": "^5.4 || ^6.4",
-    "symfony/routing": "^5.4 || ^6.4",
-    "symfony/translation": "^5.4 || ^6.4",
+    "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+    "doctrine/dbal": "^3.9 || ^4.0",
+    "pimcore/pimcore": "^11.5 || ^12.0",
+    "symfony/config": "^6.4 || ^7.4",
+    "symfony/dependency-injection": "^6.4 || ^7.4",
+    "symfony/http-foundation": "^6.4 || ^7.4",
+    "symfony/http-kernel": "^6.4 || ^7.4",
+    "symfony/routing": "^6.4 || ^7.4",
+    "symfony/translation": "^6.4 || ^7.4",
     "teamneusta/converter-bundle": "^1.6",
-    "twig/twig": "^3.8"
+    "twig/twig": "^3.21.1"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.62",
-    "jangregor/phpstan-prophecy": "^1.0.2",
-    "laminas/laminas-zendframework-bridge": "^1.8",
-    "phpspec/prophecy-phpunit": "^2.2",
-    "phpstan/phpstan": "^1.11.10",
-    "phpstan/phpstan-phpunit": "^1.4",
-    "phpstan/phpstan-symfony": "^1.4.7",
-    "phpunit/phpunit": "^9.6.20",
-    "teamneusta/pimcore-testing-framework": "^0.12.8"
-  },
-  "extra": {
-    "pimcore": {
-      "bundles": [
-        "Neusta\\Pimcore\\AreabrickConfigBundle\\NeustaPimcoreAreabrickConfigBundle"
-      ]
-    }
+    "ergebnis/composer-normalize": "^2.50.0",
+    "friendsofphp/php-cs-fixer": "^3.94.2",
+    "jangregor/phpstan-prophecy": "^2.3.0",
+    "phpspec/prophecy-phpunit": "^2.5",
+    "phpstan/extension-installer": "^1.4.3",
+    "phpstan/phpstan": "^2.1.42",
+    "phpstan/phpstan-phpunit": "^2.0.16",
+    "phpstan/phpstan-symfony": "^2.0.15",
+    "phpunit/phpunit": "^9.6.34",
+    "pimcore/admin-ui-classic-bundle": "^1.0 || ^2.0",
+    "teamneusta/pimcore-testing-framework": "^0.13"
   },
   "autoload": {
     "psr-4": {
@@ -55,11 +47,30 @@
     }
   },
   "autoload-dev": {
-    "classmap": [
-      "tests/app/TestKernel.php"
-    ],
     "psr-4": {
       "Neusta\\Pimcore\\AreabrickConfigBundle\\Tests\\": "tests/"
+    },
+    "classmap": [
+      "tests/app/TestKernel.php"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "php-http/discovery": true,
+      "phpstan/extension-installer": true
+    },
+    "audit": {
+      "block-insecure": false
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "Neusta\\Pimcore\\AreabrickConfigBundle\\NeustaPimcoreAreabrickConfigBundle"
+      ]
     }
   },
   "scripts": {

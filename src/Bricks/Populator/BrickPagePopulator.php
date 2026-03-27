@@ -3,7 +3,6 @@
 namespace Neusta\Pimcore\AreabrickConfigBundle\Bricks\Populator;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Result;
 use Neusta\ConverterBundle\Converter;
 use Neusta\ConverterBundle\Converter\Context\GenericContext;
 use Neusta\ConverterBundle\Populator;
@@ -36,10 +35,7 @@ final class BrickPagePopulator implements Populator
             ->where('type IN ("area", "areablock")')
             ->andWhere('data LIKE :data')
             ->setParameter('data', \sprintf('%%"type";s:%d:"%s";%%', \strlen($areabrickName), $areabrickName))
-            ->execute();
-
-        // Todo: remove after upgrade to doctrine/dbal >=3.9
-        \assert($documentIds instanceof Result);
+            ->executeQuery();
 
         $target->pages = [];
         foreach ($documentIds->fetchFirstColumn() as $id) {

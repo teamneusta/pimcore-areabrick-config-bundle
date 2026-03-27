@@ -11,6 +11,8 @@ use Pimcore\Model\Document\Editable\Area\Info;
  * @template T of DialogBoxBuilder
  *
  * @mixin AbstractAreabrick
+ *
+ * @phpstan-ignore trait.unused
  */
 trait HasDialogBox
 {

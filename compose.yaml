@@ -1,6 +1,6 @@
 services:
   database:
-    image: mariadb:10.11.4
+    image: mariadb:10.11.16
     command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci" ]
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -16,11 +16,17 @@ services:
       timeout: 10s
 
   php:
-    image: pimcore/pimcore:php8.3-latest
+    image: pimcore/pimcore:php8.4-debug-latest
     volumes:
       - ./:/var/www/html/
     environment:
-      MYSQL_SERVER_VERSION: mariadb-10.11.4
+      # Enable step debugging (will be activated by trigger). See https://xdebug.org/docs/all_settings#mode
+      XDEBUG_MODE: debug
+      # Use Host IP from Docker Daemon. See https://xdebug.org/docs/all_settings#client_host
+      XDEBUG_CLIENT_HOST: "host.docker.internal"
+      MYSQL_SERVER_VERSION: 10.11.16-MariaDB
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       database:
         condition: service_healthy

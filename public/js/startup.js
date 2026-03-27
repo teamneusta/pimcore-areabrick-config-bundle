@@ -3,12 +3,7 @@ pimcore.registerNS('neusta.areabrick_config.startup');
 neusta.areabrick_config.startup = Class.create({
 
     initialize: function () {
-        if (pimcore.events.preMenuBuild) {
-            document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
-        } else {
-            // Todo: remove when we drop Pimcore 10 support
-            document.addEventListener(pimcore.events.pimcoreReady, this.preMenuBuild.bind(this));
-        }
+        document.addEventListener(pimcore.events.preMenuBuild, this.preMenuBuild.bind(this));
     },
 
     preMenuBuild: function (e) {
@@ -28,12 +23,7 @@ neusta.areabrick_config.startup = Class.create({
             handler: this.openAreabrickOverview,
         }
 
-        if (e.type === pimcore.events.preMenuBuild) {
-            e.detail.menu.extras.items.push(items);
-        } else {
-            // Todo: remove when we drop Pimcore 10 support
-            pimcore.globalmanager.get('layout_toolbar').extrasMenu.insert(4, items);
-        }
+        e.detail.menu.extras.items.push(items);
     },
 
     openAreabrickOverview: function() {
