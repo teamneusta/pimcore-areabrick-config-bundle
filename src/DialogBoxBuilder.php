@@ -80,29 +80,49 @@ class DialogBoxBuilder
     }
 
     /**
+     * @deprecated since 3.1, use {@see self::addNamedTab()} instead.
+     *             Without a stable name, tabs cannot be referenced reliably when the title is translated.
+     *             Will become the default behavior (with a required name) in the next major version.
+     *
      * @return $this
      */
     public function addTab(string $title, EditableItem ...$items): static
     {
+        trigger_deprecation(
+            'teamneusta/pimcore-areabrick-config-bundle',
+            '3.1',
+            'Method "%s()" without a stable name is deprecated, use "%s::addNamedTab()" instead.',
+            __METHOD__,
+            self::class,
+        );
+
+        return $this->addNamedTab($title, $title, ...$items);
+    }
+
+    /**
+     * @return $this
+     */
+    public function addNamedTab(string $name, string $title, EditableItem ...$items): static
+    {
         $tabs = $this->getTabs();
 
-        if (!$tabs->hasTab($title)) {
-            $tabs->addTab(new PanelItem($title));
+        if (!$tabs->hasTab($name)) {
+            $tabs->addTab(new PanelItem($title, [], $name));
         }
 
-        $tabs->getTab($title)->addEditable(...$items);
+        $tabs->getTab($name)->addEditable(...$items);
 
         return $this;
     }
 
-    public function hasTab(string $title): bool
+    public function hasTab(string $name): bool
     {
-        return $this->getTabs()->hasTab($title);
+        return $this->getTabs()->hasTab($name);
     }
 
-    public function getTab(string $title): PanelItem
+    public function getTab(string $name): PanelItem
     {
-        return $this->getTabs()->getTab($title);
+        return $this->getTabs()->getTab($name);
     }
 
     public function getTabs(): TabPanelItem

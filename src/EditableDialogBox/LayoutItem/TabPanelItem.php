@@ -21,7 +21,7 @@ class TabPanelItem extends LayoutItem implements \IteratorAggregate
     public function __construct(array $items = [])
     {
         parent::__construct('tabpanel', $items);
-        $this->items = array_column($items, null, 'title');
+        $this->items = array_column($items, null, 'name');
     }
 
     /**
@@ -29,36 +29,36 @@ class TabPanelItem extends LayoutItem implements \IteratorAggregate
      */
     public function addTab(PanelItem $item): static
     {
-        if ($this->hasTab($item->title)) {
-            throw new \InvalidArgumentException(\sprintf('Tab with title "%s" already exists.', $item->title));
+        if ($this->hasTab($item->name)) {
+            throw new \InvalidArgumentException(\sprintf('A tab named "%s" already exists.', $item->name));
         }
 
-        $this->items[$item->title] = $item;
+        $this->items[$item->name] = $item;
 
         return $this->addItem($item);
     }
 
-    public function hasTab(string $title): bool
+    public function hasTab(string $name): bool
     {
-        return isset($this->items[$title]);
+        return isset($this->items[$name]);
     }
 
-    public function getTab(string $title): PanelItem
+    public function getTab(string $name): PanelItem
     {
-        return $this->items[$title]
-            ?? throw new \InvalidArgumentException(\sprintf('Tab with title "%s" not found.', $title));
+        return $this->items[$name]
+            ?? throw new \InvalidArgumentException(\sprintf('A tab named "%s" was not found.', $name));
     }
 
     /**
      * @return $this
      */
-    public function removeTab(string $title): static
+    public function removeTab(string $name): static
     {
-        if (!$item = $this->items[$title] ?? null) {
-            throw new \InvalidArgumentException(\sprintf('Tab with title "%s" not found.', $title));
+        if (!$item = $this->items[$name] ?? null) {
+            throw new \InvalidArgumentException(\sprintf('A tab named "%s" was not found.', $name));
         }
 
-        unset($this->items[$title]);
+        unset($this->items[$name]);
 
         return $this->removeItem($item);
     }
