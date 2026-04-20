@@ -49,12 +49,12 @@ class MyAreabrick extends AbstractTemplateAreabrick implements EditableDialogBox
     private function buildDialogBox(DialogBoxBuilder $dialogBox, Editable $area, ?Info $info): void
     {
         $dialogBox
-            ->addTab('Settings',
+            ->addNamedTab('settings', 'Settings',
                 $dialogBox->createInput('my-input')
                     ->setLabel('Text Input')
                     ->setPlaceholder('Please enter text...')
             )
-            ->addTab('Options',
+            ->addNamedTab('options', 'Options',
                 $dialogBox->createCheckbox('my-checkbox')
                     ->setLabel('Activate')
                     ->setDefaultChecked()
@@ -106,7 +106,7 @@ $dialogBox->addContent(
 If you want to organize your fields into multiple tabs, use `addTab`:
 
 ```php
-$dialogBox->addTab('Tab Title', 
+$dialogBox->addTab('tab_name', 'Tab Title', 
     $dialogBox->createInput('field-1'),
     $dialogBox->createInput('field-2')
 );

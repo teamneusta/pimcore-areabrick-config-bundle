@@ -48,8 +48,8 @@ class DialogBoxBuilderTest extends TestCase
         $expected->addTab(new PanelItem('Other', [$editableItem3]));
 
         $dialogBox = $dialogBuilder
-            ->addTab('Settings', $editableItem1, $editableItem2)
-            ->addTab('Other', $editableItem3)
+            ->addNamedTab('settings', 'Settings', $editableItem1, $editableItem2)
+            ->addNamedTab('other', 'Other', $editableItem3)
             ->build();
 
         self::assertSame($expected->toArray(), $dialogBox->getItems());
@@ -69,8 +69,8 @@ class DialogBoxBuilderTest extends TestCase
         $expected->addTab(new PanelItem('Settings', [$editableItem1, $editableItem2, $editableItem3]));
 
         $dialogBox = $dialogBuilder
-            ->addTab('Settings', $editableItem1, $editableItem2)
-            ->addTab('Settings', $editableItem3)
+            ->addNamedTab('settings', 'Settings', $editableItem1, $editableItem2)
+            ->addNamedTab('settings', 'Settings', $editableItem3)
             ->build();
 
         self::assertSame($expected->toArray(), $dialogBox->getItems());
@@ -84,7 +84,7 @@ class DialogBoxBuilderTest extends TestCase
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('You already have content and cannot have tabs at the same time.');
 
-        (new DialogBoxBuilder())->addContent()->addTab('Test');
+        (new DialogBoxBuilder())->addContent()->addNamedTab('test', 'Test');
     }
 
     /**
@@ -95,6 +95,6 @@ class DialogBoxBuilderTest extends TestCase
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('You already have tabs and cannot have content at the same time.');
 
-        (new DialogBoxBuilder())->addTab('Test')->addContent();
+        (new DialogBoxBuilder())->addNamedTab('test', 'Test')->addContent();
     }
 }
