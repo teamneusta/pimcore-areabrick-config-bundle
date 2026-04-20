@@ -14,6 +14,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
  */
 class PanelItem extends LayoutItem implements \IteratorAggregate
 {
+    public readonly string $name;
     public readonly string $title;
 
     /** @var array<string, EditableItem> */
@@ -22,9 +23,20 @@ class PanelItem extends LayoutItem implements \IteratorAggregate
     /**
      * @param list<EditableItem> $items
      */
-    public function __construct(string $title, array $items = [])
+    public function __construct(string $title, array $items = [], ?string $name = null)
     {
         parent::__construct('panel', $items);
+
+        if (null === $name) {
+            trigger_deprecation(
+                'teamneusta/pimcore-areabrick-config-bundle',
+                '3.1',
+                'Not passing a "name" to "%s" is deprecated. Passing a "name" will be required in the next major version.',
+                self::class,
+            );
+        }
+
+        $this->name = $name ?? $title;
         $this->title = $title;
 
         foreach ($items as $item) {
