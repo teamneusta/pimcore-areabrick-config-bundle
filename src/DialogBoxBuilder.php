@@ -9,6 +9,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\InputIte
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\LinkItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\NumericItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationItem;
+use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\RelationsItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem\SelectItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
@@ -147,6 +148,11 @@ class DialogBoxBuilder
     public function createRelation(string $name): RelationItem
     {
         return new RelationItem($name);
+    }
+
+    public function createRelations(string $name): RelationsItem
+    {
+        return new RelationsItem($name);
     }
 
     /**
