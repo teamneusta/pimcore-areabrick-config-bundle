@@ -20,6 +20,14 @@ class RelationsItem extends EditableItem
     /**
      * @return $this
      */
+    public function setTitle(string $title): static
+    {
+        return $this->addConfig('title', $title);
+    }
+
+    /**
+     * @return $this
+     */
     public function allowAssetsOfType(string ...$types): static
     {
         return $this->addType('asset', array_values($types));
@@ -50,6 +58,14 @@ class RelationsItem extends EditableItem
     public function setWidth(int $width): static
     {
         return $this->addConfig('width', $width);
+    }
+
+    /**
+     * @return $this
+     */
+    public function setHeight(int $height): static
+    {
+        return $this->addConfig('height', $height);
     }
 
     protected function defaultConfig(): array
