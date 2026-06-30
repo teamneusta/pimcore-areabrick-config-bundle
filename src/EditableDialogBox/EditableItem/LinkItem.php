@@ -12,8 +12,10 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
  */
 class LinkItem extends EditableItem
 {
-    /** @var list<Types> */
+    /** @var array{asset?: list<string>, document?: list<string>, object?: list<string>} */
     private array $allowedTypes = [];
+    /** @var list<string> */
+    private array $allowedClasses = [];
     /** @var list<Targets> */
     private array $allowedTargets = [];
     /** @var list<Fields> */
@@ -25,15 +27,42 @@ class LinkItem extends EditableItem
     }
 
     /**
-     * @no-named-arguments
-     *
      * @param Types ...$types
      *
      * @return $this
      */
     public function allowTypes(string ...$types): self
     {
-        $this->allowedTypes = $types;
+        foreach ($types as $type) {
+            $this->addType($type, []);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function allowAssetsOfType(string ...$types): static
+    {
+        return $this->addType('asset', array_values($types));
+    }
+
+    /**
+     * @return $this
+     */
+    public function allowDocumentsOfType(string ...$types): static
+    {
+        return $this->addType('document', array_values($types));
+    }
+
+    /**
+     * @return $this
+     */
+    public function allowObjectsOfClass(string ...$classes): static
+    {
+        $this->addType('object', ['object']);
+        $this->allowedClasses = array_values($classes);
 
         return $this;
     }
@@ -69,9 +98,23 @@ class LinkItem extends EditableItem
     protected function defaultConfig(): array
     {
         return array_filter([
-            'allowedTypes' => $this->allowedTypes,
+            'allowedTypes' => array_keys($this->allowedTypes),
+            'allowedSubtypes' => array_filter($this->allowedTypes),
+            'allowedClasses' => $this->allowedClasses,
             'allowedTargets' => $this->allowedTargets,
             'disabledFields' => $this->disabledFields,
         ], static fn (array $item) => [] !== $item);
+    }
+
+    /**
+     * @param list<string> $subTypes
+     *
+     * @return $this
+     */
+    private function addType(string $type, array $subTypes): static
+    {
+        $this->allowedTypes[$type] = $subTypes;
+
+        return $this;
     }
 }
