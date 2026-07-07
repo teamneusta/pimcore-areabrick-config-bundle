@@ -28,7 +28,7 @@ class SelectItem extends EditableItem
     {
         $this->store = self::pack($store);
 
-        return $this->setDefaultValue(array_key_first($store));
+        return $this;
     }
 
     /**
