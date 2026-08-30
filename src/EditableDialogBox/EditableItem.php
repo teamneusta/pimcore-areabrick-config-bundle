@@ -9,7 +9,7 @@ class EditableItem extends DialogBoxItem
 {
     private string $name;
     private string|TranslatableInterface $label = '';
-    private string $description = '';
+    private string|TranslatableInterface $description = '';
     /** @var array<string, bool|float|int|string|TranslatableInterface> */
     private array $config = [];
 
@@ -37,7 +37,7 @@ class EditableItem extends DialogBoxItem
     /**
      * @return $this
      */
-    public function setDescription(string $description): static
+    public function setDescription(string|TranslatableInterface $description): static
     {
         $this->description = $description;
 

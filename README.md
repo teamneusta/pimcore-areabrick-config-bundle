@@ -103,17 +103,20 @@ $dialogBox->addContent(
 
 #### Tabs
 
-If you want to organize your fields into multiple tabs, use `addTab`:
+If you want to organize your fields into multiple tabs, use `addNamedTab`:
 
 ```php
-$dialogBox->addTab('tab_name', 'Tab Title', 
+$dialogBox->addNamedTab('tab_name', 'Tab Title', 
     $dialogBox->createInput('field-1'),
     $dialogBox->createInput('field-2')
 );
 ```
 
+Calling `addNamedTab` again with the same tab name adds the fields to the existing tab instead of
+creating a new one.
+
 > [!IMPORTANT]
-> You cannot mix `addTab` and `addContent` in the same dialog.
+> You cannot mix tabs and `addContent` in the same dialog.
 
 ### Available Editables
 
@@ -207,6 +210,33 @@ $dialogBox->createInput('name')
     ->addConfig('any-editable-config-key', 'value');
 ```
 
+### Translatable Labels & Values
+
+Labels, descriptions, and most values (default values, placeholders, select store entries, tab/panel
+titles) accept either a plain `string` or a `Symfony\Contracts\Translation\TranslatableInterface`,
+so you can use Symfony's `t()` helper instead of a hardcoded string:
+
+```php
+use function Symfony\Component\Translation\t;
+
+$dialogBox->createInput('name')
+    ->setLabel(t('my_input.label', domain: 'areabricks'))
+    ->setPlaceholder(t('my_input.placeholder', domain: 'areabricks'));
+```
+
+Translation only happens once, when the dialog box is built, so it's safe to mix translatable and
+plain string values freely.
+
+If most of your labels share the same translation domain, set it once instead of repeating
+`domain: '...'` everywhere:
+
+```php
+$dialogBox->defaultTranslationDomain('areabricks');
+```
+
+`t()` calls without an explicit `domain` argument then fall back to `'areabricks'`. You can also set
+this default for the whole project via the [bundle configuration](#configuration).
+
 ## DialogBoxConfigurator
 
 The `DialogBoxConfigurator` allows you to customize the dialog box configuration dynamically.
@@ -266,7 +296,15 @@ in the `pimcore_area` or `pimcore_areablock` helpers.
 
 ## Configuration
 
-Currently, there is no configuration available.
+```yaml
+neusta_pimcore_areabrick_config:
+    default_translation_domain: 'admin' # default
+```
+
+`default_translation_domain` sets the translation domain used for [translatable labels/values](#translatable-labels--values)
+when none is set explicitly (either on the `TranslatableInterface` object itself or via
+`DialogBoxBuilder::defaultTranslationDomain()`). It defaults to `'admin'`, since dialog boxes are
+rendered in the Pimcore backend, consistent with the rest of this bundle's own translations.
 
 ## Contribution
 

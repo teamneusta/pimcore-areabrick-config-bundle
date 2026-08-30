@@ -14,7 +14,8 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder->getRootNode()
             ->children()
                 ->scalarNode('default_translation_domain')
-                    ->defaultValue('messages')
+                    ->info('Translation domain used for translatable dialog box labels/values when none is set explicitly. Dialog boxes are rendered in the Pimcore backend, so this defaults to the "admin" domain, consistent with the rest of this bundle.')
+                    ->defaultValue('admin')
                 ->end()
             ->end();
 
