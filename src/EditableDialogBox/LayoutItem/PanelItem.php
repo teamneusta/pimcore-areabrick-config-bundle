@@ -6,6 +6,7 @@ namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\DialogBoxItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @extends LayoutItem<DialogBoxItem>
@@ -15,7 +16,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem;
 class PanelItem extends LayoutItem implements \IteratorAggregate
 {
     public readonly string $name;
-    public readonly string $title;
+    public readonly string|TranslatableInterface $title;
 
     /** @var array<string, EditableItem> */
     private array $items;
@@ -23,11 +24,15 @@ class PanelItem extends LayoutItem implements \IteratorAggregate
     /**
      * @param list<EditableItem> $items
      */
-    public function __construct(string $title, array $items = [], ?string $name = null)
+    public function __construct(string|TranslatableInterface $title, array $items = [], ?string $name = null)
     {
         parent::__construct('panel', $items);
 
         if (null === $name) {
+            if ($title instanceof TranslatableInterface) {
+                throw new \InvalidArgumentException('A "name" is required when the title is translatable.');
+            }
+
             trigger_deprecation(
                 'teamneusta/pimcore-areabrick-config-bundle',
                 '3.1',

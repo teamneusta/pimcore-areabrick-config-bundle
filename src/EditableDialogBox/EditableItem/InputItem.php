@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
 
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\EditableItem;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 class InputItem extends EditableItem
 {
@@ -15,7 +16,7 @@ class InputItem extends EditableItem
     /**
      * @return $this
      */
-    public function setDefaultValue(string $value): static
+    public function setDefaultValue(string|TranslatableInterface $value): static
     {
         return $this->addConfig('defaultValue', $value);
     }
@@ -23,7 +24,7 @@ class InputItem extends EditableItem
     /**
      * @return $this
      */
-    public function setPlaceholder(string $value): static
+    public function setPlaceholder(string|TranslatableInterface $value): static
     {
         return $this->addConfig('placeholder', $value);
     }
