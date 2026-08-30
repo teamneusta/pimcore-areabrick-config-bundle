@@ -228,14 +228,19 @@ Translation only happens once, when the dialog box is built, so it's safe to mix
 plain string values freely.
 
 If most of your labels share the same translation domain, set it once instead of repeating
-`domain: '...'` everywhere:
+`domain: '...'` everywhere. There are two ways to do this, for two different audiences:
 
-```php
-$dialogBox->defaultTranslationDomain('areabricks');
-```
+- **Projects** building areabricks directly should use the [bundle configuration](#configuration)
+  (`default_translation_domain`). It's simpler and generally sufficient.
+- **Bundles** that build areabricks on top of this bundle should call
+  `DialogBoxBuilder::defaultTranslationDomain()` instead, so they don't depend on whatever
+  `default_translation_domain` the consuming project happens to have configured:
 
-`t()` calls without an explicit `domain` argument then fall back to `'areabricks'`. You can also set
-this default for the whole project via the [bundle configuration](#configuration).
+  ```php
+  $dialogBox->defaultTranslationDomain('areabricks');
+  ```
+
+Either way, `t()` calls without an explicit `domain` argument then fall back to that default.
 
 > [!NOTE]
 > `setDefaultValue()` only ever accepts a plain `string`, even though it looks similar to a label.

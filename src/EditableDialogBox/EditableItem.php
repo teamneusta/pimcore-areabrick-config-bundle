@@ -54,7 +54,10 @@ class EditableItem extends DialogBoxItem
         return $this;
     }
 
-    final protected function getAttributes(): array
+    /**
+     * @final
+     */
+    protected function getAttributes(): array
     {
         return array_filter([
             'name' => $this->name,

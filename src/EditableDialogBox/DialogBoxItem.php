@@ -11,9 +11,11 @@ abstract class DialogBoxItem
     }
 
     /**
+     * @final
+     *
      * @return array<string, mixed>
      */
-    final public function toArray(): array
+    public function toArray(): array
     {
         return ['type' => $this->type] + $this->getAttributes();
     }
