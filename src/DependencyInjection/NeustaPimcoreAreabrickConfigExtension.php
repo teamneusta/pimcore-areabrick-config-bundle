@@ -10,6 +10,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 final class NeustaPimcoreAreabrickConfigExtension extends ConfigurableExtension
 {
+    /**
+     * @param array<string, mixed> $mergedConfig
+     */
     public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(\dirname(__DIR__, 2) . '/config'));

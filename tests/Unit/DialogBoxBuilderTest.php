@@ -8,6 +8,7 @@ use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\PanelItem;
 use Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox\LayoutItem\TabPanelItem;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DialogBoxBuilderTest extends TestCase
@@ -78,6 +79,39 @@ class DialogBoxBuilderTest extends TestCase
             ->build();
 
         self::assertSame($expected->toArray(), $dialogBox->getItems());
+    }
+
+    /**
+     * @test
+     */
+    public function translatableValuesAreTranslatedOnBuild(): void
+    {
+        $translator = $this->prophesize(TranslatorInterface::class);
+        $translator->trans('my.label', [], null, null)->willReturn('Translated Label');
+
+        $dialogBuilder = new DialogBoxBuilder($translator->reveal());
+        $editableItem = (new EditableItem('type1', 'name1'))->setLabel(new TranslatableMessage('my.label'));
+
+        $dialogBox = $dialogBuilder->addContent($editableItem)->build();
+
+        self::assertSame('Translated Label', $dialogBox->getItems()['items'][0]['label']);
+    }
+
+    /**
+     * @test
+     */
+    public function defaultTranslationDomainIsUsedWhenNoneIsSetExplicitly(): void
+    {
+        $translator = $this->prophesize(TranslatorInterface::class);
+        $translator->trans('my.label', [], 'my_domain', null)->willReturn('Translated Label');
+
+        $dialogBuilder = new DialogBoxBuilder($translator->reveal());
+        $dialogBuilder->defaultTranslationDomain('my_domain');
+        $editableItem = (new EditableItem('type1', 'name1'))->setLabel(new TranslatableMessage('my.label'));
+
+        $dialogBox = $dialogBuilder->addContent($editableItem)->build();
+
+        self::assertSame('Translated Label', $dialogBox->getItems()['items'][0]['label']);
     }
 
     /**

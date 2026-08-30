@@ -16,11 +16,9 @@ final class TranslatorWithDefaultDomain implements TranslatorInterface
     ) {
     }
 
-    public function withDefaultDomain(string $domain): self
-    {
-        return new self($this->inner, $domain);
-    }
-
+    /**
+     * @param array<string, mixed> $parameters
+     */
     public function trans(string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string
     {
         return $this->inner->trans($id, $parameters, $domain ?? $this->defaultDomain, $locale);

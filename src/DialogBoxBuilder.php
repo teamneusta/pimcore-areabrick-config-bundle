@@ -35,9 +35,7 @@ class DialogBoxBuilder
      */
     public function defaultTranslationDomain(string $domain): static
     {
-        $this->translator = $this->translator instanceof TranslatorWithDefaultDomain
-            ? $this->translator->withDefaultDomain($domain)
-            : new TranslatorWithDefaultDomain($this->translator, $domain);
+        $this->translator = new TranslatorWithDefaultDomain($this->translator, $domain);
 
         return $this;
     }
