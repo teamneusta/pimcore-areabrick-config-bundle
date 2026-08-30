@@ -39,9 +39,11 @@ class PanelItem extends LayoutItem implements \IteratorAggregate
                 'Not passing a "name" to "%s" is deprecated. Passing a "name" will be required in the next major version.',
                 self::class,
             );
+
+            $name = $title;
         }
 
-        $this->name = $name ?? $title;
+        $this->name = $name;
         $this->title = $title;
 
         foreach ($items as $item) {
