@@ -210,10 +210,10 @@ $dialogBox->createInput('name')
     ->addConfig('any-editable-config-key', 'value');
 ```
 
-### Translatable Labels & Values
+### Translatable Labels
 
-Labels, descriptions, and most values (default values, placeholders, select store entries, tab/panel
-titles) accept either a plain `string` or a `Symfony\Contracts\Translation\TranslatableInterface`,
+Text that only ever appears in the dialog box itself — labels, descriptions, placeholders, tab/panel
+titles, select options — accepts either a plain `string` or a `Symfony\Contracts\Translation\TranslatableInterface`,
 so you can use Symfony's `t()` helper instead of a hardcoded string:
 
 ```php
@@ -236,6 +236,13 @@ $dialogBox->defaultTranslationDomain('areabricks');
 
 `t()` calls without an explicit `domain` argument then fall back to `'areabricks'`. You can also set
 this default for the whole project via the [bundle configuration](#configuration).
+
+> [!NOTE]
+> `setDefaultValue()` only ever accepts a plain `string`, even though it looks similar to a label.
+> Unlike the dialog box chrome above, it seeds the editable's actual value and, unless overwritten by
+> the editor, ends up rendered on the live page — so it isn't retranslated on every dialog box build
+> the way labels are. If you need a translated default, resolve it yourself (e.g. via an injected
+> `TranslatorInterface`) before passing the plain string to `setDefaultValue()`.
 
 ## DialogBoxConfigurator
 
@@ -301,7 +308,7 @@ neusta_pimcore_areabrick_config:
     default_translation_domain: 'admin' # default
 ```
 
-`default_translation_domain` sets the translation domain used for [translatable labels/values](#translatable-labels--values)
+`default_translation_domain` sets the translation domain used for [translatable labels](#translatable-labels)
 when none is set explicitly (either on the `TranslatableInterface` object itself or via
 `DialogBoxBuilder::defaultTranslationDomain()`). It defaults to `'admin'`, since dialog boxes are
 rendered in the Pimcore backend, consistent with the rest of this bundle's own translations.

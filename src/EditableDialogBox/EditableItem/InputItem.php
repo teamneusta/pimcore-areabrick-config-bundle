@@ -16,7 +16,7 @@ class InputItem extends EditableItem
     /**
      * @return $this
      */
-    public function setDefaultValue(string|TranslatableInterface $value): static
+    public function setDefaultValue(string $value): static
     {
         return $this->addConfig('defaultValue', $value);
     }
