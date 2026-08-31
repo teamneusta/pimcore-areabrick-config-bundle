@@ -62,6 +62,8 @@ neusta.areabrick_config.areabrick_overview = Class.create({
     },
 
     colorizeAdditionalProperties: function () {
+        const supportsContrastColor = CSS.supports('color', 'contrast-color(white)');
+
         document.getElementById(this.tabId)
             .querySelectorAll('#neusta_areabrick_config ul.additional-properties > li:not(.empty)')
             .forEach(el => {
@@ -71,9 +73,12 @@ neusta.areabrick_config.areabrick_overview = Class.create({
                     sat: [60,80],
                     lit: [30,70],
                 }));
+                const backgroundColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
 
-                el.style.backgroundColor = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-                el.style.color = this.contrastingColor(rgb);
+                el.style.backgroundColor = backgroundColor;
+                el.style.color = supportsContrastColor
+                    ? `contrast-color(${backgroundColor})`
+                    : this.contrastingColor(rgb);
             });
     },
 
