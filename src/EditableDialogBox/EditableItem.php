@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace Neusta\Pimcore\AreabrickConfigBundle\EditableDialogBox;
 
+use Symfony\Contracts\Translation\TranslatableInterface;
+
 class EditableItem extends DialogBoxItem
 {
     private string $name;
-    private string $label = '';
-    private string $description = '';
-    /** @var array<string, bool|float|int|string> */
+    private string|TranslatableInterface $label = '';
+    private string|TranslatableInterface $description = '';
+    /** @var array<string, bool|float|int|string|TranslatableInterface> */
     private array $config = [];
 
     public function __construct(string $type, string $name)
@@ -25,7 +27,7 @@ class EditableItem extends DialogBoxItem
     /**
      * @return $this
      */
-    public function setLabel(string $label): static
+    public function setLabel(string|TranslatableInterface $label): static
     {
         $this->label = $label;
 
@@ -35,7 +37,7 @@ class EditableItem extends DialogBoxItem
     /**
      * @return $this
      */
-    public function setDescription(string $description): static
+    public function setDescription(string|TranslatableInterface $description): static
     {
         $this->description = $description;
 
@@ -45,13 +47,16 @@ class EditableItem extends DialogBoxItem
     /**
      * @return $this
      */
-    public function addConfig(string $key, bool|float|int|string $value): static
+    public function addConfig(string $key, bool|float|int|string|TranslatableInterface $value): static
     {
         $this->config[$key] = $value;
 
         return $this;
     }
 
+    /**
+     * @final
+     */
     protected function getAttributes(): array
     {
         return array_filter([

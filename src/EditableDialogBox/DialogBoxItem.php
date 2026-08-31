@@ -11,6 +11,8 @@ abstract class DialogBoxItem
     }
 
     /**
+     * @final
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
