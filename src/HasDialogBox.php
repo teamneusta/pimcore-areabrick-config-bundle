@@ -7,6 +7,7 @@ use Pimcore\Extension\Document\Areabrick\AbstractAreabrick;
 use Pimcore\Extension\Document\Areabrick\EditableDialogBoxConfiguration;
 use Pimcore\Model\Document\Editable;
 use Pimcore\Model\Document\Editable\Area\Info;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @template T of DialogBoxBuilder
@@ -55,7 +56,9 @@ trait HasDialogBox
      */
     private function createDialogBoxBuilder(Editable $area, ?Info $info): DialogBoxBuilder
     {
-        return new DialogBoxBuilder($this->container->get(TranslatorWithDefaultDomain::class));
+        $translator = $this->container?->get(TranslatorWithDefaultDomain::class, ContainerInterface::NULL_ON_INVALID_REFERENCE);
+
+        return new DialogBoxBuilder($translator);
     }
 
     /**

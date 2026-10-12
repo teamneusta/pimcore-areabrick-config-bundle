@@ -117,6 +117,35 @@ class DialogBoxBuilderTest extends TestCase
     /**
      * @test
      */
+    public function plainValuesCanBeBuiltWithoutTranslator(): void
+    {
+        $editableItem = (new EditableItem('type1', 'name1'))->setLabel('Plain label');
+
+        $dialogBox = (new DialogBoxBuilder())
+            ->defaultTranslationDomain('my_domain')
+            ->addContent($editableItem)
+            ->build();
+
+        self::assertSame('Plain label', $dialogBox->getItems()['items'][0]['label']);
+    }
+
+    /**
+     * @test
+     */
+    public function translatableValuesWithoutTranslatorThrow(): void
+    {
+        $editableItem = (new EditableItem('type1', 'name1'))->setLabel(new TranslatableMessage('my.label'));
+        $dialogBuilder = (new DialogBoxBuilder())->addContent($editableItem);
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Translatable labels/values require a translator.');
+
+        $dialogBuilder->build();
+    }
+
+    /**
+     * @test
+     */
     public function addingContentAndThenTabs(): void
     {
         $translator = $this->prophesize(TranslatorInterface::class);
