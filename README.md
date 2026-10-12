@@ -243,6 +243,12 @@ If most of your labels share the same translation domain, set it once instead of
 Either way, `t()` calls without an explicit `domain` argument then fall back to that default.
 
 > [!NOTE]
+> The `HasDialogBox` trait passes the translator to the `DialogBoxBuilder` for you. If you instantiate
+> `DialogBoxBuilder` yourself (e.g. in a custom `createDialogBoxBuilder()`), the translator is optional,
+> but you need to pass a `TranslatorInterface` as the constructor argument to use translatable
+> labels/values. Without one, building a dialog box containing a translatable value throws a `LogicException`.
+
+> [!NOTE]
 > `setDefaultValue()` only ever accepts a plain `string`, even though it looks similar to a label.
 > Unlike the dialog box chrome above, it seeds the editable's actual value and, unless overwritten by
 > the editor, ends up rendered on the live page — so it isn't retranslated on every dialog box build

@@ -24,8 +24,10 @@ class DialogBoxBuilder
     private TabPanelItem $tabs;
     private PanelItem $content;
 
+    private ?string $defaultTranslationDomain = null;
+
     public function __construct(
-        private TranslatorInterface $translator,
+        private readonly ?TranslatorInterface $translator = null,
     ) {
         $this->config = new EditableDialogBoxConfiguration();
     }
@@ -35,7 +37,7 @@ class DialogBoxBuilder
      */
     public function defaultTranslationDomain(string $domain): static
     {
-        $this->translator = new TranslatorWithDefaultDomain($this->translator, $domain);
+        $this->defaultTranslationDomain = $domain;
 
         return $this;
     }
@@ -198,10 +200,11 @@ class DialogBoxBuilder
 
         if ($items && !$items->isEmpty()) {
             $rawItems = $items->toArray();
+            $translator = null;
 
-            array_walk_recursive($rawItems, function (&$value) {
+            array_walk_recursive($rawItems, function (&$value) use (&$translator) {
                 if ($value instanceof TranslatableInterface) {
-                    $value = $value->trans($this->translator);
+                    $value = $value->trans($translator ??= $this->getTranslator());
                 }
             });
 
@@ -209,5 +212,21 @@ class DialogBoxBuilder
         }
 
         return $this->config;
+    }
+
+    private function getTranslator(): TranslatorInterface
+    {
+        if (null === $this->translator) {
+            throw new \LogicException(\sprintf(
+                'Translatable labels/values require a translator. Pass a "%s" to the "%s" constructor (as "%s" does).',
+                TranslatorInterface::class,
+                self::class,
+                HasDialogBox::class,
+            ));
+        }
+
+        return null !== $this->defaultTranslationDomain
+            ? new TranslatorWithDefaultDomain($this->translator, $this->defaultTranslationDomain)
+            : $this->translator;
     }
 }
