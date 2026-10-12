@@ -103,17 +103,20 @@ $dialogBox->addContent(
 
 #### Tabs
 
-If you want to organize your fields into multiple tabs, use `addTab`:
+If you want to organize your fields into multiple tabs, use `addNamedTab`:
 
 ```php
-$dialogBox->addTab('tab_name', 'Tab Title', 
+$dialogBox->addNamedTab('tab_name', 'Tab Title', 
     $dialogBox->createInput('field-1'),
     $dialogBox->createInput('field-2')
 );
 ```
 
+Calling `addNamedTab` again with the same tab name adds the fields to the existing tab instead of
+creating a new one.
+
 > [!IMPORTANT]
-> You cannot mix `addTab` and `addContent` in the same dialog.
+> You cannot mix tabs and `addContent` in the same dialog.
 
 ### Available Editables
 
@@ -207,6 +210,45 @@ $dialogBox->createInput('name')
     ->addConfig('any-editable-config-key', 'value');
 ```
 
+### Translatable Labels
+
+Text that only ever appears in the dialog box itself — labels, descriptions, placeholders, tab/panel
+titles, select options — accepts either a plain `string` or a `Symfony\Contracts\Translation\TranslatableInterface`,
+so you can use Symfony's `t()` helper instead of a hardcoded string:
+
+```php
+use function Symfony\Component\Translation\t;
+
+$dialogBox->createInput('name')
+    ->setLabel(t('my_input.label', domain: 'areabricks'))
+    ->setPlaceholder(t('my_input.placeholder', domain: 'areabricks'));
+```
+
+Translation only happens once, when the dialog box is built, so it's safe to mix translatable and
+plain string values freely.
+
+If most of your labels share the same translation domain, set it once instead of repeating
+`domain: '...'` everywhere. There are two ways to do this, for two different audiences:
+
+- **Projects** building areabricks directly should use the [bundle configuration](#configuration)
+  (`default_translation_domain`). It's simpler and generally sufficient.
+- **Bundles** that build areabricks on top of this bundle should call
+  `DialogBoxBuilder::defaultTranslationDomain()` instead, so they don't depend on whatever
+  `default_translation_domain` the consuming project happens to have configured:
+
+  ```php
+  $dialogBox->defaultTranslationDomain('areabricks');
+  ```
+
+Either way, `t()` calls without an explicit `domain` argument then fall back to that default.
+
+> [!NOTE]
+> `setDefaultValue()` only ever accepts a plain `string`, even though it looks similar to a label.
+> Unlike the dialog box chrome above, it seeds the editable's actual value and, unless overwritten by
+> the editor, ends up rendered on the live page — so it isn't retranslated on every dialog box build
+> the way labels are. If you need a translated default, resolve it yourself (e.g. via an injected
+> `TranslatorInterface`) before passing the plain string to `setDefaultValue()`.
+
 ## DialogBoxConfigurator
 
 The `DialogBoxConfigurator` allows you to customize the dialog box configuration dynamically.
@@ -266,7 +308,15 @@ in the `pimcore_area` or `pimcore_areablock` helpers.
 
 ## Configuration
 
-Currently, there is no configuration available.
+```yaml
+neusta_pimcore_areabrick_config:
+    default_translation_domain: 'admin' # default
+```
+
+`default_translation_domain` sets the translation domain used for [translatable labels](#translatable-labels)
+when none is set explicitly (either on the `TranslatableInterface` object itself or via
+`DialogBoxBuilder::defaultTranslationDomain()`). It defaults to `'admin'`, since dialog boxes are
+rendered in the Pimcore backend, consistent with the rest of this bundle's own translations.
 
 ## Contribution
 

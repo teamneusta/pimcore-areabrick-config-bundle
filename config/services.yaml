@@ -18,3 +18,9 @@ services:
     tags:
       - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }
       - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }
+
+  Neusta\Pimcore\AreabrickConfigBundle\Translation\TranslatorWithDefaultDomain:
+    public: true
+    arguments:
+      $inner: '@Symfony\Contracts\Translation\TranslatorInterface'
+      $defaultDomain: !abstract defined in extension
