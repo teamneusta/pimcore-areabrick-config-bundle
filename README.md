@@ -246,7 +246,8 @@ Either way, `t()` calls without an explicit `domain` argument then fall back to 
 > The `HasDialogBox` trait passes the translator to the `DialogBoxBuilder` for you. If you instantiate
 > `DialogBoxBuilder` yourself (e.g. in a custom `createDialogBoxBuilder()`), the translator is optional,
 > but you need to pass a `TranslatorInterface` as the constructor argument to use translatable
-> labels/values. Without one, building a dialog box containing a translatable value throws a `LogicException`.
+> labels/values. Without one, building a dialog box containing a translatable value throws a `LogicException`,
+> and `defaultTranslationDomain()` has no effect.
 
 > [!NOTE]
 > `setDefaultValue()` only ever accepts a plain `string`, even though it looks similar to a label.

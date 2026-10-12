@@ -16,7 +16,9 @@ final class WithDialogBox extends AbstractAreabrick implements EditableDialogBox
     /** @use HasDialogBox<DialogBoxBuilder> */
     use HasDialogBox;
 
-    public bool $translated = false;
+    public function __construct(private readonly bool $translated = false)
+    {
+    }
 
     public function getTemplate(): ?string
     {
